@@ -38,3 +38,14 @@ void Reader::readFile() {
         error = tr("File contains no valid numerical data");
     }
 }
+
+QString Reader::formatReport() {
+    if(isValid()) {
+        return tr("Loaded %1 values, %2 skipped")
+               .arg(parsedData.count())
+               .arg(warnings.count());
+    } else {
+        return error;
+    }
+}
+

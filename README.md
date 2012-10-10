@@ -9,7 +9,7 @@ Basic functions
 ---------------
 
 - Data input from keyboard or from file *(in progress)*
-- Showing E-value, standard deviation, etc  *(planned)*
+- Showing E-value, standard deviation, etc
 - Building histogram *(planned)*
 
 Compiling

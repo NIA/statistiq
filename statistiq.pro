@@ -6,10 +6,12 @@ TEMPLATE = app
 
 SOURCES += src/main.cpp\
            src/mainwindow.cpp \
-    src/reader.cpp
+    src/reader.cpp \
+    src/statistic.cpp
 
 HEADERS += src/mainwindow.h \
-    src/reader.h
+    src/reader.h \
+    src/statistic.h
 
 FORMS    += mainwindow.ui
 

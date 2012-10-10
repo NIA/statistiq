@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QStandardItemModel>
+#include "statistic.h"
 
 namespace Ui {
 class MainWindow;
@@ -25,6 +26,7 @@ private:
     QStandardItemModel *tableModel;
 
     void setupTable();
+    QString formatStats(const Statistic &stat);
     static QList<QStandardItem*> dataToItems(QList<double> data);
 };
 

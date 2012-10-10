@@ -20,6 +20,8 @@ public:
     QList<QString> warningMessages() { return warnings; }
     bool isValid() { return error.isEmpty(); }
 
+    QString formatReport();
+
 private:
     QFile * file;
     QString error;

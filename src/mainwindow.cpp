@@ -21,12 +21,12 @@ void MainWindow::sl_open() {
         QList<double> data = reader.data();
         // TODO: not insert, but replace!
         tableModel->insertColumn(0, dataToItems(data));
-        statusBar()->showMessage(tr("Loaded %1 values, %2 skipped")
-                                 .arg(data.count())
-                                 .arg(reader.warningMessages().count()));
-    } else {
-        statusBar()->showMessage(reader.errorMessage());
+
+        // TODO: field, signal-slot connection
+        Statistic stat(this, data);
+        ui->infoText->setHtml(formatStats(stat));
     }
+    statusBar()->showMessage(reader.formatReport());
 }
 
 void MainWindow::setupTable() {
@@ -43,6 +43,15 @@ QList<QStandardItem*> MainWindow::dataToItems(QList<double> data) {
         result.append(new QStandardItem(QString::number(d)));
     }
     return result;
+}
+
+QString MainWindow::formatStats(const Statistic &stat) {
+    return tr("<p><b>Number:</b> %1</p>"
+              "<p><b>Average:</b> %2</p>"
+              "<p><b>Dispersion:</b> %3</p>"
+              "<p><b>Std. deviation:</b> %4</p>")
+    .arg(stat.number()).arg(stat.average())
+    .arg(stat.dispersion()).arg(stat.stdDeviation());
 }
 
 void MainWindow::sl_quit() {
