@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QStandardItemModel>
 
 namespace Ui {
 class MainWindow;
@@ -17,9 +18,14 @@ public:
 public slots:
     void sl_quit();
     void sl_about();
+    void sl_open();
 
 private:
     Ui::MainWindow *ui;
+    QStandardItemModel *tableModel;
+
+    void setupTable();
+    static QList<QStandardItem*> dataToItems(QList<double> data);
 };
 
 #endif // MAINWINDOW_H
