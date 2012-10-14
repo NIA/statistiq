@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QStandardItemModel>
+#include <qwt_plot_histogram.h>
 #include "statistic.h"
 
 namespace Ui {
@@ -20,14 +20,14 @@ public slots:
     void sl_quit();
     void sl_about();
     void sl_open();
+    void sl_dataUpdated();
 
 private:
     Ui::MainWindow *ui;
-    QStandardItemModel *tableModel;
+    Statistic * stat;
+    QwtPlotHistogram histogram;
 
-    void setupTable();
-    QString formatStats(const Statistic &stat);
-    static QList<QStandardItem*> dataToItems(QList<double> data);
+    QString formatStats();
 };
 
 #endif // MAINWINDOW_H

@@ -15,7 +15,7 @@ Basic functions
 Compiling
 ---------
 
-In order to build, you need Qt SDK installed.
+In order to build, you need [Qt SDK] and [Qwt 6.0.1] installed.
 
 Open `statistiq.pro` in Qt Creator and click *Run*.
 
@@ -24,3 +24,6 @@ Or, in command line, go to the folder where `statistiq.pro` is located and run
     qmake statistiq.pro
     make release
 
+
+  [Qt SDK]: http://qt-project.org/downloads
+  [Qwt 6.0.1]: http://sourceforge.net/projects/qwt/files/qwt/6.0.1

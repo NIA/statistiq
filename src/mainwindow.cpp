@@ -4,13 +4,16 @@
 
 #include <QMessageBox>
 #include <QFileDialog>
+#include <qwt_series_data.h>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow), stat(NULL)
 {
     ui->setupUi(this);
-    setupTable();
+    histogram.attach(ui->histogramArea);
+    histogram.setStyle(QwtPlotHistogram::Columns);
+    histogram.setBrush(QBrush(QColor(0, 200, 30)));
 }
 
 void MainWindow::sl_open() {
@@ -19,39 +22,37 @@ void MainWindow::sl_open() {
     Reader reader(this, fileName);
     if(reader.isValid()) {
         QList<double> data = reader.data();
-        // TODO: not insert, but replace!
-        tableModel->insertColumn(0, dataToItems(data));
 
-        // TODO: field, signal-slot connection
-        Statistic stat(this, data);
-        ui->infoText->setHtml(formatStats(stat));
+        if(stat != NULL) {
+            delete stat;
+        }
+        // TODO: store file and date info, show in infobox and title
+        stat = new Statistic(this, data);
+        ui->dataTable->setModel(stat->itemModel());
+        connect(stat, SIGNAL(si_statisticChanged()), SLOT(sl_dataUpdated()));
+        sl_dataUpdated();
     }
     statusBar()->showMessage(reader.formatReport());
 }
 
-void MainWindow::setupTable() {
-    tableModel = new QStandardItemModel(0,1,this); //2 Rows and 1 Column
-
-    tableModel->setHorizontalHeaderItem(0, new QStandardItem(QString("Value")));
-
-    ui->dataTable->setModel(tableModel);
+void MainWindow::sl_dataUpdated() {
+    ui->infoText->setHtml(formatStats());
+    histogram.setData(new QwtIntervalSeriesData(stat->histogramSamples()));
+    ui->histogramArea->replot();
 }
 
-QList<QStandardItem*> MainWindow::dataToItems(QList<double> data) {
-    QList<QStandardItem*> result;
-    foreach(double d, data) {
-        result.append(new QStandardItem(QString::number(d)));
+QString MainWindow::formatStats() {
+    if(stat == NULL) {
+        return "";
     }
-    return result;
-}
-
-QString MainWindow::formatStats(const Statistic &stat) {
     return tr("<p><b>Number:</b> %1</p>"
-              "<p><b>Average:</b> %2</p>"
-              "<p><b>Dispersion:</b> %3</p>"
-              "<p><b>Std. deviation:</b> %4</p>")
-    .arg(stat.number()).arg(stat.average())
-    .arg(stat.dispersion()).arg(stat.stdDeviation());
+              "<p><b>Min/Max:</b> %2 ... %3</p>"
+              "<p><b>Average:</b> %4</p>"
+              "<p><b>Dispersion:</b> %5</p>"
+              "<p><b>Std. deviation:</b> %6</p>")
+    .arg(stat->number()).arg(stat->min()).arg(stat->max())
+    .arg(stat->average())
+    .arg(stat->dispersion()).arg(stat->stdDeviation());
 }
 
 void MainWindow::sl_quit() {
