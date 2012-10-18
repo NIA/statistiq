@@ -25,6 +25,10 @@ win32 {
     OTHER_FILES += statistiq.rc
 
     INCLUDEPATH  += C:/Qwt-6.0.1/include/
-    release:LIBS += C:/Qwt-6.0.1/lib/qwt.dll
-    debug:LIBS   += C:/Qwt-6.0.1/lib/qwtd.dll
+
+    CONFIG(debug, debug|release) {
+        LIBS += C:/Qwt-6.0.1/lib/qwtd.dll
+    } else {
+        LIBS += C:/Qwt-6.0.1/lib/qwt.dll
+    }
 }
