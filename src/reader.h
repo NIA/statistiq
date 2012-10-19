@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QFile>
 #include <QVector>
+#include <QDateTime>
 
 class Reader : public QObject
 {
@@ -20,10 +21,17 @@ public:
     QList<QString> warningMessages() { return warnings; }
     bool isValid() { return error.isEmpty(); }
 
+    QString shortFileName() { return fileName; }
+    QDateTime modifiedAt() { return lastModified; }
+
     QString formatReport();
+    QString formatFileInfo();
 
 private:
     QFile * file;
+    QString fileName;
+    QDateTime lastModified;
+
     QString error;
     QList<QString> warnings;
     QList<double> parsedData;

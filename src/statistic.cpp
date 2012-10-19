@@ -3,8 +3,11 @@
 #include <cmath>
 
 namespace {
-    double squared(double value) {
+    inline double squared(double value) {
         return value * value;
+    }
+    inline double cubed(double value) {
+        return value * value * value;
     }
 
     inline QString valueToItem(double value) {
@@ -26,8 +29,8 @@ namespace {
     const double MIN_HIST_AREA = 0.01;
 }
 
-Statistic::Statistic(QObject *parent, QList<double> data) :
-    QObject(parent), data(data), model(0, 0, this),
+Statistic::Statistic(QObject *parent, QList<double> data, QString header) :
+    QObject(parent), data(data), model(0, 0, this), header_(header),
     histogramIntervals(10), histogramFraction(false)
 {
     initModel();
@@ -46,6 +49,7 @@ void Statistic::initModel() {
 
 void Statistic::recalculate() {
     min_ = max_ = average_ = dispersion_ = 0;
+    thirdMoment_ = fourthMoment_ = 0;
     number_ = data.count();
 
     if(number_ != 0) {
@@ -59,11 +63,17 @@ void Statistic::recalculate() {
         }
         average_ /= number_;
 
-        // Dispersion
-        foreach(double value, data) {
-            dispersion_ += squared(value - average_);
+        if(number_ > 1) {
+            // Dispersion and moments
+            foreach(double value, data) {
+                dispersion_ += squared(value - average_);
+                thirdMoment_ += cubed(value - average_);
+                fourthMoment_ += squared(squared(value - average_));
+            }
+            dispersion_   /= (number_ - 1);
+            thirdMoment_  /= number_;
+            fourthMoment_ /= number_;
         }
-        dispersion_ /= number_;
 
         resampleHistogram();
     }
@@ -110,3 +120,12 @@ void Statistic::sl_valueChanged(int index, double newValue) {
     model.item(index)->setText(valueToItem(newValue));
     recalculate();
 }
+
+QString Statistic::numberStr() const { return valueToItem(number_); }
+QString Statistic::minStr() const { return valueToItem(min_); }
+QString Statistic::maxStr() const { return valueToItem(max_); }
+QString Statistic::averageStr() const { return valueToItem(average_); }
+QString Statistic::dispersionStr() const { return valueToItem(dispersion_); }
+QString Statistic::stdDeviationStr() const { return valueToItem(stdDeviation()); }
+QString Statistic::thirdMomentStr() const { return valueToItem(thirdMoment_); }
+QString Statistic::fourthMomentStr() const { return valueToItem(fourthMoment_); }

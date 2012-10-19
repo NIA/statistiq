@@ -8,16 +8,32 @@
 class Statistic : public QObject
 {
     Q_OBJECT
+
 public:
-    explicit Statistic(QObject *parent, QList<double> data);
+    explicit Statistic(QObject *parent, QList<double> data, QString header = "");
 
     QStandardItemModel * itemModel() { return &model; }
+    QString header() { return header_; }
+
     int number() const { return number_; }
     double min() const { return min_; }
     double max() const { return max_; }
     double average() const { return average_; }
     double dispersion() const { return dispersion_; }
     double stdDeviation() const;
+    double thirdMoment() const { return thirdMoment_; }
+    double fourthMoment() const { return fourthMoment_; }
+
+    // String versions of values getters
+
+    QString numberStr() const;
+    QString minStr() const;
+    QString maxStr() const;
+    QString averageStr() const;
+    QString dispersionStr() const;
+    QString stdDeviationStr() const;
+    QString thirdMomentStr() const;
+    QString fourthMomentStr() const;
 
     QVector<QwtIntervalSample> histogramSamples() const { return histogramSamples_; }
 
@@ -31,6 +47,7 @@ public slots:
 private:
     QList<double> data;
     QStandardItemModel model;
+    QString header_;
 
     // -- Options --
     // The number of the intervals for building histogram
@@ -44,6 +61,8 @@ private:
     double max_;
     double average_;
     double dispersion_;
+    double thirdMoment_;
+    double fourthMoment_;
     QVector<QwtIntervalSample> histogramSamples_;
 
     void initModel();

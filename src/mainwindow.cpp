@@ -21,13 +21,11 @@ void MainWindow::sl_open() {
                                                     tr("Plain text file (*.txt *.csv *.dat)"));
     Reader reader(this, fileName);
     if(reader.isValid()) {
-        QList<double> data = reader.data();
-
         if(stat != NULL) {
             delete stat;
         }
-        // TODO: store file and date info, show in infobox and title
-        stat = new Statistic(this, data);
+        setWindowTitle(tr("%1 - StatistiQ - a data processing utility"));
+        stat = new Statistic(this, reader.data(), reader.formatFileInfo());
         ui->dataTable->setModel(stat->itemModel());
         connect(stat, SIGNAL(si_statisticChanged()), SLOT(sl_dataUpdated()));
         sl_dataUpdated();
@@ -45,14 +43,22 @@ QString MainWindow::formatStats() {
     if(stat == NULL) {
         return "";
     }
-    return tr("<p><b>Number:</b> %1</p>"
-              "<p><b>Min/Max:</b> %2 ... %3</p>"
-              "<p><b>Average:</b> %4</p>"
-              "<p><b>Dispersion:</b> %5</p>"
-              "<p><b>Std. deviation:</b> %6</p>")
-    .arg(stat->number()).arg(stat->min()).arg(stat->max())
-    .arg(stat->average())
-    .arg(stat->dispersion()).arg(stat->stdDeviation());
+    return tr("<h2>%header</h2><p/>"
+              "<p><b>Number:</b> %number</p>"
+              "<p><b>Min/Max:</b> %min ... %max</p>"
+              "<p><b>Average:</b> %avg</p>"
+              "<p><b>Dispersion:</b> %disp</p>"
+              "<p><b>Std. deviation:</b> %stddev</p>"
+              "<p><b>3<sup>rd</sup> Moment:</b> %moment3</p>"
+              "<p><b>4<sup>th</sup> Moment:</b> %moment4</p>")
+    .replace("%header", stat->header())
+    .replace("%number", stat->numberStr())
+    .replace("%min", stat->minStr()).replace("%max", stat->maxStr())
+    .replace("%avg", stat->averageStr())
+    .replace("%disp", stat->dispersionStr())
+    .replace("%stddev", stat->stdDeviationStr())
+    .replace("%moment3", stat->thirdMomentStr())
+    .replace("%moment4", stat->fourthMomentStr());
 }
 
 void MainWindow::sl_quit() {
@@ -64,7 +70,7 @@ void MainWindow::sl_about() {
             tr("StatistiQ is an app for getting various \n"
                "statistical information from experiment data\n\n"
                "(c) 2012, Faculty of Physics and Technology, Kuban State University\n"
-               "written by Ivan Novikov"));
+               "written by Ivan Novikov, lead by L. R. Grigorjan"));
 
 }
 
