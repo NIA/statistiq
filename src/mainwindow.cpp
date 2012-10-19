@@ -20,6 +20,9 @@ MainWindow::MainWindow(QWidget *parent) :
 void MainWindow::sl_open() {
     QString fileName = QFileDialog::getOpenFileName(this, tr("Open data file"), ".",
                                                     tr("Plain text file (*.txt *.csv *.dat)"));
+    if(fileName.isEmpty()) {
+        return;
+    }
     Reader reader(this, fileName);
     if(reader.isValid()) {
         if(stat != NULL) {

@@ -14,6 +14,8 @@ class MainWindow : public QMainWindow {
 
 public:
     explicit MainWindow(QWidget *parent = 0);
+    // Suppress the menu that hides the toolbar
+    virtual QMenu * createPopupMenu () { return NULL; }
     ~MainWindow();
 
 public slots:
