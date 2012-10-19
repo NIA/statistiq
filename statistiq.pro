@@ -14,6 +14,8 @@ HEADERS += src/mainwindow.h \
 
 FORMS    += mainwindow.ui
 
+TRANSLATIONS += statistiq_ru.ts
+
 OTHER_FILES += \
     statistiq.rc
 
