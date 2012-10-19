@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow), stat(NULL)
 {
     ui->setupUi(this);
+
     histogram.attach(ui->histogramArea);
     histogram.setStyle(QwtPlotHistogram::Columns);
     histogram.setBrush(QBrush(QColor(0, 200, 30)));
@@ -24,7 +25,7 @@ void MainWindow::sl_open() {
         if(stat != NULL) {
             delete stat;
         }
-        setWindowTitle(tr("%1 - StatistiQ - a data processing utility"));
+        setWindowTitle(tr("%1 - StatistiQ - a data processing utility").arg(reader.shortFileName()));
         stat = new Statistic(this, reader.data(), reader.formatFileInfo());
         ui->dataTable->setModel(stat->itemModel());
         connect(stat, SIGNAL(si_statisticChanged()), SLOT(sl_dataUpdated()));

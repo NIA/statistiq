@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>600</height>
+    <height>630</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -97,9 +97,14 @@ p, li { white-space: pre-wrap; }
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionOpen"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionQuit">
+   <property name="icon">
+    <iconset resource="statistiq.qrc">
+     <normaloff>:/icons/images/exit.ico</normaloff>:/icons/images/exit.ico</iconset>
+   </property>
    <property name="text">
     <string>Quit</string>
    </property>
@@ -108,11 +113,19 @@ p, li { white-space: pre-wrap; }
    </property>
   </action>
   <action name="actionAbout">
+   <property name="icon">
+    <iconset resource="statistiq.qrc">
+     <normaloff>:/icons/images/about.ico</normaloff>:/icons/images/about.ico</iconset>
+   </property>
    <property name="text">
     <string>About...</string>
    </property>
   </action>
   <action name="actionOpen">
+   <property name="icon">
+    <iconset resource="statistiq.qrc">
+     <normaloff>:/icons/images/open.ico</normaloff>:/icons/images/open.ico</iconset>
+   </property>
    <property name="text">
     <string>Open...</string>
    </property>
