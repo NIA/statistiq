@@ -8,13 +8,11 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow), stat(NULL)
+    ui(new Ui::MainWindow), stat(NULL),
+    histogram(NULL)
 {
     ui->setupUi(this);
-
-    histogram.attach(ui->histogramArea);
-    histogram.setStyle(QwtPlotHistogram::Columns);
-    histogram.setBrush(QBrush(QColor(0, 200, 30)));
+    histogram = new Histogram(ui->histogramArea);
 }
 
 void MainWindow::sl_open() {
@@ -39,7 +37,7 @@ void MainWindow::sl_open() {
 
 void MainWindow::sl_dataUpdated() {
     ui->infoText->setHtml(formatStats());
-    histogram.setData(new QwtIntervalSeriesData(stat->histogramSamples()));
+    histogram->setData(new QwtIntervalSeriesData(stat->histogramSamples()));
     ui->histogramArea->replot();
 }
 
@@ -79,5 +77,6 @@ void MainWindow::sl_about() {
 }
 
 MainWindow::~MainWindow() {
+    delete histogram;
     delete ui;
 }

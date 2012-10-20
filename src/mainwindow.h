@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <qwt_plot_histogram.h>
 #include "statistic.h"
+#include "histogram.h"
 
 namespace Ui {
 class MainWindow;
@@ -27,7 +28,7 @@ public slots:
 private:
     Ui::MainWindow *ui;
     Statistic * stat;
-    QwtPlotHistogram histogram;
+    Histogram * histogram;
 
     QString formatStats();
 };
