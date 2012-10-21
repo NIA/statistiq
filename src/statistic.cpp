@@ -102,6 +102,7 @@ void Statistic::resampleHistogram() {
             histogramSamples_[i].value /= number_;
         }
     }
+    emit si_histogramChanged();
 }
 
 void Statistic::sl_itemChanged(QStandardItem *item) {
@@ -119,6 +120,23 @@ void Statistic::sl_valueChanged(int index, double newValue) {
     data[index] = newValue;
     model.item(index)->setText(valueToItem(newValue));
     recalculate();
+}
+
+void Statistic::sl_histogramIntervalsChanged(int newValue) {
+    if(newValue == histogramIntervals) {
+        return;
+    }
+    histogramIntervals = newValue;
+    resampleHistogram();
+}
+
+void Statistic::sl_histogramFractionChanged(int newValue) {
+    bool fraction = (newValue != 0);
+    if(fraction == histogramFraction) {
+        return;
+    }
+    histogramFraction = fraction;
+    resampleHistogram();
 }
 
 QString Statistic::numberStr() const { return valueToItem(number_); }

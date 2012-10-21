@@ -37,12 +37,20 @@ public:
 
     QVector<QwtIntervalSample> histogramSamples() const { return histogramSamples_; }
 
+    int histogramIntervalsNumber() { return histogramIntervals; }
+    bool isHisgogramFraction() { return histogramFraction; }
+    void setHistogramIntervalsNumber(int value) { sl_histogramIntervalsChanged(value); }
+    void setHistogramFraction(bool value) { sl_histogramFractionChanged(value); }
+
 signals:
     void si_statisticChanged();
+    void si_histogramChanged();
 
 public slots:
     void sl_itemChanged(QStandardItem * item);
     void sl_valueChanged(int index, double newValue);
+    void sl_histogramIntervalsChanged(int newValue);
+    void sl_histogramFractionChanged(int newValue);
     
 private:
     QList<double> data;

@@ -2,6 +2,14 @@
 <!DOCTYPE TS>
 <TS version="2.0" language="ru_RU">
 <context>
+    <name>HistogramPlotPicker</name>
+    <message>
+        <location filename="src/histogram.cpp" line="13"/>
+        <source>%1; %2</source>
+        <translation>%1; %2</translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <location filename="mainwindow.ui" line="14"/>
@@ -28,57 +36,102 @@ p, li { white-space: pre-wrap; }
         <translation>Помощь</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="109"/>
+        <location filename="mainwindow.ui" line="116"/>
         <source>Quit</source>
         <translation>Выход</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="112"/>
+        <location filename="mainwindow.ui" line="119"/>
+        <location filename="mainwindow.ui" line="122"/>
+        <source>Quit the program</source>
+        <translation>Выйти из программы</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="125"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="121"/>
+        <location filename="mainwindow.ui" line="134"/>
         <source>About...</source>
         <translation>О программе...</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="130"/>
+        <location filename="mainwindow.ui" line="137"/>
+        <location filename="mainwindow.ui" line="140"/>
+        <source>Show About dialog with info about authors</source>
+        <translation>Показать диалог &quot;О программе&quot; с информацией об авторах</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="149"/>
         <source>Open...</source>
         <translation>Открыть...</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="133"/>
+        <location filename="mainwindow.ui" line="158"/>
         <source>Ctrl+O</source>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="21"/>
+        <location filename="mainwindow.ui" line="152"/>
+        <location filename="mainwindow.ui" line="155"/>
+        <location filename="src/mainwindow.cpp" line="55"/>
         <source>Open data file</source>
         <translation>Открыть файл данных</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="22"/>
+        <location filename="src/mainwindow.cpp" line="31"/>
+        <source>Histogram:</source>
+        <translation>Гисторамма:</translation>
+    </message>
+    <message>
+        <location filename="src/mainwindow.cpp" line="33"/>
+        <source>Histogram display options</source>
+        <translation>Настройки отображения гистораммы</translation>
+    </message>
+    <message>
+        <location filename="src/mainwindow.cpp" line="38"/>
+        <location filename="src/mainwindow.cpp" line="42"/>
+        <source>Number of histogram intervals</source>
+        <translation>Количество интервалов гистограммы</translation>
+    </message>
+    <message>
+        <location filename="src/mainwindow.cpp" line="40"/>
+        <source>(columns)</source>
+        <translation>(столбцов)</translation>
+    </message>
+    <message>
+        <location filename="src/mainwindow.cpp" line="45"/>
+        <source>Fraction</source>
+        <translation>Доли</translation>
+    </message>
+    <message>
+        <location filename="src/mainwindow.cpp" line="46"/>
+        <source>Show fraction instead of values in histogram</source>
+        <translation>Показывать доли вместо значений на гистограмме</translation>
+    </message>
+    <message>
+        <location filename="src/mainwindow.cpp" line="56"/>
         <source>Plain text file (*.txt *.csv *.dat)</source>
         <translation>Текстовый файл (*.txt *.csv *.dat)</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="28"/>
+        <location filename="src/mainwindow.cpp" line="65"/>
         <source>%1 - StatistiQ - a data processing utility</source>
         <translation>%1 - StatistiQ -программа обработки данных</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="47"/>
+        <location filename="src/mainwindow.cpp" line="94"/>
         <source>&lt;h2&gt;%header&lt;/h2&gt;&lt;p/&gt;&lt;p&gt;&lt;b&gt;Number:&lt;/b&gt; %number&lt;/p&gt;&lt;p&gt;&lt;b&gt;Min/Max:&lt;/b&gt; %min ... %max&lt;/p&gt;&lt;p&gt;&lt;b&gt;Average:&lt;/b&gt; %avg&lt;/p&gt;&lt;p&gt;&lt;b&gt;Dispersion:&lt;/b&gt; %disp&lt;/p&gt;&lt;p&gt;&lt;b&gt;Std. deviation:&lt;/b&gt; %stddev&lt;/p&gt;&lt;p&gt;&lt;b&gt;3&lt;sup&gt;rd&lt;/sup&gt; Moment:&lt;/b&gt; %moment3&lt;/p&gt;&lt;p&gt;&lt;b&gt;4&lt;sup&gt;th&lt;/sup&gt; Moment:&lt;/b&gt; %moment4&lt;/p&gt;</source>
         <translation>&lt;h2&gt;%header&lt;/h2&gt;&lt;p/&gt;&lt;p&gt;&lt;b&gt;Количество:&lt;/b&gt; %number&lt;/p&gt;&lt;p&gt;&lt;b&gt;Мин/Макс:&lt;/b&gt; %min ... %max&lt;/p&gt;&lt;p&gt;&lt;b&gt;Среднее:&lt;/b&gt; %avg&lt;/p&gt;&lt;p&gt;&lt;b&gt;Дисперсия:&lt;/b&gt; %disp&lt;/p&gt;&lt;p&gt;&lt;b&gt;СКО:&lt;/b&gt; %stddev&lt;/p&gt;&lt;p&gt;&lt;b&gt;3&lt;sup&gt;ий&lt;/sup&gt; Момент:&lt;/b&gt; %moment3&lt;/p&gt;&lt;p&gt;&lt;b&gt;4&lt;sup&gt;ый&lt;/sup&gt; Момент:&lt;/b&gt; %moment4&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="70"/>
+        <location filename="src/mainwindow.cpp" line="117"/>
         <source>About StatistiQ</source>
         <translation>О программе StatistiQ</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="71"/>
+        <location filename="src/mainwindow.cpp" line="118"/>
         <source>StatistiQ is an app for getting various 
 statistical information from experiment data
 

@@ -4,15 +4,51 @@
 
 #include <QMessageBox>
 #include <QFileDialog>
+#include <QLabel>
 #include <qwt_series_data.h>
+
+namespace {
+    inline void setTips(QWidget * widget, QString tip) {
+        widget->setToolTip(tip);
+        widget->setStatusTip(tip);
+    }
+    inline void setTips(QWidget &widget, QString tip) { setTips(&widget, tip); }
+    inline void setToolbarMargins(QWidget * widget) { widget->setContentsMargins(0, 0, 5, 0); }
+}
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow), stat(NULL),
-    histogram(NULL)
+    ui(new Ui::MainWindow),
+    stat(NULL), histogram(NULL)
 {
     ui->setupUi(this);
+    initHistogramControls();
+}
+
+void MainWindow::initHistogramControls() {
     histogram = new Histogram(ui->histogramArea);
+
+    QLabel * labelHistogram = new QLabel(tr("Histogram:"));
+    setToolbarMargins(labelHistogram);
+    setTips(labelHistogram, tr("Histogram display options"));
+
+    spinHistogramIntervals.setMinimum(2);
+    spinHistogramIntervals.setValue(10);
+    spinHistogramIntervals.setMaximum(100);
+    setTips(spinHistogramIntervals, tr("Number of histogram intervals"));
+
+    QLabel * labelColumns = new QLabel(tr("(columns)"));
+    setToolbarMargins(labelColumns);
+    setTips(labelColumns, tr("Number of histogram intervals"));
+
+    checkHistogramFraction.setChecked(false);
+    checkHistogramFraction.setText(tr("Fraction"));
+    setTips(checkHistogramFraction, tr("Show fraction instead of values in histogram"));
+
+    ui->mainToolBar->addWidget(labelHistogram);
+    ui->mainToolBar->addWidget(&spinHistogramIntervals);
+    ui->mainToolBar->addWidget(labelColumns);
+    ui->mainToolBar->addWidget(&checkHistogramFraction);
 }
 
 void MainWindow::sl_open() {
@@ -29,14 +65,24 @@ void MainWindow::sl_open() {
         setWindowTitle(tr("%1 - StatistiQ - a data processing utility").arg(reader.shortFileName()));
         stat = new Statistic(this, reader.data(), reader.formatFileInfo());
         ui->dataTable->setModel(stat->itemModel());
+
+        stat->setHistogramIntervalsNumber(spinHistogramIntervals.value());
+        stat->setHistogramFraction(checkHistogramFraction.isChecked());
         connect(stat, SIGNAL(si_statisticChanged()), SLOT(sl_dataUpdated()));
+        connect(stat, SIGNAL(si_histogramChanged()), SLOT(sl_histogramUpdated()));
+        connect(&spinHistogramIntervals, SIGNAL(valueChanged(int)), stat, SLOT(sl_histogramIntervalsChanged(int)));
+        connect(&checkHistogramFraction, SIGNAL(stateChanged(int)), stat, SLOT(sl_histogramFractionChanged(int)));
         sl_dataUpdated();
+        sl_histogramUpdated();
     }
     statusBar()->showMessage(reader.formatReport());
 }
 
 void MainWindow::sl_dataUpdated() {
     ui->infoText->setHtml(formatStats());
+}
+
+void MainWindow::sl_histogramUpdated() {
     histogram->setData(new QwtIntervalSeriesData(stat->histogramSamples()));
     ui->histogramArea->replot();
 }

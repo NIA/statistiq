@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QSpinBox>
+#include <QCheckBox>
 #include <qwt_plot_histogram.h>
 #include "statistic.h"
 #include "histogram.h"
@@ -24,12 +26,17 @@ public slots:
     void sl_about();
     void sl_open();
     void sl_dataUpdated();
+    void sl_histogramUpdated();
 
 private:
     Ui::MainWindow *ui;
+    QSpinBox spinHistogramIntervals;
+    QCheckBox checkHistogramFraction;
+
     Statistic * stat;
     Histogram * histogram;
 
+    void initHistogramControls();
     QString formatStats();
 };
 

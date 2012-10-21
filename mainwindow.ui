@@ -104,6 +104,7 @@ p, li { white-space: pre-wrap; }
     <bool>false</bool>
    </attribute>
    <addaction name="actionOpen"/>
+   <addaction name="separator"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionQuit">
@@ -113,6 +114,12 @@ p, li { white-space: pre-wrap; }
    </property>
    <property name="text">
     <string>Quit</string>
+   </property>
+   <property name="toolTip">
+    <string>Quit the program</string>
+   </property>
+   <property name="statusTip">
+    <string>Quit the program</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
@@ -126,6 +133,12 @@ p, li { white-space: pre-wrap; }
    <property name="text">
     <string>About...</string>
    </property>
+   <property name="toolTip">
+    <string>Show About dialog with info about authors</string>
+   </property>
+   <property name="statusTip">
+    <string>Show About dialog with info about authors</string>
+   </property>
   </action>
   <action name="actionOpen">
    <property name="icon">
@@ -134,6 +147,12 @@ p, li { white-space: pre-wrap; }
    </property>
    <property name="text">
     <string>Open...</string>
+   </property>
+   <property name="toolTip">
+    <string>Open data file</string>
+   </property>
+   <property name="statusTip">
+    <string>Open data file</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
