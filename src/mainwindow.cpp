@@ -5,7 +5,9 @@
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QLabel>
+#include <QPen>
 #include <qwt_series_data.h>
+#include <qwt_plot_grid.h>
 
 namespace {
     inline void setTips(QWidget * widget, QString tip) {
@@ -14,6 +16,8 @@ namespace {
     }
     inline void setTips(QWidget &widget, QString tip) { setTips(&widget, tip); }
     inline void setToolbarMargins(QWidget * widget) { widget->setContentsMargins(0, 0, 5, 0); }
+
+    const QColor GRID_COLOR(128, 128, 128);
 }
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -23,6 +27,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     initHistogramControls();
+    initGrid();
 }
 
 void MainWindow::initHistogramControls() {
@@ -49,6 +54,15 @@ void MainWindow::initHistogramControls() {
     ui->mainToolBar->addWidget(&spinHistogramIntervals);
     ui->mainToolBar->addWidget(labelColumns);
     ui->mainToolBar->addWidget(&checkHistogramFraction);
+}
+
+void MainWindow::initGrid() {
+    QwtPlotGrid * grid = new QwtPlotGrid;
+    grid->enableXMin(true);
+    grid->enableYMin(true);
+    grid->setMajPen(QPen(GRID_COLOR));
+    grid->setMinPen(QPen(GRID_COLOR, 1, Qt::DashLine));
+    grid->attach(ui->histogramArea);
 }
 
 void MainWindow::sl_open() {

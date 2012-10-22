@@ -37,6 +37,7 @@ private:
     Histogram * histogram;
 
     void initHistogramControls();
+    void initGrid();
     QString formatStats();
 };
 
