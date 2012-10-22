@@ -18,6 +18,7 @@ namespace {
     inline void setToolbarMargins(QWidget * widget) { widget->setContentsMargins(0, 0, 5, 0); }
 
     const QColor GRID_COLOR(128, 128, 128);
+    const QColor CURVE_COLOR(0, 0, 200, 200);
 }
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -28,10 +29,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     initHistogramControls();
     initGrid();
+    initCurve();
 }
 
 void MainWindow::initHistogramControls() {
     histogram = new Histogram(ui->histogramArea);
+    histogram->setVisible(ui->actionShowHistogram->isChecked());
+    connect(ui->actionShowHistogram, SIGNAL(triggered(bool)), SLOT(sl_showHistogramTriggered(bool)));
 
     QLabel * labelHistogram = new QLabel(tr("Histogram:"));
     setToolbarMargins(labelHistogram);
@@ -50,6 +54,7 @@ void MainWindow::initHistogramControls() {
     checkHistogramFraction.setText(tr("Fraction"));
     setTips(checkHistogramFraction, tr("Show fraction instead of values in histogram"));
 
+    ui->mainToolBar->addSeparator();
     ui->mainToolBar->addWidget(labelHistogram);
     ui->mainToolBar->addWidget(&spinHistogramIntervals);
     ui->mainToolBar->addWidget(labelColumns);
@@ -63,6 +68,16 @@ void MainWindow::initGrid() {
     grid->setMajPen(QPen(GRID_COLOR));
     grid->setMinPen(QPen(GRID_COLOR, 1, Qt::DashLine));
     grid->attach(ui->histogramArea);
+}
+
+void MainWindow::initCurve() {
+    curve = new QwtPlotCurve;
+    curve->setBrush(CURVE_COLOR);
+    curve->setPen(CURVE_COLOR);
+    curve->setOrientation(Qt::Horizontal);
+    curve->attach(ui->histogramArea);
+    curve->setVisible(ui->actionShowDataCurve->isChecked());
+    connect(ui->actionShowDataCurve, SIGNAL(triggered(bool)), SLOT(sl_showDataCurveTriggered(bool)));
 }
 
 void MainWindow::sl_open() {
@@ -94,10 +109,23 @@ void MainWindow::sl_open() {
 
 void MainWindow::sl_dataUpdated() {
     ui->infoText->setHtml(formatStats());
+    curve->setSamples(stat->dataPoints());
+    curve->setBaseline(stat->average());
+    ui->histogramArea->replot();
 }
 
 void MainWindow::sl_histogramUpdated() {
     histogram->setData(new QwtIntervalSeriesData(stat->histogramSamples()));
+    ui->histogramArea->replot();
+}
+
+void MainWindow::sl_showHistogramTriggered(bool show) {
+    histogram->setVisible(show);
+    ui->histogramArea->replot();
+}
+
+void MainWindow::sl_showDataCurveTriggered(bool show) {
+    curve->setVisible(show);
     ui->histogramArea->replot();
 }
 
@@ -138,5 +166,6 @@ void MainWindow::sl_about() {
 
 MainWindow::~MainWindow() {
     delete histogram;
+    delete curve;
     delete ui;
 }

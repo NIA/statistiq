@@ -6,5 +6,6 @@
         <file>images/statistiq.ico</file>
         <file>images/about.ico</file>
         <file>images/exit.ico</file>
+        <file>images/curve.ico</file>
     </qresource>
 </RCC>

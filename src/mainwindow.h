@@ -5,6 +5,7 @@
 #include <QSpinBox>
 #include <QCheckBox>
 #include <qwt_plot_histogram.h>
+#include <qwt_plot_curve.h>
 #include "statistic.h"
 #include "histogram.h"
 
@@ -27,6 +28,8 @@ public slots:
     void sl_open();
     void sl_dataUpdated();
     void sl_histogramUpdated();
+    void sl_showHistogramTriggered(bool show);
+    void sl_showDataCurveTriggered(bool show);
 
 private:
     Ui::MainWindow *ui;
@@ -35,9 +38,11 @@ private:
 
     Statistic * stat;
     Histogram * histogram;
+    QwtPlotCurve * curve;
 
     void initHistogramControls();
     void initGrid();
+    void initCurve();
     QString formatStats();
 };
 

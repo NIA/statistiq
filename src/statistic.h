@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QStandardItemModel>
+#include <QPointF>
 #include <qwt_series_data.h>
 
 class Statistic : public QObject
@@ -36,6 +37,7 @@ public:
     QString fourthMomentStr() const;
 
     QVector<QwtIntervalSample> histogramSamples() const { return histogramSamples_; }
+    QVector<QPointF> dataPoints() const { return dataPoints_; }
 
     int histogramIntervalsNumber() { return histogramIntervals; }
     bool isHisgogramFraction() { return histogramFraction; }
@@ -72,10 +74,12 @@ private:
     double thirdMoment_;
     double fourthMoment_;
     QVector<QwtIntervalSample> histogramSamples_;
+    QVector<QPointF> dataPoints_;
 
     void initModel();
     void recalculate();
     void resampleHistogram();
+    void setDataPoint(int i);
 };
 
 #endif // STATISTIC_H

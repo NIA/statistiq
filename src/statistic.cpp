@@ -31,7 +31,7 @@ namespace {
 
 Statistic::Statistic(QObject *parent, QList<double> data, QString header) :
     QObject(parent), data(data), model(0, 0, this), header_(header),
-    histogramIntervals(10), histogramFraction(false)
+    histogramIntervals(10), histogramFraction(false), dataPoints_(data.size())
 {
     initModel();
     recalculate();
@@ -45,6 +45,13 @@ void Statistic::initModel() {
     model.appendColumn(dataToItems(data));
     model.setHorizontalHeaderItem(0, new QStandardItem(tr("Value")));
     connect(&model, SIGNAL(itemChanged(QStandardItem*)), SLOT(sl_itemChanged(QStandardItem*)));
+    for(int i = 0; i < data.size(); ++i) {
+        setDataPoint(i);
+    }
+}
+
+void Statistic::setDataPoint(int i) {
+    dataPoints_[i] = QPointF(data[i], i);
 }
 
 void Statistic::recalculate() {
@@ -118,6 +125,7 @@ void Statistic::sl_valueChanged(int index, double newValue) {
         return;
     }
     data[index] = newValue;
+    setDataPoint(index);
     model.item(index)->setText(valueToItem(newValue));
     recalculate();
 }

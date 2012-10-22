@@ -87,15 +87,29 @@ p, li { white-space: pre-wrap; }
     </property>
     <addaction name="actionAbout"/>
    </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>View</string>
+    </property>
+    <addaction name="actionShowHistogram"/>
+    <addaction name="actionShowDataCurve"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuView"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
+   <property name="movable">
+    <bool>false</bool>
+   </property>
    <property name="iconSize">
     <size>
      <width>16</width>
      <height>16</height>
     </size>
+   </property>
+   <property name="floatable">
+    <bool>false</bool>
    </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
@@ -105,6 +119,8 @@ p, li { white-space: pre-wrap; }
    </attribute>
    <addaction name="actionOpen"/>
    <addaction name="separator"/>
+   <addaction name="actionShowHistogram"/>
+   <addaction name="actionShowDataCurve"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionQuit">
@@ -156,6 +172,51 @@ p, li { white-space: pre-wrap; }
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionShowHistogram">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="statistiq.qrc">
+     <normaloff>:/icons/images/statistiq.ico</normaloff>:/icons/images/statistiq.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Show Histogram</string>
+   </property>
+   <property name="toolTip">
+    <string>Show or hide histogram on plot</string>
+   </property>
+   <property name="statusTip">
+    <string>Show or hide histogram on plot</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+H</string>
+   </property>
+  </action>
+  <action name="actionShowDataCurve">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="statistiq.qrc">
+     <normaloff>:/icons/images/curve.ico</normaloff>:/icons/images/curve.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Show Data Curve</string>
+   </property>
+   <property name="toolTip">
+    <string>Show or hide data curve on plot</string>
+   </property>
+   <property name="statusTip">
+    <string>Show or hide data curve on plot</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+D</string>
    </property>
   </action>
  </widget>
