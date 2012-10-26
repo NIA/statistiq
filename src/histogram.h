@@ -6,7 +6,11 @@
 class Histogram : public QwtPlotHistogram
 {
 public:
-    Histogram(QwtPlot * plot);
+    Histogram(QwtPlot *plot) {
+        attach(plot);
+        setStyle(QwtPlotHistogram::Columns);
+        setBrush(QBrush(QColor(0, 200, 30, 200)));
+    }
 };
 
 #endif // HISTOGRAM_H

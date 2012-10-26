@@ -20,20 +20,23 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QSplitter" name="splitter_2">
-      <property name="frameShape">
-       <enum>QFrame::NoFrame</enum>
-      </property>
+     <widget class="QSplitter" name="splitter_3">
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
-      <widget class="QTableView" name="dataTable">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-         <horstretch>1</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
+      <widget class="QSplitter" name="splitter_2">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
        </property>
+       <widget class="QTableView" name="dataTable">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>1</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+       </widget>
+       <widget class="QwtPlot" name="curveArea"/>
       </widget>
       <widget class="QSplitter" name="splitter">
        <property name="sizePolicy">
@@ -91,8 +94,8 @@ p, li { white-space: pre-wrap; }
     <property name="title">
      <string>View</string>
     </property>
-    <addaction name="actionShowHistogram"/>
     <addaction name="actionShowDataCurve"/>
+    <addaction name="actionShowHistogram"/>
     <addaction name="actionShowReport"/>
    </widget>
    <addaction name="menuFile"/>
@@ -120,8 +123,8 @@ p, li { white-space: pre-wrap; }
    </attribute>
    <addaction name="actionOpen"/>
    <addaction name="separator"/>
-   <addaction name="actionShowHistogram"/>
    <addaction name="actionShowDataCurve"/>
+   <addaction name="actionShowHistogram"/>
    <addaction name="actionShowReport"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
@@ -202,6 +205,9 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="actionShowDataCurve">
    <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
     <bool>true</bool>
    </property>
    <property name="icon">

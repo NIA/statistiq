@@ -7,14 +7,14 @@ SOURCES += src/main.cpp\
            src/mainwindow.cpp \
     src/reader.cpp \
     src/statistic.cpp \
-    src/histogram.cpp \
     src/reportwindow.cpp
 
 HEADERS += src/mainwindow.h \
     src/reader.h \
     src/statistic.h \
     src/histogram.h \
-    src/reportwindow.h
+    src/reportwindow.h \
+    src/tooltipplotpicker.h
 
 FORMS    += mainwindow.ui \
     reportwindow.ui

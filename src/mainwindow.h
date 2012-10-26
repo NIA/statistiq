@@ -46,9 +46,10 @@ private:
     Statistic * stat;
     Histogram * histogram;
     QwtPlotCurve * curve;
+    QwtPlotCurve * averageLine;
 
     void initHistogramControls();
-    void initGrid();
+    void initGrid(QwtPlot * plot);
     void initCurve();
     QString formatStats();
     QString formatReport();

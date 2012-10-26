@@ -51,7 +51,7 @@ void Statistic::initModel() {
 }
 
 void Statistic::setDataPoint(int i) {
-    dataPoints_[i] = QPointF(data[i], i);
+    dataPoints_[i] = QPointF(i, data[i]);
 }
 
 void Statistic::recalculate() {

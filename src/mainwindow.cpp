@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "reader.h"
+#include "tooltipplotpicker.h"
 
 #include <QMessageBox>
 #include <QFileDialog>
@@ -25,15 +26,24 @@ namespace {
         return img;
     }
 
-     inline QString image2base64(const QImage &img) {
+    inline QString image2base64(const QImage &img) {
         QByteArray byteArray;
         QBuffer buffer(&byteArray);
         img.save(&buffer, "PNG"); // writes the image in PNG format inside the buffer
         return QString::fromLatin1(byteArray.toBase64().data());
     }
 
+    inline QVector<QPointF> horizontalLine(double from, double to, double value) {
+        QVector<QPointF> res;
+        res << QPointF(from, value);
+        res << QPointF(to, value);
+        return res;
+    }
+
     const QColor GRID_COLOR(128, 128, 128);
-    const QColor CURVE_COLOR(0, 0, 200, 200);
+    const QColor CURVE_COLOR(40, 90, 120);
+    const QColor CURVE_FILL(10, 160, 255, 100);
+    const QColor AVERAGE_COLOR(255, 50, 50);
 }
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -43,17 +53,17 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     initHistogramControls();
-    initGrid();
     initCurve();
-
-    ui->histogramArea->setBackgroundRole(QPalette::NoRole);
 
     connect(reportWindow, SIGNAL(si_closed()), SLOT(sl_reportClosed()));
 }
 
 void MainWindow::initHistogramControls() {
+    initGrid(ui->histogramArea);
+    ui->histogramArea->setVisible(ui->actionShowHistogram->isChecked());
+    new TooltipPlotPicker(ui->histogramArea);
+
     histogram = new Histogram(ui->histogramArea);
-    histogram->setVisible(ui->actionShowHistogram->isChecked());
     connect(ui->actionShowHistogram, SIGNAL(triggered(bool)), SLOT(sl_showHistogramTriggered(bool)));
 
     QLabel * labelHistogram = new QLabel(tr("Histogram:"));
@@ -80,23 +90,32 @@ void MainWindow::initHistogramControls() {
     ui->mainToolBar->addWidget(&checkHistogramFraction);
 }
 
-void MainWindow::initGrid() {
+void MainWindow::initGrid(QwtPlot *plot) {
     QwtPlotGrid * grid = new QwtPlotGrid;
     grid->enableXMin(true);
     grid->enableYMin(true);
     grid->setMajPen(QPen(GRID_COLOR));
     grid->setMinPen(QPen(GRID_COLOR, 1, Qt::DashLine));
-    grid->attach(ui->histogramArea);
+    grid->attach(plot);
 }
 
 void MainWindow::initCurve() {
-    curve = new QwtPlotCurve;
-    curve->setBrush(CURVE_COLOR);
-    curve->setPen(CURVE_COLOR);
-    curve->setOrientation(Qt::Horizontal);
-    curve->attach(ui->histogramArea);
-    curve->setVisible(ui->actionShowDataCurve->isChecked());
+    initGrid(ui->curveArea);
+    new TooltipPlotPicker(ui->curveArea);
+    ui->curveArea->setVisible(ui->actionShowDataCurve->isChecked());
     connect(ui->actionShowDataCurve, SIGNAL(triggered(bool)), SLOT(sl_showDataCurveTriggered(bool)));
+
+    curve = new QwtPlotCurve;
+    curve->setBrush(CURVE_FILL);
+    curve->setPen(CURVE_COLOR);
+    curve->setOrientation(Qt::Vertical);
+    curve->attach(ui->curveArea);
+    ui->curveArea->enableAxis(QwtPlot::yLeft, false);
+    ui->curveArea->enableAxis(QwtPlot::xBottom, false);
+
+    averageLine = new QwtPlotCurve;
+    averageLine->setPen(AVERAGE_COLOR);
+    averageLine->attach(ui->curveArea);
 }
 
 void MainWindow::sl_open() {
@@ -131,9 +150,11 @@ void MainWindow::sl_open() {
 
 void MainWindow::sl_dataUpdated() {
     ui->infoText->setHtml(formatStats());
+
     curve->setSamples(stat->dataPoints());
     curve->setBaseline(stat->average());
-    ui->histogramArea->replot();
+    averageLine->setSamples(horizontalLine(0, stat->number(), stat->average()));
+    ui->curveArea->replot();
 
     reportWindow->setContent(formatReport());
 }
@@ -146,13 +167,11 @@ void MainWindow::sl_histogramUpdated() {
 }
 
 void MainWindow::sl_showHistogramTriggered(bool show) {
-    histogram->setVisible(show);
-    ui->histogramArea->replot();
+    ui->histogramArea->setVisible(show);
 }
 
 void MainWindow::sl_showDataCurveTriggered(bool show) {
-    curve->setVisible(show);
-    ui->histogramArea->replot();
+    ui->curveArea->setVisible(show);
 }
 
 QString MainWindow::formatStats() {
