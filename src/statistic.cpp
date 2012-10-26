@@ -155,3 +155,29 @@ QString Statistic::dispersionStr() const { return valueToItem(dispersion_); }
 QString Statistic::stdDeviationStr() const { return valueToItem(stdDeviation()); }
 QString Statistic::thirdMomentStr() const { return valueToItem(thirdMoment_); }
 QString Statistic::fourthMomentStr() const { return valueToItem(fourthMoment_); }
+
+QString Statistic::dataAsHtmlTable(int columns) const {
+    QString html = "<table border='1' cellpadding='3'>";
+    html += QString("<tr><th>%1</th><th colspan='%2'>%3</th></tr>")
+            .arg(tr("No."))
+            .arg(columns)
+            .arg(tr("Value"));
+
+    int lastNo = data.size();
+    int col = 0;
+    for(int i = 0; i < data.size(); ++i) {
+        if(col == 0) {
+            html += QString("<tr><th>%1 - %2</th>").arg(i+1).arg(qMin(i+columns, lastNo));
+        }
+
+        html += QString("<td>%1</td>").arg(valueToItem(data[i]));
+
+        ++col;
+        if(col == columns) {
+            html += "</tr>";
+            col = 0;
+        }
+    }
+    html += "</table>";
+    return html;
+}

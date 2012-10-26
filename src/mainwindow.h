@@ -8,6 +8,7 @@
 #include <qwt_plot_curve.h>
 #include "statistic.h"
 #include "histogram.h"
+#include "reportwindow.h"
 
 namespace Ui {
 class MainWindow;
@@ -30,11 +31,17 @@ public slots:
     void sl_histogramUpdated();
     void sl_showHistogramTriggered(bool show);
     void sl_showDataCurveTriggered(bool show);
+    void sl_showReport(bool show);
+    void sl_reportClosed();
+
+protected:
+    virtual void closeEvent(QCloseEvent *e);
 
 private:
     Ui::MainWindow *ui;
     QSpinBox spinHistogramIntervals;
     QCheckBox checkHistogramFraction;
+    ReportWindow * reportWindow;
 
     Statistic * stat;
     Histogram * histogram;
@@ -44,6 +51,7 @@ private:
     void initGrid();
     void initCurve();
     QString formatStats();
+    QString formatReport();
 };
 
 #endif // MAINWINDOW_H

@@ -93,6 +93,7 @@ p, li { white-space: pre-wrap; }
     </property>
     <addaction name="actionShowHistogram"/>
     <addaction name="actionShowDataCurve"/>
+    <addaction name="actionShowReport"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuView"/>
@@ -121,6 +122,7 @@ p, li { white-space: pre-wrap; }
    <addaction name="separator"/>
    <addaction name="actionShowHistogram"/>
    <addaction name="actionShowDataCurve"/>
+   <addaction name="actionShowReport"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionQuit">
@@ -219,6 +221,30 @@ p, li { white-space: pre-wrap; }
     <string>Ctrl+D</string>
    </property>
   </action>
+  <action name="actionShowReport">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="statistiq.qrc">
+     <normaloff>:/icons/images/report.ico</normaloff>:/icons/images/report.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Show Report</string>
+   </property>
+   <property name="toolTip">
+    <string>Show summarized report window</string>
+   </property>
+   <property name="statusTip">
+    <string>Show summarized report window</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -281,10 +307,27 @@ p, li { white-space: pre-wrap; }
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionShowReport</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>sl_showReport(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>314</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>sl_quit()</slot>
   <slot>sl_about()</slot>
   <slot>sl_open()</slot>
+  <slot>sl_showReport(bool)</slot>
  </slots>
 </ui>

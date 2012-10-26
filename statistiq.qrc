@@ -7,5 +7,10 @@
         <file>images/about.ico</file>
         <file>images/exit.ico</file>
         <file>images/curve.ico</file>
+        <file>images/report.ico</file>
+        <file>images/print.ico</file>
+        <file>images/save-as.ico</file>
+        <file>images/zoom-in.ico</file>
+        <file>images/zoom-out.ico</file>
     </qresource>
 </RCC>

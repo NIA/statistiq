@@ -6,6 +6,8 @@
 #include <QFileDialog>
 #include <QLabel>
 #include <QPen>
+#include <QBuffer>
+#include <QCloseEvent>
 #include <qwt_series_data.h>
 #include <qwt_plot_grid.h>
 
@@ -17,19 +19,36 @@ namespace {
     inline void setTips(QWidget &widget, QString tip) { setTips(&widget, tip); }
     inline void setToolbarMargins(QWidget * widget) { widget->setContentsMargins(0, 0, 5, 0); }
 
+    inline QImage widgetToImage(QWidget * w) {
+        QImage img(w->size(), QImage::Format_ARGB32);
+        w->render(&img, QPoint(), QRegion(), QWidget::RenderFlags(QWidget::DrawChildren));
+        return img;
+    }
+
+     inline QString image2base64(const QImage &img) {
+        QByteArray byteArray;
+        QBuffer buffer(&byteArray);
+        img.save(&buffer, "PNG"); // writes the image in PNG format inside the buffer
+        return QString::fromLatin1(byteArray.toBase64().data());
+    }
+
     const QColor GRID_COLOR(128, 128, 128);
     const QColor CURVE_COLOR(0, 0, 200, 200);
 }
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow),
+    ui(new Ui::MainWindow), reportWindow(new ReportWindow(NULL)),
     stat(NULL), histogram(NULL)
 {
     ui->setupUi(this);
     initHistogramControls();
     initGrid();
     initCurve();
+
+    ui->histogramArea->setBackgroundRole(QPalette::NoRole);
+
+    connect(reportWindow, SIGNAL(si_closed()), SLOT(sl_reportClosed()));
 }
 
 void MainWindow::initHistogramControls() {
@@ -92,8 +111,11 @@ void MainWindow::sl_open() {
             delete stat;
         }
         setWindowTitle(tr("%1 - StatistiQ - a data processing utility").arg(reader.shortFileName()));
+        reportWindow->setupForFile(fileName, reader.shortFileName());
+
         stat = new Statistic(this, reader.data(), reader.formatFileInfo());
         ui->dataTable->setModel(stat->itemModel());
+        ui->actionShowReport->setEnabled(true);
 
         stat->setHistogramIntervalsNumber(spinHistogramIntervals.value());
         stat->setHistogramFraction(checkHistogramFraction.isChecked());
@@ -112,11 +134,15 @@ void MainWindow::sl_dataUpdated() {
     curve->setSamples(stat->dataPoints());
     curve->setBaseline(stat->average());
     ui->histogramArea->replot();
+
+    reportWindow->setContent(formatReport());
 }
 
 void MainWindow::sl_histogramUpdated() {
     histogram->setData(new QwtIntervalSeriesData(stat->histogramSamples()));
     ui->histogramArea->replot();
+
+    reportWindow->setContent(formatReport());
 }
 
 void MainWindow::sl_showHistogramTriggered(bool show) {
@@ -133,6 +159,7 @@ QString MainWindow::formatStats() {
     if(stat == NULL) {
         return "";
     }
+
     return tr("<h2>%header</h2><p/>"
               "<p><b>Number:</b> %number</p>"
               "<p><b>Min/Max:</b> %min ... %max</p>"
@@ -151,6 +178,28 @@ QString MainWindow::formatStats() {
     .replace("%moment4", stat->fourthMomentStr());
 }
 
+QString MainWindow::formatReport() {
+    QString html = formatStats();
+    html += QString("<div><img src='data:image/png;base64,%1'/></div>").arg(image2base64(widgetToImage(ui->histogramArea)));
+    html += stat->dataAsHtmlTable(7);
+    return html;
+}
+
+void MainWindow::sl_showReport(bool show) {
+    if(stat == NULL) {
+        return;
+    }
+    if(show) {
+        reportWindow->show();
+    } else {
+        reportWindow->hide();
+    }
+}
+
+void MainWindow::sl_reportClosed() {
+    ui->actionShowReport->setChecked(false);
+}
+
 void MainWindow::sl_quit() {
     QApplication::quit();
 }
@@ -162,6 +211,12 @@ void MainWindow::sl_about() {
                "(c) 2012, Faculty of Physics and Technology, Kuban State University\n"
                "written by Ivan Novikov, lead by L. R. Grigorjan"));
 
+}
+
+void MainWindow::closeEvent(QCloseEvent *e) {
+    // TODO: check if file saved
+    reportWindow->close();
+    e->accept();
 }
 
 MainWindow::~MainWindow() {

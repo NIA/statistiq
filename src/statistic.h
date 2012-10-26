@@ -38,6 +38,7 @@ public:
 
     QVector<QwtIntervalSample> histogramSamples() const { return histogramSamples_; }
     QVector<QPointF> dataPoints() const { return dataPoints_; }
+    QString dataAsHtmlTable(int columns) const;
 
     int histogramIntervalsNumber() { return histogramIntervals; }
     bool isHisgogramFraction() { return histogramFraction; }
