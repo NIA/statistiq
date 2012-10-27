@@ -27,6 +27,7 @@ public slots:
     void sl_quit();
     void sl_about();
     void sl_open();
+    void sl_new();
     void sl_dataUpdated();
     void sl_histogramUpdated();
     void sl_showHistogramTriggered(bool show);
@@ -51,6 +52,7 @@ private:
     void initHistogramControls();
     void initGrid(QwtPlot * plot);
     void initCurve();
+    void setStatistic(Statistic * newStat);
     QString formatStats();
     QString formatReport();
 };

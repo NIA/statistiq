@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "reader.h"
 #include "tooltipplotpicker.h"
+#include "newstatdialog.h"
 
 #include <QMessageBox>
 #include <QFileDialog>
@@ -126,26 +127,43 @@ void MainWindow::sl_open() {
     }
     Reader reader(this, fileName);
     if(reader.isValid()) {
-        if(stat != NULL) {
-            delete stat;
-        }
         setWindowTitle(tr("%1 - StatistiQ - a data processing utility").arg(reader.shortFileName()));
         reportWindow->setupForFile(fileName, reader.shortFileName());
 
-        stat = new Statistic(this, reader.data(), reader.formatFileInfo());
-        ui->dataTable->setModel(stat->itemModel());
-        ui->actionShowReport->setEnabled(true);
-
-        stat->setHistogramIntervalsNumber(spinHistogramIntervals.value());
-        stat->setHistogramFraction(checkHistogramFraction.isChecked());
-        connect(stat, SIGNAL(si_statisticChanged()), SLOT(sl_dataUpdated()));
-        connect(stat, SIGNAL(si_histogramChanged()), SLOT(sl_histogramUpdated()));
-        connect(&spinHistogramIntervals, SIGNAL(valueChanged(int)), stat, SLOT(sl_histogramIntervalsChanged(int)));
-        connect(&checkHistogramFraction, SIGNAL(stateChanged(int)), stat, SLOT(sl_histogramFractionChanged(int)));
-        sl_dataUpdated();
-        sl_histogramUpdated();
+        setStatistic(new Statistic(this, reader.data(), reader.formatFileInfo()));
     }
     statusBar()->showMessage(reader.formatReport());
+}
+
+void MainWindow::sl_new() {
+    NewStatDialog * dialog = new NewStatDialog(this);
+    if(dialog->exec() == QDialog::Accepted) {
+        QString untitledFileName = tr("untitled.csv");
+        setWindowTitle(tr("%1 - StatistiQ - a data processing utility").arg(untitledFileName));
+        reportWindow->setupForFile(untitledFileName, untitledFileName);
+
+        setStatistic(new Statistic(this, dialog->data(), untitledFileName));
+    }
+}
+
+void MainWindow::setStatistic(Statistic *newStat) {
+    if(stat != NULL) {
+        // TODO: closeStatistic() method that will ask for saving
+        delete stat;
+    }
+    stat = newStat;
+
+    ui->dataTable->setModel(stat->itemModel());
+    ui->actionShowReport->setEnabled(true);
+
+    stat->setHistogramIntervalsNumber(spinHistogramIntervals.value());
+    stat->setHistogramFraction(checkHistogramFraction.isChecked());
+    connect(stat, SIGNAL(si_statisticChanged()), SLOT(sl_dataUpdated()));
+    connect(stat, SIGNAL(si_histogramChanged()), SLOT(sl_histogramUpdated()));
+    connect(&spinHistogramIntervals, SIGNAL(valueChanged(int)), stat, SLOT(sl_histogramIntervalsChanged(int)));
+    connect(&checkHistogramFraction, SIGNAL(stateChanged(int)), stat, SLOT(sl_histogramFractionChanged(int)));
+    sl_dataUpdated();
+    sl_histogramUpdated();
 }
 
 void MainWindow::sl_dataUpdated() {

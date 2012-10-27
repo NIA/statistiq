@@ -7,17 +7,20 @@ SOURCES += src/main.cpp\
            src/mainwindow.cpp \
     src/reader.cpp \
     src/statistic.cpp \
-    src/reportwindow.cpp
+    src/reportwindow.cpp \
+    src/newstatdialog.cpp
 
 HEADERS += src/mainwindow.h \
     src/reader.h \
     src/statistic.h \
     src/histogram.h \
     src/reportwindow.h \
-    src/tooltipplotpicker.h
+    src/tooltipplotpicker.h \
+    src/newstatdialog.h
 
 FORMS    += mainwindow.ui \
-    reportwindow.ui
+    reportwindow.ui \
+    newstatdialog.ui
 
 TRANSLATIONS += statistiq_ru.ts
 

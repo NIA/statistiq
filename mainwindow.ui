@@ -81,6 +81,7 @@ p, li { white-space: pre-wrap; }
     <property name="title">
      <string>File</string>
     </property>
+    <addaction name="actionNew"/>
     <addaction name="actionOpen"/>
     <addaction name="actionQuit"/>
    </widget>
@@ -121,6 +122,7 @@ p, li { white-space: pre-wrap; }
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionNew"/>
    <addaction name="actionOpen"/>
    <addaction name="separator"/>
    <addaction name="actionShowDataCurve"/>
@@ -251,6 +253,24 @@ p, li { white-space: pre-wrap; }
     <string>Ctrl+R</string>
    </property>
   </action>
+  <action name="actionNew">
+   <property name="icon">
+    <iconset resource="statistiq.qrc">
+     <normaloff>:/icons/images/new.ico</normaloff>:/icons/images/new.ico</iconset>
+   </property>
+   <property name="text">
+    <string>New...</string>
+   </property>
+   <property name="toolTip">
+    <string>Create a new statistic</string>
+   </property>
+   <property name="statusTip">
+    <string>Create a new statistic</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -329,11 +349,28 @@ p, li { white-space: pre-wrap; }
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionNew</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>sl_new()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>314</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>sl_quit()</slot>
   <slot>sl_about()</slot>
   <slot>sl_open()</slot>
   <slot>sl_showReport(bool)</slot>
+  <slot>sl_new()</slot>
  </slots>
 </ui>

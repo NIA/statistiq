@@ -1,7 +1,25 @@
 #include "reader.h"
 
-#include <QTextStream>
 #include <QFileInfo>
+
+Reader::Parser::Parser(QTextStream &in)
+{
+    QString line;
+    int lineNumber = 1;
+    while( ! (line = in.readLine().trimmed()).isNull() ) {
+        if(line.isEmpty()) { continue; }
+
+        bool ok;
+        double value = line.toDouble(&ok);
+        if(ok) {
+            parsedData << value;
+        } else {
+            skippedLines << lineNumber;
+            skippedStrings << line;
+        }
+        ++lineNumber;
+    }
+}
 
 Reader::Reader(QObject *parent, QString fileName) :
     QObject(parent), file(NULL)
@@ -27,20 +45,16 @@ void Reader::openFile(QString fileName) {
 
 void Reader::readFile() {
     QTextStream in(file);
-    QString line;
-    int lineNumber = 1;
-    while( ! (line = in.readLine().trimmed()).isNull() ) {
-        bool ok;
-        double value = line.toDouble(&ok);
-        if(ok) {
-            parsedData << value;
-        } else {
-            warnings << tr("Line %1: failed to convert '%2' to number").arg(lineNumber).arg(line);
-        }
-        ++lineNumber;
+    Parser parser(in);
+    for(int i = 0; i < parser.skippedLines.count(); ++i) {
+        warnings << tr("Line %1: failed to convert '%2' to number")
+                    .arg(parser.skippedLines[i])
+                    .arg(parser.skippedStrings[i]);
     }
-    if(parsedData.count() == 0) {
+    if(parser.parsedData.count() == 0) {
         error = tr("File contains no valid numerical data");
+    } else {
+        parsedData = parser.parsedData;
     }
 }
 
