@@ -199,7 +199,7 @@ QString MainWindow::formatStats() {
 
 QString MainWindow::formatReport() {
     QString html = formatStats();
-    html += QString("<div><img src='data:image/png;base64,%1'/></div>").arg(image2base64(widgetToImage(ui->histogramArea)));
+    html += QString("<div><img src='data:image/png;base64,%1'/></div><p/>").arg(image2base64(widgetToImage(ui->histogramArea)));
     html += stat->dataAsHtmlTable(7);
     return html;
 }
