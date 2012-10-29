@@ -143,69 +143,73 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="mainwindow.ui" line="175"/>
         <location filename="mainwindow.ui" line="178"/>
-        <location filename="src/mainwindow.cpp" line="123"/>
+        <location filename="src/mainwindow.cpp" line="138"/>
         <source>Open data file</source>
         <translation>Открыть файл данных</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="70"/>
+        <location filename="src/mainwindow.cpp" line="84"/>
         <source>Histogram:</source>
         <translation>Гисторамма:</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="72"/>
+        <location filename="src/mainwindow.cpp" line="86"/>
         <source>Histogram display options</source>
         <translation>Настройки отображения гистораммы</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="77"/>
-        <location filename="src/mainwindow.cpp" line="81"/>
+        <location filename="src/mainwindow.cpp" line="91"/>
+        <location filename="src/mainwindow.cpp" line="95"/>
         <source>Number of histogram intervals</source>
         <translation>Количество интервалов гистограммы</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="79"/>
+        <location filename="src/mainwindow.cpp" line="93"/>
         <source>(columns)</source>
         <translation>(столбцов)</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="84"/>
+        <location filename="src/mainwindow.cpp" line="98"/>
         <source>Fraction</source>
         <translation>Доли</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="85"/>
+        <location filename="src/mainwindow.cpp" line="99"/>
         <source>Show fraction instead of values in histogram</source>
         <translation>Показывать доли вместо значений на гистограмме</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="124"/>
+        <location filename="src/mainwindow.cpp" line="139"/>
         <source>Plain text file (*.txt *.csv *.dat)</source>
         <translation>Текстовый файл (*.txt *.csv *.dat)</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="130"/>
-        <location filename="src/mainwindow.cpp" line="142"/>
+        <location filename="src/mainwindow.cpp" line="145"/>
+        <location filename="src/mainwindow.cpp" line="157"/>
         <source>%1 - StatistiQ - a data processing utility</source>
         <translation>%1 - StatistiQ -программа обработки данных</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="141"/>
+        <location filename="src/mainwindow.cpp" line="156"/>
         <source>untitled.csv</source>
         <translation>безымянный.csv</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="200"/>
-        <source>&lt;h2&gt;%header&lt;/h2&gt;&lt;p/&gt;&lt;p&gt;&lt;b&gt;Number:&lt;/b&gt; %number&lt;/p&gt;&lt;p&gt;&lt;b&gt;Min/Max:&lt;/b&gt; %min ... %max&lt;/p&gt;&lt;p&gt;&lt;b&gt;Average:&lt;/b&gt; %avg&lt;/p&gt;&lt;p&gt;&lt;b&gt;Dispersion:&lt;/b&gt; %disp&lt;/p&gt;&lt;p&gt;&lt;b&gt;Std. deviation:&lt;/b&gt; %stddev&lt;/p&gt;&lt;p&gt;&lt;b&gt;3&lt;sup&gt;rd&lt;/sup&gt; Moment:&lt;/b&gt; %moment3&lt;/p&gt;&lt;p&gt;&lt;b&gt;4&lt;sup&gt;th&lt;/sup&gt; Moment:&lt;/b&gt; %moment4&lt;/p&gt;</source>
-        <translation>&lt;h2&gt;%header&lt;/h2&gt;&lt;p/&gt;&lt;p&gt;&lt;b&gt;Количество:&lt;/b&gt; %number&lt;/p&gt;&lt;p&gt;&lt;b&gt;Мин/Макс:&lt;/b&gt; %min ... %max&lt;/p&gt;&lt;p&gt;&lt;b&gt;Среднее:&lt;/b&gt; %avg&lt;/p&gt;&lt;p&gt;&lt;b&gt;Дисперсия:&lt;/b&gt; %disp&lt;/p&gt;&lt;p&gt;&lt;b&gt;СКО:&lt;/b&gt; %stddev&lt;/p&gt;&lt;p&gt;&lt;b&gt;3&lt;sup&gt;ий&lt;/sup&gt; Момент:&lt;/b&gt; %moment3&lt;/p&gt;&lt;p&gt;&lt;b&gt;4&lt;sup&gt;ый&lt;/sup&gt; Момент:&lt;/b&gt; %moment4&lt;/p&gt;</translation>
+        <location filename="src/mainwindow.cpp" line="215"/>
+        <source>&lt;center&gt;&lt;h2&gt;%header&lt;/h2&gt;&lt;p&gt;&lt;big&gt;x = %avg &amp;plusmn; %stddev&lt;/big&gt;&lt;/p&gt;&lt;/center&gt;&lt;p&gt;&lt;b&gt;Number:&lt;/b&gt; %number&lt;/p&gt;&lt;p&gt;&lt;b&gt;Min/Max:&lt;/b&gt; %min ... %max&lt;/p&gt;&lt;p&gt;&lt;b&gt;Average:&lt;/b&gt; %avg&lt;/p&gt;&lt;p&gt;&lt;b&gt;Dispersion:&lt;/b&gt; %disp&lt;/p&gt;&lt;p&gt;&lt;b&gt;Std. deviation:&lt;/b&gt; %stddev&lt;/p&gt;&lt;p&gt;&lt;b&gt;3&lt;sup&gt;rd&lt;/sup&gt; Moment:&lt;/b&gt; %moment3&lt;/p&gt;&lt;p&gt;&lt;b&gt;4&lt;sup&gt;th&lt;/sup&gt; Moment:&lt;/b&gt; %moment4&lt;/p&gt;</source>
+        <translation>&lt;center&gt;&lt;h2&gt;%header&lt;/h2&gt;&lt;p&gt;&lt;big&gt;x = %avg &amp;plusmn; %stddev&lt;/big&gt;&lt;/p&gt;&lt;/center&gt;&lt;b&gt;Количество:&lt;/b&gt; %number&lt;/p&gt;&lt;p&gt;&lt;b&gt;Мин/Макс:&lt;/b&gt; %min ... %max&lt;/p&gt;&lt;p&gt;&lt;b&gt;Среднее:&lt;/b&gt; %avg&lt;/p&gt;&lt;p&gt;&lt;b&gt;Дисперсия:&lt;/b&gt; %disp&lt;/p&gt;&lt;p&gt;&lt;b&gt;СКО:&lt;/b&gt; %stddev&lt;/p&gt;&lt;p&gt;&lt;b&gt;3&lt;sup&gt;ий&lt;/sup&gt; Момент:&lt;/b&gt; %moment3&lt;/p&gt;&lt;p&gt;&lt;b&gt;4&lt;sup&gt;ый&lt;/sup&gt; Момент:&lt;/b&gt; %moment4&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="245"/>
+        <source>&lt;h2&gt;%header&lt;/h2&gt;&lt;p/&gt;&lt;p&gt;&lt;b&gt;Number:&lt;/b&gt; %number&lt;/p&gt;&lt;p&gt;&lt;b&gt;Min/Max:&lt;/b&gt; %min ... %max&lt;/p&gt;&lt;p&gt;&lt;b&gt;Average:&lt;/b&gt; %avg&lt;/p&gt;&lt;p&gt;&lt;b&gt;Dispersion:&lt;/b&gt; %disp&lt;/p&gt;&lt;p&gt;&lt;b&gt;Std. deviation:&lt;/b&gt; %stddev&lt;/p&gt;&lt;p&gt;&lt;b&gt;3&lt;sup&gt;rd&lt;/sup&gt; Moment:&lt;/b&gt; %moment3&lt;/p&gt;&lt;p&gt;&lt;b&gt;4&lt;sup&gt;th&lt;/sup&gt; Moment:&lt;/b&gt; %moment4&lt;/p&gt;</source>
+        <translation type="obsolete">&lt;h2&gt;%header&lt;/h2&gt;&lt;p/&gt;&lt;p&gt;&lt;b&gt;Количество:&lt;/b&gt; %number&lt;/p&gt;&lt;p&gt;&lt;b&gt;Мин/Макс:&lt;/b&gt; %min ... %max&lt;/p&gt;&lt;p&gt;&lt;b&gt;Среднее:&lt;/b&gt; %avg&lt;/p&gt;&lt;p&gt;&lt;b&gt;Дисперсия:&lt;/b&gt; %disp&lt;/p&gt;&lt;p&gt;&lt;b&gt;СКО:&lt;/b&gt; %stddev&lt;/p&gt;&lt;p&gt;&lt;b&gt;3&lt;sup&gt;ий&lt;/sup&gt; Момент:&lt;/b&gt; %moment3&lt;/p&gt;&lt;p&gt;&lt;b&gt;4&lt;sup&gt;ый&lt;/sup&gt; Момент:&lt;/b&gt; %moment4&lt;/p&gt;</translation>
+    </message>
+    <message>
+        <location filename="src/mainwindow.cpp" line="261"/>
         <source>About StatistiQ</source>
         <translation>О программе StatistiQ</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="246"/>
+        <location filename="src/mainwindow.cpp" line="262"/>
         <source>StatistiQ is an app for getting various 
 statistical information from experiment data
 

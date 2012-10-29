@@ -212,7 +212,8 @@ QString MainWindow::formatStats() {
         return "";
     }
 
-    return tr("<h2>%header</h2><p/>"
+    return tr("<center><h2>%header</h2>"
+              "<p><big>x = %avg &plusmn; %stddev</big></p></center>"
               "<p><b>Number:</b> %number</p>"
               "<p><b>Min/Max:</b> %min ... %max</p>"
               "<p><b>Average:</b> %avg</p>"
