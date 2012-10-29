@@ -12,6 +12,8 @@
 #include <QCloseEvent>
 #include <qwt_series_data.h>
 #include <qwt_plot_grid.h>
+#include <qwt_plot_scaleitem.h>
+#include <qwt_scale_widget.h>
 
 namespace {
     inline void setTips(QWidget * widget, QString tip) {
@@ -41,6 +43,17 @@ namespace {
         return res;
     }
 
+    inline void rotateAxisLabel(QwtScaleDraw * axisDraw) {
+        axisDraw->setLabelRotation(-90);
+        axisDraw->setLabelAlignment(Qt::AlignHCenter | Qt::AlignTop);
+    }
+
+    inline void setAxisFontSize(QwtPlot * plot, QwtPlot::Axis axisId, int size) {
+        QFont axisFont = plot->axisFont(axisId);
+        axisFont.setPointSize(size);
+        plot->setAxisFont(axisId, axisFont);
+    }
+
     const QColor GRID_COLOR(128, 128, 128);
     const QColor CURVE_COLOR(40, 90, 120);
     const QColor CURVE_FILL(10, 160, 255, 100);
@@ -61,6 +74,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 void MainWindow::initHistogramControls() {
     initGrid(ui->histogramArea);
+    rotateAxisLabel(ui->histogramArea->axisScaleDraw(QwtPlot::yLeft));
     ui->histogramArea->setVisible(ui->actionShowHistogram->isChecked());
     new TooltipPlotPicker(ui->histogramArea);
 
@@ -102,8 +116,9 @@ void MainWindow::initGrid(QwtPlot *plot) {
 
 void MainWindow::initCurve() {
     initGrid(ui->curveArea);
-    new TooltipPlotPicker(ui->curveArea);
+    rotateAxisLabel(ui->curveArea->axisScaleDraw(QwtPlot::yLeft));
     ui->curveArea->setVisible(ui->actionShowDataCurve->isChecked());
+    new TooltipPlotPicker(ui->curveArea);
     connect(ui->actionShowDataCurve, SIGNAL(triggered(bool)), SLOT(sl_showDataCurveTriggered(bool)));
 
     curve = new QwtPlotCurve;
@@ -111,8 +126,8 @@ void MainWindow::initCurve() {
     curve->setPen(CURVE_COLOR);
     curve->setOrientation(Qt::Vertical);
     curve->attach(ui->curveArea);
-    ui->curveArea->enableAxis(QwtPlot::yLeft, false);
-    ui->curveArea->enableAxis(QwtPlot::xBottom, false);
+
+    setAxisFontSize(ui->curveArea, QwtPlot::yLeft, 7);
 
     averageLine = new QwtPlotCurve;
     averageLine->setPen(AVERAGE_COLOR);
