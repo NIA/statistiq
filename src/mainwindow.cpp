@@ -63,7 +63,10 @@ namespace {
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow), reportWindow(new ReportWindow(NULL)),
-    stat(NULL), histogram(NULL)
+    stat(NULL), histogram(NULL),
+
+    untitledFileName(tr("untitled.csv")), titleWithFile(tr("%1[*] - StatistiQ - a data processing utility")),
+    fileFilter(tr("Plain text file (*.csv *.txt *.dat);;All files (*.*)"))
 {
     ui->setupUi(this);
     initHistogramControls();
@@ -135,17 +138,17 @@ void MainWindow::initCurve() {
 }
 
 void MainWindow::sl_open() {
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Open data file"), ".",
-                                                    tr("Plain text file (*.txt *.csv *.dat)"));
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Open data file"), ".", fileFilter);
     if(fileName.isEmpty()) {
         return;
     }
     Reader reader(this, fileName);
     if(reader.isValid()) {
-        setWindowTitle(tr("%1 - StatistiQ - a data processing utility").arg(reader.shortFileName()));
+        setWindowTitle(titleWithFile.arg(reader.shortFileName()));
         reportWindow->setupForFile(fileName, reader.shortFileName());
 
         setStatistic(new Statistic(this, reader.data(), reader.formatFileInfo()));
+        stat->setFilePath(fileName);
     }
     statusBar()->showMessage(reader.formatReport());
 }
@@ -153,11 +156,11 @@ void MainWindow::sl_open() {
 void MainWindow::sl_new() {
     NewStatDialog * dialog = new NewStatDialog(this);
     if(dialog->exec() == QDialog::Accepted) {
-        QString untitledFileName = tr("untitled.csv");
-        setWindowTitle(tr("%1 - StatistiQ - a data processing utility").arg(untitledFileName));
+        setWindowTitle(titleWithFile.arg(untitledFileName));
         reportWindow->setupForFile(untitledFileName, untitledFileName);
 
         setStatistic(new Statistic(this, dialog->data(), untitledFileName));
+        stat->setModified(true);
     }
 }
 
@@ -170,18 +173,67 @@ void MainWindow::setStatistic(Statistic *newStat) {
 
     ui->dataTable->setModel(stat->itemModel());
     ui->actionShowReport->setEnabled(true);
+    ui->actionSaveAs->setEnabled(true);
 
     stat->setHistogramIntervalsNumber(spinHistogramIntervals.value());
     stat->setHistogramFraction(checkHistogramFraction.isChecked());
-    connect(stat, SIGNAL(si_statisticChanged()), SLOT(sl_dataUpdated()));
+    connect(stat, SIGNAL(si_statisticChanged()), SLOT(sl_statisticUpdated()));
     connect(stat, SIGNAL(si_histogramChanged()), SLOT(sl_histogramUpdated()));
+    connect(stat, SIGNAL(si_modified()),         SLOT(sl_dataModified()));
     connect(&spinHistogramIntervals, SIGNAL(valueChanged(int)), stat, SLOT(sl_histogramIntervalsChanged(int)));
     connect(&checkHistogramFraction, SIGNAL(stateChanged(int)), stat, SLOT(sl_histogramFractionChanged(int)));
-    sl_dataUpdated();
+    sl_statisticUpdated();
     sl_histogramUpdated();
 }
 
-void MainWindow::sl_dataUpdated() {
+void MainWindow::sl_save() {
+    if( ! stat->isModified() ) {
+        return;
+    }
+    if( stat->filePath().isEmpty()) {
+        // A new, unsaved yet statistic
+        sl_saveAs();
+    } else {
+        save(stat->filePath());
+    }
+}
+
+void MainWindow::sl_saveAs() {
+    QString supposedFileName = stat->filePath();
+    if(supposedFileName.isEmpty()) { supposedFileName = untitledFileName; }
+
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save statistic to data file"), supposedFileName, fileFilter);
+    if(fileName.isEmpty()) {
+        return;
+    }
+    save(fileName);
+}
+
+void MainWindow::save(QString filePath) {
+    // Write
+    Writer writer(this, filePath);
+    if(writer.isValid()) {
+        writer.write(stat->rawData());
+    } else {
+        QMessageBox::warning(this, tr("Save statistic error"), writer.errorMessage());
+        return;
+    }
+
+    // Update window display & controls
+    QString shortFileName = Reader::toShortFileName(filePath);
+    statusBar()->showMessage(tr("Successfully saved statistic to '%1'").arg(shortFileName));
+    setWindowModified(false);
+    ui->actionSave->setEnabled(false);
+    setWindowTitle(titleWithFile.arg(shortFileName));
+
+    // Update statistic properties
+    QString newHeader = Reader::formatFileInfo(shortFileName, QDateTime::currentDateTime());
+    stat->setHeader(newHeader);
+    stat->setFilePath(filePath);
+    stat->setModified(false);
+}
+
+void MainWindow::sl_statisticUpdated() {
     ui->infoText->setHtml(formatStats());
 
     curve->setSamples(stat->dataPoints());
@@ -190,6 +242,11 @@ void MainWindow::sl_dataUpdated() {
     ui->curveArea->replot();
 
     reportWindow->setContent(formatReport());
+}
+
+void MainWindow::sl_dataModified() {
+    setWindowModified(true);
+    ui->actionSave->setEnabled(true);
 }
 
 void MainWindow::sl_histogramUpdated() {

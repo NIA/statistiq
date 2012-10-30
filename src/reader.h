@@ -1,5 +1,6 @@
 #ifndef READER_H
 #define READER_H
+// TODO: rename to io.h or smth like this
 
 #include <QObject>
 #include <QFile>
@@ -37,6 +38,9 @@ public:
     QString formatReport();
     QString formatFileInfo();
 
+    static QString formatFileInfo(QString fileName, QDateTime lastModified);
+    static QString toShortFileName(QString filePath);
+
 private:
     QFile * file;
     QString fileName;
@@ -49,6 +53,23 @@ private:
     // Initializing steps:
     void openFile(QString fileName);
     void readFile();
+};
+
+// TODO: merge writing report here
+class Writer : public QObject {
+    Q_OBJECT
+public:
+    explicit Writer(QObject * parent, QString fileName);
+    void write(QList<double> data);
+    void close();
+    ~Writer();
+
+    bool isValid() { return error.isEmpty() && file != NULL; }
+    QString errorMessage() { return error; }
+
+private:
+    QFile * file;
+    QString error;
 };
 
 #endif // READER_H

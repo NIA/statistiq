@@ -11,10 +11,17 @@ class Statistic : public QObject
     Q_OBJECT
 
 public:
-    explicit Statistic(QObject *parent, QList<double> data, QString header = "");
+    explicit Statistic(QObject *parent, QList<double> data, QString header = "", bool modified = false);
 
     QStandardItemModel * itemModel() { return &model; }
+    QList<double> rawData() { return data; }
     QString header() { return header_; }
+    void setHeader(QString newValue);
+
+    QString filePath() { return filePath_; }
+    void setFilePath(QString filePath) { filePath_ = filePath; }
+    bool isModified() { return modified; }
+    void setModified(bool newValue);
 
     int number() const { return number_; }
     double min() const { return min_; }
@@ -48,6 +55,7 @@ public:
 signals:
     void si_statisticChanged();
     void si_histogramChanged();
+    void si_modified();
 
 public slots:
     void sl_itemChanged(QStandardItem * item);
@@ -59,6 +67,8 @@ private:
     QList<double> data;
     QStandardItemModel model;
     QString header_;
+    QString filePath_;
+    bool modified;
 
     // -- Options --
     // The number of the intervals for building histogram

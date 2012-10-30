@@ -28,12 +28,15 @@ public slots:
     void sl_about();
     void sl_open();
     void sl_new();
-    void sl_dataUpdated();
+    void sl_statisticUpdated();
     void sl_histogramUpdated();
     void sl_showHistogramTriggered(bool show);
     void sl_showDataCurveTriggered(bool show);
     void sl_showReport(bool show);
     void sl_reportClosed();
+    void sl_save();
+    void sl_saveAs();
+    void sl_dataModified();
 
 protected:
     virtual void closeEvent(QCloseEvent *e);
@@ -55,6 +58,12 @@ private:
     void setStatistic(Statistic * newStat);
     QString formatStats();
     QString formatReport();
+    void save(QString filePath);
+
+    // Some const strings used in different places of MainWindow
+    const QString untitledFileName;
+    const QString titleWithFile;
+    const QString fileFilter;
 };
 
 #endif // MAINWINDOW_H

@@ -29,12 +29,24 @@ namespace {
     const double MIN_HIST_AREA = 0.01;
 }
 
-Statistic::Statistic(QObject *parent, QList<double> data, QString header) :
-    QObject(parent), data(data), model(0, 0, this), header_(header),
+Statistic::Statistic(QObject *parent, QList<double> data, QString header, bool modified) :
+    QObject(parent), data(data), model(0, 0, this), header_(header), modified(modified),
     histogramIntervals(10), histogramFraction(false), dataPoints_(data.size())
 {
     initModel();
     recalculate();
+}
+
+void Statistic::setHeader(QString newValue) {
+    header_ = newValue;
+    emit si_statisticChanged();
+}
+
+void Statistic::setModified(bool newValue) {
+    modified = newValue;
+    if(modified) {
+        emit si_modified();
+    }
 }
 
 double Statistic::stdDeviation() const {
@@ -128,6 +140,7 @@ void Statistic::sl_valueChanged(int index, double newValue) {
     setDataPoint(index);
     model.item(index)->setText(valueToItem(newValue));
     recalculate();
+    setModified(true);
 }
 
 void Statistic::sl_histogramIntervalsChanged(int newValue) {

@@ -30,172 +30,226 @@ p, li { white-space: pre-wrap; }
         <translation>Файл</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="90"/>
+        <location filename="mainwindow.ui" line="92"/>
         <source>Help</source>
         <translation>Помощь</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="96"/>
+        <location filename="mainwindow.ui" line="98"/>
         <source>View</source>
         <translation>Вид</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="139"/>
+        <location filename="mainwindow.ui" line="143"/>
         <source>Quit</source>
         <translation>Выход</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="142"/>
-        <location filename="mainwindow.ui" line="145"/>
+        <location filename="mainwindow.ui" line="146"/>
+        <location filename="mainwindow.ui" line="149"/>
         <source>Quit the program</source>
         <translation>Выйти из программы</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="148"/>
+        <location filename="mainwindow.ui" line="152"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="157"/>
+        <location filename="mainwindow.ui" line="161"/>
         <source>About...</source>
         <translation>О программе...</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="160"/>
-        <location filename="mainwindow.ui" line="163"/>
+        <location filename="mainwindow.ui" line="164"/>
+        <location filename="mainwindow.ui" line="167"/>
         <source>Show About dialog with info about authors</source>
         <translation>Показать диалог &quot;О программе&quot; с информацией об авторах</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="172"/>
+        <location filename="mainwindow.ui" line="176"/>
         <source>Open...</source>
         <translation>Открыть...</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="181"/>
+        <location filename="mainwindow.ui" line="185"/>
         <source>Ctrl+O</source>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="196"/>
+        <location filename="mainwindow.ui" line="200"/>
         <source>Show Histogram</source>
         <translation>Показать гистограмму</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="199"/>
-        <location filename="mainwindow.ui" line="202"/>
+        <location filename="mainwindow.ui" line="203"/>
+        <location filename="mainwindow.ui" line="206"/>
         <source>Show or hide histogram on plot</source>
         <translation>Показать или скрыть гистограмму на графике</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="205"/>
+        <location filename="mainwindow.ui" line="209"/>
         <source>Ctrl+H</source>
         <translation>Ctrl+H</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="220"/>
+        <location filename="mainwindow.ui" line="224"/>
         <source>Show Data Curve</source>
         <translation>Покзать кривую данных</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="223"/>
-        <location filename="mainwindow.ui" line="226"/>
+        <location filename="mainwindow.ui" line="227"/>
+        <location filename="mainwindow.ui" line="230"/>
         <source>Show or hide data curve on plot</source>
         <translation>Показать или скрыть кривую данных на графике</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="229"/>
+        <location filename="mainwindow.ui" line="233"/>
         <source>Ctrl+D</source>
         <translation>Ctrl+D</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="244"/>
+        <location filename="mainwindow.ui" line="248"/>
         <source>Show Report</source>
         <translation>Показать отчёт</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="247"/>
-        <location filename="mainwindow.ui" line="250"/>
+        <location filename="mainwindow.ui" line="251"/>
+        <location filename="mainwindow.ui" line="254"/>
         <source>Show summarized report window</source>
         <translation>Показать окно итогового отчёта</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="253"/>
+        <location filename="mainwindow.ui" line="257"/>
         <source>Ctrl+R</source>
         <translation>Ctrl+R</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="262"/>
+        <location filename="mainwindow.ui" line="266"/>
         <source>New...</source>
         <translation>Создать...</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="265"/>
-        <location filename="mainwindow.ui" line="268"/>
+        <location filename="mainwindow.ui" line="269"/>
+        <location filename="mainwindow.ui" line="272"/>
         <source>Create a new statistic</source>
         <translation>Создать новую статистику</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="271"/>
+        <location filename="mainwindow.ui" line="275"/>
         <source>Ctrl+N</source>
         <translation>Ctrl+N</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="175"/>
-        <location filename="mainwindow.ui" line="178"/>
-        <location filename="src/mainwindow.cpp" line="138"/>
+        <location filename="mainwindow.ui" line="287"/>
+        <source>Save</source>
+        <translation>Сохранить</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="290"/>
+        <location filename="mainwindow.ui" line="293"/>
+        <source>Save current statistic to its file</source>
+        <translation>Сохранить текущую статистику в её файл</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="296"/>
+        <source>Ctrl+S</source>
+        <translation>Ctrl+S</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="308"/>
+        <source>Save as...</source>
+        <translation>Сохранить как...</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="311"/>
+        <location filename="mainwindow.ui" line="314"/>
+        <source>Save current statistic as a new file</source>
+        <translation>Сохранить текущую статистику как новый файл</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="317"/>
+        <source>Ctrl+Shift+S</source>
+        <translation>Ctrl+Shift+S</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="179"/>
+        <location filename="mainwindow.ui" line="182"/>
+        <location filename="src/mainwindow.cpp" line="141"/>
         <source>Open data file</source>
         <translation>Открыть файл данных</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="84"/>
+        <location filename="src/mainwindow.cpp" line="87"/>
         <source>Histogram:</source>
         <translation>Гисторамма:</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="86"/>
+        <location filename="src/mainwindow.cpp" line="89"/>
         <source>Histogram display options</source>
         <translation>Настройки отображения гистораммы</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="91"/>
-        <location filename="src/mainwindow.cpp" line="95"/>
+        <location filename="src/mainwindow.cpp" line="94"/>
+        <location filename="src/mainwindow.cpp" line="98"/>
         <source>Number of histogram intervals</source>
         <translation>Количество интервалов гистограммы</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="93"/>
+        <location filename="src/mainwindow.cpp" line="96"/>
         <source>(columns)</source>
         <translation>(столбцов)</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="98"/>
+        <location filename="src/mainwindow.cpp" line="101"/>
         <source>Fraction</source>
         <translation>Доли</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="99"/>
+        <location filename="src/mainwindow.cpp" line="102"/>
         <source>Show fraction instead of values in histogram</source>
         <translation>Показывать доли вместо значений на гистограмме</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="139"/>
         <source>Plain text file (*.txt *.csv *.dat)</source>
-        <translation>Текстовый файл (*.txt *.csv *.dat)</translation>
+        <translation type="obsolete">Текстовый файл (*.txt *.csv *.dat)</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="145"/>
-        <location filename="src/mainwindow.cpp" line="157"/>
         <source>%1 - StatistiQ - a data processing utility</source>
-        <translation>%1 - StatistiQ -программа обработки данных</translation>
+        <translation type="obsolete">%1 - StatistiQ -программа обработки данных</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="156"/>
+        <location filename="src/mainwindow.cpp" line="68"/>
         <source>untitled.csv</source>
         <translation>безымянный.csv</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="215"/>
+        <location filename="src/mainwindow.cpp" line="68"/>
+        <source>%1[*] - StatistiQ - a data processing utility</source>
+        <translation>%1[*] - StatistiQ - программа обработки данных</translation>
+    </message>
+    <message>
+        <location filename="src/mainwindow.cpp" line="69"/>
+        <source>Plain text file (*.csv *.txt *.dat);;All files (*.*)</source>
+        <translation>Текстовый файл (*.csv *.txt *.dat);;Все файлы(*.*)</translation>
+    </message>
+    <message>
+        <location filename="src/mainwindow.cpp" line="205"/>
+        <source>Save statistic to data file</source>
+        <translation>Сохранить статистику в файл данных</translation>
+    </message>
+    <message>
+        <location filename="src/mainwindow.cpp" line="218"/>
+        <source>Save statistic error</source>
+        <translation>Ошибка сохранения статистики</translation>
+    </message>
+    <message>
+        <location filename="src/mainwindow.cpp" line="224"/>
+        <source>Successfully saved statistic to &apos;%1&apos;</source>
+        <translation>Статистика успешно сохранена в файл &apos;%1&apos;</translation>
+    </message>
+    <message>
+        <location filename="src/mainwindow.cpp" line="272"/>
         <source>&lt;center&gt;&lt;h2&gt;%header&lt;/h2&gt;&lt;p&gt;&lt;big&gt;x = %avg &amp;plusmn; %stddev&lt;/big&gt;&lt;/p&gt;&lt;/center&gt;&lt;p&gt;&lt;b&gt;Number:&lt;/b&gt; %number&lt;/p&gt;&lt;p&gt;&lt;b&gt;Min/Max:&lt;/b&gt; %min ... %max&lt;/p&gt;&lt;p&gt;&lt;b&gt;Average:&lt;/b&gt; %avg&lt;/p&gt;&lt;p&gt;&lt;b&gt;Dispersion:&lt;/b&gt; %disp&lt;/p&gt;&lt;p&gt;&lt;b&gt;Std. deviation:&lt;/b&gt; %stddev&lt;/p&gt;&lt;p&gt;&lt;b&gt;3&lt;sup&gt;rd&lt;/sup&gt; Moment:&lt;/b&gt; %moment3&lt;/p&gt;&lt;p&gt;&lt;b&gt;4&lt;sup&gt;th&lt;/sup&gt; Moment:&lt;/b&gt; %moment4&lt;/p&gt;</source>
         <translation>&lt;center&gt;&lt;h2&gt;%header&lt;/h2&gt;&lt;p&gt;&lt;big&gt;x = %avg &amp;plusmn; %stddev&lt;/big&gt;&lt;/p&gt;&lt;/center&gt;&lt;b&gt;Количество:&lt;/b&gt; %number&lt;/p&gt;&lt;p&gt;&lt;b&gt;Мин/Макс:&lt;/b&gt; %min ... %max&lt;/p&gt;&lt;p&gt;&lt;b&gt;Среднее:&lt;/b&gt; %avg&lt;/p&gt;&lt;p&gt;&lt;b&gt;Дисперсия:&lt;/b&gt; %disp&lt;/p&gt;&lt;p&gt;&lt;b&gt;СКО:&lt;/b&gt; %stddev&lt;/p&gt;&lt;p&gt;&lt;b&gt;3&lt;sup&gt;ий&lt;/sup&gt; Момент:&lt;/b&gt; %moment3&lt;/p&gt;&lt;p&gt;&lt;b&gt;4&lt;sup&gt;ый&lt;/sup&gt; Момент:&lt;/b&gt; %moment4&lt;/p&gt;</translation>
     </message>
@@ -204,12 +258,12 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">&lt;h2&gt;%header&lt;/h2&gt;&lt;p/&gt;&lt;p&gt;&lt;b&gt;Количество:&lt;/b&gt; %number&lt;/p&gt;&lt;p&gt;&lt;b&gt;Мин/Макс:&lt;/b&gt; %min ... %max&lt;/p&gt;&lt;p&gt;&lt;b&gt;Среднее:&lt;/b&gt; %avg&lt;/p&gt;&lt;p&gt;&lt;b&gt;Дисперсия:&lt;/b&gt; %disp&lt;/p&gt;&lt;p&gt;&lt;b&gt;СКО:&lt;/b&gt; %stddev&lt;/p&gt;&lt;p&gt;&lt;b&gt;3&lt;sup&gt;ий&lt;/sup&gt; Момент:&lt;/b&gt; %moment3&lt;/p&gt;&lt;p&gt;&lt;b&gt;4&lt;sup&gt;ый&lt;/sup&gt; Момент:&lt;/b&gt; %moment4&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="261"/>
+        <location filename="src/mainwindow.cpp" line="318"/>
         <source>About StatistiQ</source>
         <translation>О программе StatistiQ</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="262"/>
+        <location filename="src/mainwindow.cpp" line="319"/>
         <source>StatistiQ is an app for getting various 
 statistical information from experiment data
 
@@ -339,7 +393,7 @@ Click No to get back to editing and fix errors</source>
         <translation>Загружено %1 значений из %2, пропущенно %3</translation>
     </message>
     <message>
-        <location filename="src/reader.cpp" line="74"/>
+        <location filename="src/reader.cpp" line="81"/>
         <source>%1 at %2</source>
         <translation>%1, %2</translation>
     </message>
@@ -484,13 +538,13 @@ Error code %2</source>
 <context>
     <name>Statistic</name>
     <message>
-        <location filename="src/statistic.cpp" line="46"/>
-        <location filename="src/statistic.cpp" line="164"/>
+        <location filename="src/statistic.cpp" line="58"/>
+        <location filename="src/statistic.cpp" line="177"/>
         <source>Value</source>
         <translation>Значение</translation>
     </message>
     <message>
-        <location filename="src/statistic.cpp" line="162"/>
+        <location filename="src/statistic.cpp" line="175"/>
         <source>No.</source>
         <translation>№</translation>
     </message>
@@ -501,6 +555,14 @@ Error code %2</source>
         <location filename="src/tooltipplotpicker.h" line="18"/>
         <source>%1; %2</source>
         <translation>%1; %2</translation>
+    </message>
+</context>
+<context>
+    <name>Writer</name>
+    <message>
+        <location filename="src/reader.cpp" line="95"/>
+        <source>Cannot write to file &apos;%1&apos;, error code %2</source>
+        <translation>Не могу записать в файл &apos;%1&apos;, код ошибки %2</translation>
     </message>
 </context>
 </TS>

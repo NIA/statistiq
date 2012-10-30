@@ -83,6 +83,8 @@ p, li { white-space: pre-wrap; }
     </property>
     <addaction name="actionNew"/>
     <addaction name="actionOpen"/>
+    <addaction name="actionSave"/>
+    <addaction name="actionSaveAs"/>
     <addaction name="actionQuit"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
@@ -124,6 +126,8 @@ p, li { white-space: pre-wrap; }
    </attribute>
    <addaction name="actionNew"/>
    <addaction name="actionOpen"/>
+   <addaction name="actionSave"/>
+   <addaction name="actionSaveAs"/>
    <addaction name="separator"/>
    <addaction name="actionShowDataCurve"/>
    <addaction name="actionShowHistogram"/>
@@ -271,6 +275,48 @@ p, li { white-space: pre-wrap; }
     <string>Ctrl+N</string>
    </property>
   </action>
+  <action name="actionSave">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="statistiq.qrc">
+     <normaloff>:/icons/images/save.ico</normaloff>:/icons/images/save.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Save</string>
+   </property>
+   <property name="toolTip">
+    <string>Save current statistic to its file</string>
+   </property>
+   <property name="statusTip">
+    <string>Save current statistic to its file</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionSaveAs">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="statistiq.qrc">
+     <normaloff>:/icons/images/save-as.ico</normaloff>:/icons/images/save-as.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Save as...</string>
+   </property>
+   <property name="toolTip">
+    <string>Save current statistic as a new file</string>
+   </property>
+   <property name="statusTip">
+    <string>Save current statistic as a new file</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+S</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -365,6 +411,38 @@ p, li { white-space: pre-wrap; }
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionSave</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>sl_save()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>314</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSaveAs</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>sl_saveAs()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>314</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>sl_quit()</slot>
@@ -372,5 +450,7 @@ p, li { white-space: pre-wrap; }
   <slot>sl_open()</slot>
   <slot>sl_showReport(bool)</slot>
   <slot>sl_new()</slot>
+  <slot>sl_save()</slot>
+  <slot>sl_saveAs()</slot>
  </slots>
 </ui>

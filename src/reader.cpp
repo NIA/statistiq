@@ -71,9 +71,46 @@ QString Reader::formatReport() {
 
 QString Reader::formatFileInfo() {
     if(isValid()) {
-        return tr("%1 at %2").arg(fileName).arg(lastModified.toString(Qt::DefaultLocaleShortDate));
+        return formatFileInfo(fileName, lastModified);
     } else {
         return tr("No file loaded");
     }
 }
 
+QString Reader::formatFileInfo(QString fileName, QDateTime lastModified) {
+    return tr("%1 at %2").arg(fileName).arg(lastModified.toString(Qt::DefaultLocaleShortDate));
+}
+
+QString Reader::toShortFileName(QString filePath) {
+    QFileInfo fi(filePath);
+    return fi.fileName();
+}
+
+Writer::Writer(QObject *parent, QString fileName)
+    : QObject(parent), file(NULL)
+{
+    file = new QFile(fileName, this);
+    if( ! file->open(QIODevice::WriteOnly | QIODevice::Text )) {
+        QFile::FileError errcode = file->error();
+        error = tr("Cannot write to file '%1', error code %2").arg(fileName).arg(errcode);
+    }
+}
+
+void Writer::write(QList<double> data) {
+    if( ! isValid() ) { return; }
+
+    QTextStream out(file);
+    foreach(double value, data) {
+        // TODO: reuse valueToItem
+        out << QString::number(value, 'g', 10) << endl;
+    }
+}
+
+void Writer::close() {
+    file->close();
+    file = NULL;
+}
+
+Writer::~Writer() {
+    close();
+}
