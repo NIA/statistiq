@@ -72,6 +72,11 @@ MainWindow::MainWindow(QWidget *parent) :
     initHistogramControls();
     initCurve();
 
+    ui->dataTable->addAction(ui->actionAddData);
+    ui->dataTable->addAction(ui->actionAddFromFile);
+    ui->dataTable->addAction(ui->actionRemoveSelected);
+    ui->dataTable->setContextMenuPolicy(Qt::ActionsContextMenu);
+
     connect(reportWindow, SIGNAL(si_closed()), SLOT(sl_reportClosed()));
 }
 
@@ -153,8 +158,25 @@ void MainWindow::sl_open() {
     statusBar()->showMessage(reader.formatReport());
 }
 
+void MainWindow::sl_addDataFromFile() {
+    if(stat == NULL) {
+        return;
+    }
+
+    QFileInfo fi(stat->filePath());
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Open file to add to statistic"), fi.path(), fileFilter);
+    if(fileName.isEmpty()) {
+        return;
+    }
+    Reader reader(this, fileName);
+    if(reader.isValid()) {
+        stat->append(reader.data());
+    }
+    statusBar()->showMessage(reader.formatReport());
+}
+
 void MainWindow::sl_new() {
-    NewStatDialog * dialog = new NewStatDialog(this);
+    NewStatDialog * dialog = new NewStatDialog(this, NewStatDialog::ReplaceWithNew);
     if(dialog->exec() == QDialog::Accepted) {
         setWindowTitle(titleWithFile.arg(untitledFileName));
         reportWindow->setupForFile(untitledFileName, untitledFileName);
@@ -162,6 +184,26 @@ void MainWindow::sl_new() {
         setStatistic(new Statistic(this, dialog->data(), untitledFileName));
         stat->setModified(true);
     }
+}
+
+void MainWindow::sl_addData() {
+    if(stat == NULL) {
+        return;
+    }
+
+    NewStatDialog * dialog = new NewStatDialog(this, NewStatDialog::AppendToExisting);
+    if(dialog->exec() == QDialog::Accepted) {
+        stat->append(dialog->data());
+    }
+}
+
+void MainWindow::sl_removeSelected() {
+    if(stat == NULL) {
+        return;
+    }
+
+    QModelIndexList selected = ui->dataTable->selectionModel()->selectedRows();
+    stat->remove(selected);
 }
 
 void MainWindow::setStatistic(Statistic *newStat) {
@@ -174,6 +216,9 @@ void MainWindow::setStatistic(Statistic *newStat) {
     ui->dataTable->setModel(stat->itemModel());
     ui->actionShowReport->setEnabled(true);
     ui->actionSaveAs->setEnabled(true);
+    ui->actionAddData->setEnabled(true);
+    ui->actionAddFromFile->setEnabled(true);
+    ui->actionRemoveSelected->setEnabled(true);
 
     stat->setHistogramIntervalsNumber(spinHistogramIntervals.value());
     stat->setHistogramFraction(checkHistogramFraction.isChecked());
@@ -238,7 +283,7 @@ void MainWindow::sl_statisticUpdated() {
 
     curve->setSamples(stat->dataPoints());
     curve->setBaseline(stat->average());
-    averageLine->setSamples(horizontalLine(0, stat->number(), stat->average()));
+    averageLine->setSamples(horizontalLine(1, stat->number(), stat->average()));
     ui->curveArea->replot();
 
     reportWindow->setContent(formatReport());

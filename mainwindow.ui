@@ -101,7 +101,16 @@ p, li { white-space: pre-wrap; }
     <addaction name="actionShowHistogram"/>
     <addaction name="actionShowReport"/>
    </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+    <addaction name="actionAddData"/>
+    <addaction name="actionAddFromFile"/>
+    <addaction name="actionRemoveSelected"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
    <addaction name="menuView"/>
    <addaction name="menuHelp"/>
   </widget>
@@ -128,6 +137,10 @@ p, li { white-space: pre-wrap; }
    <addaction name="actionOpen"/>
    <addaction name="actionSave"/>
    <addaction name="actionSaveAs"/>
+   <addaction name="separator"/>
+   <addaction name="actionAddData"/>
+   <addaction name="actionAddFromFile"/>
+   <addaction name="actionRemoveSelected"/>
    <addaction name="separator"/>
    <addaction name="actionShowDataCurve"/>
    <addaction name="actionShowHistogram"/>
@@ -317,6 +330,63 @@ p, li { white-space: pre-wrap; }
     <string>Ctrl+Shift+S</string>
    </property>
   </action>
+  <action name="actionAddData">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="statistiq.qrc">
+     <normaloff>:/icons/images/add.ico</normaloff>:/icons/images/add.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Add data...</string>
+   </property>
+   <property name="toolTip">
+    <string>Add new data to this statistic</string>
+   </property>
+   <property name="statusTip">
+    <string>Add new data to this statistic</string>
+   </property>
+  </action>
+  <action name="actionRemoveSelected">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="statistiq.qrc">
+     <normaloff>:/icons/images/remove.ico</normaloff>:/icons/images/remove.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Remove selected</string>
+   </property>
+   <property name="toolTip">
+    <string>Remove selected rows from table</string>
+   </property>
+   <property name="statusTip">
+    <string>Remove selected rows from table</string>
+   </property>
+   <property name="shortcut">
+    <string>Del</string>
+   </property>
+  </action>
+  <action name="actionAddFromFile">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="statistiq.qrc">
+     <normaloff>:/icons/images/add-from-file.ico</normaloff>:/icons/images/add-from-file.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Add from file...</string>
+   </property>
+   <property name="toolTip">
+    <string>Open file and add data to current statistic</string>
+   </property>
+   <property name="statusTip">
+    <string>Open file and add data to current statistic</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -443,6 +513,54 @@ p, li { white-space: pre-wrap; }
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionAddData</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>sl_addData()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>314</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionRemoveSelected</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>sl_removeSelected()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>314</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionAddFromFile</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>sl_addDataFromFile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>314</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>sl_quit()</slot>
@@ -452,5 +570,8 @@ p, li { white-space: pre-wrap; }
   <slot>sl_new()</slot>
   <slot>sl_save()</slot>
   <slot>sl_saveAs()</slot>
+  <slot>sl_addData()</slot>
+  <slot>sl_removeSelected()</slot>
+  <slot>sl_addDataFromFile()</slot>
  </slots>
 </ui>

@@ -12,5 +12,8 @@
         <file>images/save-as.ico</file>
         <file>images/zoom-in.ico</file>
         <file>images/zoom-out.ico</file>
+        <file>images/add.ico</file>
+        <file>images/remove.ico</file>
+        <file>images/add-from-file.ico</file>
     </qresource>
 </RCC>

@@ -11,9 +11,13 @@ class NewStatDialog : public QDialog
 {
     Q_OBJECT
     typedef QDialog super;
-    
 public:
-    explicit NewStatDialog(QWidget *parent = 0);
+    enum Purpose {
+        ReplaceWithNew,
+        AppendToExisting
+    };
+
+    explicit NewStatDialog(QWidget *parent = 0, Purpose purpose = ReplaceWithNew);
 
     QList<double> data() { return data_; }
 

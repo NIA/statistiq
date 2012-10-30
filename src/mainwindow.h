@@ -37,6 +37,9 @@ public slots:
     void sl_save();
     void sl_saveAs();
     void sl_dataModified();
+    void sl_addData();
+    void sl_addDataFromFile();
+    void sl_removeSelected();
 
 protected:
     virtual void closeEvent(QCloseEvent *e);

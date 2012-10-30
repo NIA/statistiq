@@ -22,7 +22,7 @@ namespace {
     }
 }
 
-NewStatDialog::NewStatDialog(QWidget *parent) :
+NewStatDialog::NewStatDialog(QWidget *parent, Purpose purpose) :
     super(parent),
     ui(new Ui::NewStatDialog)
 {
@@ -32,6 +32,12 @@ NewStatDialog::NewStatDialog(QWidget *parent) :
     ui->spinItemsNum->installEventFilter(this);
     ui->editInitValue->installEventFilter(this);
     ui->editValluesAsText->installEventFilter(this);
+
+    if(purpose == AppendToExisting) {
+        setWindowTitle(tr("Add data"));
+        setWindowIcon(QIcon(":/icons/images/add.ico"));
+        ui->groupBox->setTitle(tr("How to create new data to add to statistic?"));
+    }
 }
 
 bool NewStatDialog::eventFilter(QObject *object, QEvent *event)

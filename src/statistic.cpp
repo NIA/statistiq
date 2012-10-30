@@ -57,13 +57,53 @@ void Statistic::initModel() {
     model.appendColumn(dataToItems(data));
     model.setHorizontalHeaderItem(0, new QStandardItem(tr("Value")));
     connect(&model, SIGNAL(itemChanged(QStandardItem*)), SLOT(sl_itemChanged(QStandardItem*)));
+    setAllDataPoints();
+}
+
+void Statistic::append(QList<double> newData) {
+    data << newData;
+    setAllDataPoints();
+
+    foreach(QStandardItem * item, dataToItems(newData)) {
+        model.appendRow(item);
+    }
+
+    recalculate();
+    setModified(true);
+}
+
+void Statistic::setDataPoint(int i) {
+    dataPoints_[i] = QPointF(i + 1, data[i]);
+}
+
+void Statistic::setAllDataPoints() {
+    dataPoints_.resize(data.size());
     for(int i = 0; i < data.size(); ++i) {
         setDataPoint(i);
     }
 }
 
-void Statistic::setDataPoint(int i) {
-    dataPoints_[i] = QPointF(i, data[i]);
+void Statistic::remove(QModelIndexList rows) {
+    if(rows.isEmpty()) { return; }
+
+    // First, take numberic indices from ModelIndexList
+    QList<int> indices;
+    foreach(QModelIndex ind, rows) {
+        indices << ind.row();
+    }
+
+    // Second, sort the indices in reverse order
+    // to avoid shifting indices while deleting
+    qSort(indices.begin(), indices.end(), qGreater<int>());
+
+    // Finally, go delete them!
+    foreach(int i, indices) {
+        data.removeAt(i);
+        model.removeRow(i);
+    }
+    setAllDataPoints();
+    recalculate();
+    setModified(true);
 }
 
 void Statistic::recalculate() {
@@ -93,9 +133,8 @@ void Statistic::recalculate() {
             thirdMoment_  /= number_;
             fourthMoment_ /= number_;
         }
-
-        resampleHistogram();
     }
+    resampleHistogram();
 
     emit si_statisticChanged();
 }

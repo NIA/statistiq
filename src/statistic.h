@@ -12,6 +12,8 @@ class Statistic : public QObject
 
 public:
     explicit Statistic(QObject *parent, QList<double> data, QString header = "", bool modified = false);
+    void append(QList<double> newData);
+    void remove(QModelIndexList rows);
 
     QStandardItemModel * itemModel() { return &model; }
     QList<double> rawData() { return data; }
@@ -91,6 +93,7 @@ private:
     void recalculate();
     void resampleHistogram();
     void setDataPoint(int i);
+    void setAllDataPoints();
 };
 
 #endif // STATISTIC_H
