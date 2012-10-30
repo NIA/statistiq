@@ -59,6 +59,7 @@ private:
     void initGrid(QwtPlot * plot);
     void initCurve();
     void setStatistic(Statistic * newStat);
+    bool closeStatistic();
     QString formatStats();
     QString formatReport();
     void save(QString filePath);

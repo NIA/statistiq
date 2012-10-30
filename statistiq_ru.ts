@@ -284,22 +284,34 @@ p, li { white-space: pre-wrap; }
         <translation>Открыть файл и добавить к статистике</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="250"/>
+        <location filename="src/mainwindow.cpp" line="240"/>
+        <source>Save before closing?</source>
+        <translation>Сохранить перед закрытием?</translation>
+    </message>
+    <message>
+        <location filename="src/mainwindow.cpp" line="241"/>
+        <source>Your current statistic has unsaved changes.
+Would you like to save them?</source>
+        <translation>В текущей статистике есть  несохранённые изменения
+Вы хотите сохранить их?</translation>
+    </message>
+    <message>
+        <location filename="src/mainwindow.cpp" line="271"/>
         <source>Save statistic to data file</source>
         <translation>Сохранить статистику в файл данных</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="263"/>
+        <location filename="src/mainwindow.cpp" line="284"/>
         <source>Save statistic error</source>
         <translation>Ошибка сохранения статистики</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="269"/>
+        <location filename="src/mainwindow.cpp" line="290"/>
         <source>Successfully saved statistic to &apos;%1&apos;</source>
         <translation>Статистика успешно сохранена в файл &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="317"/>
+        <location filename="src/mainwindow.cpp" line="338"/>
         <source>&lt;center&gt;&lt;h2&gt;%header&lt;/h2&gt;&lt;p&gt;&lt;big&gt;x = %avg &amp;plusmn; %stddev&lt;/big&gt;&lt;/p&gt;&lt;/center&gt;&lt;p&gt;&lt;b&gt;Number:&lt;/b&gt; %number&lt;/p&gt;&lt;p&gt;&lt;b&gt;Min/Max:&lt;/b&gt; %min ... %max&lt;/p&gt;&lt;p&gt;&lt;b&gt;Average:&lt;/b&gt; %avg&lt;/p&gt;&lt;p&gt;&lt;b&gt;Dispersion:&lt;/b&gt; %disp&lt;/p&gt;&lt;p&gt;&lt;b&gt;Std. deviation:&lt;/b&gt; %stddev&lt;/p&gt;&lt;p&gt;&lt;b&gt;3&lt;sup&gt;rd&lt;/sup&gt; Moment:&lt;/b&gt; %moment3&lt;/p&gt;&lt;p&gt;&lt;b&gt;4&lt;sup&gt;th&lt;/sup&gt; Moment:&lt;/b&gt; %moment4&lt;/p&gt;</source>
         <translation>&lt;center&gt;&lt;h2&gt;%header&lt;/h2&gt;&lt;p&gt;&lt;big&gt;x = %avg &amp;plusmn; %stddev&lt;/big&gt;&lt;/p&gt;&lt;/center&gt;&lt;b&gt;Количество:&lt;/b&gt; %number&lt;/p&gt;&lt;p&gt;&lt;b&gt;Мин/Макс:&lt;/b&gt; %min ... %max&lt;/p&gt;&lt;p&gt;&lt;b&gt;Среднее:&lt;/b&gt; %avg&lt;/p&gt;&lt;p&gt;&lt;b&gt;Дисперсия:&lt;/b&gt; %disp&lt;/p&gt;&lt;p&gt;&lt;b&gt;СКО:&lt;/b&gt; %stddev&lt;/p&gt;&lt;p&gt;&lt;b&gt;3&lt;sup&gt;ий&lt;/sup&gt; Момент:&lt;/b&gt; %moment3&lt;/p&gt;&lt;p&gt;&lt;b&gt;4&lt;sup&gt;ый&lt;/sup&gt; Момент:&lt;/b&gt; %moment4&lt;/p&gt;</translation>
     </message>
@@ -308,12 +320,12 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">&lt;h2&gt;%header&lt;/h2&gt;&lt;p/&gt;&lt;p&gt;&lt;b&gt;Количество:&lt;/b&gt; %number&lt;/p&gt;&lt;p&gt;&lt;b&gt;Мин/Макс:&lt;/b&gt; %min ... %max&lt;/p&gt;&lt;p&gt;&lt;b&gt;Среднее:&lt;/b&gt; %avg&lt;/p&gt;&lt;p&gt;&lt;b&gt;Дисперсия:&lt;/b&gt; %disp&lt;/p&gt;&lt;p&gt;&lt;b&gt;СКО:&lt;/b&gt; %stddev&lt;/p&gt;&lt;p&gt;&lt;b&gt;3&lt;sup&gt;ий&lt;/sup&gt; Момент:&lt;/b&gt; %moment3&lt;/p&gt;&lt;p&gt;&lt;b&gt;4&lt;sup&gt;ый&lt;/sup&gt; Момент:&lt;/b&gt; %moment4&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="363"/>
+        <location filename="src/mainwindow.cpp" line="384"/>
         <source>About StatistiQ</source>
         <translation>О программе StatistiQ</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="364"/>
+        <location filename="src/mainwindow.cpp" line="385"/>
         <source>StatistiQ is an app for getting various 
 statistical information from experiment data
 

@@ -207,10 +207,10 @@ void MainWindow::sl_removeSelected() {
 }
 
 void MainWindow::setStatistic(Statistic *newStat) {
-    if(stat != NULL) {
-        // TODO: closeStatistic() method that will ask for saving
-        delete stat;
+    if( ! closeStatistic() ) {
+        return;
     }
+
     stat = newStat;
 
     ui->dataTable->setModel(stat->itemModel());
@@ -229,6 +229,27 @@ void MainWindow::setStatistic(Statistic *newStat) {
     connect(&checkHistogramFraction, SIGNAL(stateChanged(int)), stat, SLOT(sl_histogramFractionChanged(int)));
     sl_statisticUpdated();
     sl_histogramUpdated();
+}
+
+/* Returns true if statistic is closed, false if closing was canceled by user */
+bool MainWindow::closeStatistic() {
+    if(stat == NULL) { return true; }
+
+    if(stat->isModified()) {
+        QMessageBox::StandardButton answer =
+                QMessageBox::question(this, tr("Save before closing?"),
+                tr("Your current statistic has unsaved changes.\nWould you like to save them?"),
+                QMessageBox::StandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel),
+                QMessageBox::Save);
+        if(answer == QMessageBox::Cancel) {
+            return false;
+        }
+        if(answer == QMessageBox::Save) {
+            sl_save();
+        }
+    }
+    delete stat;
+    return true;
 }
 
 void MainWindow::sl_save() {
@@ -356,7 +377,7 @@ void MainWindow::sl_reportClosed() {
 }
 
 void MainWindow::sl_quit() {
-    QApplication::quit();
+    close();
 }
 
 void MainWindow::sl_about() {
@@ -369,9 +390,12 @@ void MainWindow::sl_about() {
 }
 
 void MainWindow::closeEvent(QCloseEvent *e) {
-    // TODO: check if file saved
-    reportWindow->close();
-    e->accept();
+    if( closeStatistic() ) {
+        reportWindow->close();
+        e->accept();
+    } else {
+        e->ignore();
+    }
 }
 
 MainWindow::~MainWindow() {
