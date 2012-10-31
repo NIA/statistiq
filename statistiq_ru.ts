@@ -329,13 +329,19 @@ Would you like to save them?</source>
         <source>StatistiQ is an app for getting various 
 statistical information from experiment data
 
-(c) 2012, Faculty of Physics and Technology, Kuban State University
-written by Ivan Novikov, lead by L. R. Grigorjan</source>
-        <translation>StatistiQ - это приложение для получения разнообразной
+(c) 2012, Physics and Information Systems Chair,
+Faculty of Physics and Technology, Kuban State University</source>
+        <oldsource>StatistiQ is an app for getting various 
+statistical information from experiment data
+
+(c) 2012, Physics and Information Systems Chair,
+Faculty of Physics and Technology, Kuban State University
+</oldsource>
+        <translation type="unfinished">StatistiQ - это приложение для получения разнообразной
 статистической информации из экспериментальных данных
 
-(c) 2012, Физико-Технический Факультет, Кубанский Государственный Университет
-написал Иван Новиков под руководством Л. Р. Григорьяна</translation>
+(c) 2012, Кафедра физики и информационных систем,
+Физико-Технический Факультет, Кубанский Государственный Университет</translation>
     </message>
 </context>
 <context>

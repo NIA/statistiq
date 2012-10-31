@@ -1,3 +1,15 @@
+/*
+ * (C) Copyright 2012 Kuban State University (http://kubsu.ru/),
+ *     Faculty of Physics and Technology, Physics and Information Systems Chair
+ *
+ * All rights reserved. This file is part of StatistiQ, a program
+ * for getting various statistical information from measurement data.
+ *
+ * Developed by Ivan Novikov (http://github.com/NIA)
+ * under the direction of Leontiy Grigorjan
+ *
+ */
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "reader.h"
@@ -384,8 +396,8 @@ void MainWindow::sl_about() {
     QMessageBox::about(this, tr("About StatistiQ"),
             tr("StatistiQ is an app for getting various \n"
                "statistical information from experiment data\n\n"
-               "(c) 2012, Faculty of Physics and Technology, Kuban State University\n"
-               "written by Ivan Novikov, lead by L. R. Grigorjan"));
+               "(c) 2012, Physics and Information Systems Chair,\n"
+               "Faculty of Physics and Technology, Kuban State University"));
 
 }
 
