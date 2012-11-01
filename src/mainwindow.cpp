@@ -22,6 +22,7 @@
 #include <QPen>
 #include <QBuffer>
 #include <QCloseEvent>
+#include <QProcess>
 #include <qwt_series_data.h>
 #include <qwt_plot_grid.h>
 #include <qwt_plot_scaleitem.h>
@@ -90,6 +91,16 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->dataTable->setContextMenuPolicy(Qt::ActionsContextMenu);
 
     connect(reportWindow, SIGNAL(si_closed()), SLOT(sl_reportClosed()));
+
+    QStringList arguments = QApplication::arguments();
+    arguments.removeAt(0); // ignore own path
+    if(arguments.size() > 0) {
+        open(arguments[0]);
+        // Open new instances for each of the other files
+        for(int i = 1; i < arguments.size(); ++i) {
+            QProcess::startDetached(QApplication::applicationFilePath(), arguments.mid(i, 1));
+        }
+    }
 }
 
 void MainWindow::initHistogramControls() {
@@ -158,7 +169,12 @@ void MainWindow::sl_open() {
     QString fileName = QFileDialog::getOpenFileName(this, tr("Open data file"), ".", fileFilter);
     if(fileName.isEmpty()) {
         return;
+    } else {
+        open(fileName);
     }
+}
+
+void MainWindow::open(QString fileName) {
     Reader reader(this, fileName);
     if(reader.isValid()) {
         setWindowTitle(titleWithFile.arg(reader.shortFileName()));

@@ -75,6 +75,7 @@ private:
     QString formatStats();
     QString formatReport();
     void save(QString filePath);
+    void open(QString filePath);
 
     // Some const strings used in different places of MainWindow
     const QString untitledFileName;
