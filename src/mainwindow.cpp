@@ -147,7 +147,7 @@ void MainWindow::initCurve() {
     curve->setOrientation(Qt::Vertical);
     curve->attach(ui->curveArea);
 
-    setAxisFontSize(ui->curveArea, QwtPlot::yLeft, 7);
+    ui->curveArea->setAxisMaxMajor(QwtPlot::yLeft, 4);
 
     averageLine = new QwtPlotCurve;
     averageLine->setPen(AVERAGE_COLOR);
