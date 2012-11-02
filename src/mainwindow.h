@@ -73,7 +73,7 @@ private:
     void initHistogramControls();
     void initGrid(QwtPlot * plot);
     void initCurve();
-    void setStatistic(Statistic * newStat);
+    bool setStatistic(Statistic * newStat);
     bool closeStatistic();
     QString formatStats();
     QString formatReport();

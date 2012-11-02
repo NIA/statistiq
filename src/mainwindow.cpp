@@ -189,11 +189,12 @@ void MainWindow::sl_open() {
 void MainWindow::open(QString fileName) {
     Reader reader(this, fileName);
     if(reader.isValid()) {
-        setWindowTitle(titleWithFile.arg(reader.shortFileName()));
-        reportWindow->setupForFile(fileName, reader.shortFileName());
+        if( setStatistic(new Statistic(this, reader.data(), reader.formatFileInfo())) ) {
+            stat->setFilePath(fileName);
 
-        setStatistic(new Statistic(this, reader.data(), reader.formatFileInfo()));
-        stat->setFilePath(fileName);
+            setWindowTitle(titleWithFile.arg(reader.shortFileName()));
+            reportWindow->setupForFile(fileName, reader.shortFileName());
+        }
     }
     statusBar()->showMessage(reader.formatReport());
 }
@@ -218,11 +219,12 @@ void MainWindow::sl_addDataFromFile() {
 void MainWindow::sl_new() {
     NewStatDialog * dialog = new NewStatDialog(this, NewStatDialog::ReplaceWithNew);
     if(dialog->exec() == QDialog::Accepted) {
-        setWindowTitle(titleWithFile.arg(untitledFileName));
-        reportWindow->setupForFile(untitledFileName, untitledFileName);
+        if( setStatistic(new Statistic(this, dialog->data(), untitledFileName)) ) {
+            stat->setModified(true);
 
-        setStatistic(new Statistic(this, dialog->data(), untitledFileName));
-        stat->setModified(true);
+            setWindowTitle(titleWithFile.arg(untitledFileName));
+            reportWindow->setupForFile(untitledFileName, untitledFileName);
+        }
     }
 }
 
@@ -246,9 +248,9 @@ void MainWindow::sl_removeSelected() {
     stat->remove(selected);
 }
 
-void MainWindow::setStatistic(Statistic *newStat) {
+bool MainWindow::setStatistic(Statistic *newStat) {
     if( ! closeStatistic() ) {
-        return;
+        return false;
     }
 
     stat = newStat;
@@ -269,6 +271,8 @@ void MainWindow::setStatistic(Statistic *newStat) {
     connect(&checkHistogramFraction, SIGNAL(stateChanged(int)), stat, SLOT(sl_histogramFractionChanged(int)));
     sl_statisticUpdated();
     sl_histogramUpdated();
+
+    return true;
 }
 
 /* Returns true if statistic is closed, false if closing was canceled by user */
@@ -288,6 +292,7 @@ bool MainWindow::closeStatistic() {
             sl_save();
         }
     }
+    setWindowModified(false);
     delete stat;
     return true;
 }
