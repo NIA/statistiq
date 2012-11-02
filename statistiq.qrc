@@ -15,5 +15,6 @@
         <file>images/add.ico</file>
         <file>images/remove.ico</file>
         <file>images/add-from-file.ico</file>
+        <file>images/image.ico</file>
     </qresource>
 </RCC>

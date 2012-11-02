@@ -23,10 +23,12 @@
 #include <QBuffer>
 #include <QCloseEvent>
 #include <QProcess>
+#include <QPainter>
 #include <qwt_series_data.h>
 #include <qwt_plot_grid.h>
 #include <qwt_plot_scaleitem.h>
 #include <qwt_scale_widget.h>
+#include <qwt_plot_renderer.h>
 
 namespace {
     inline void setTips(QWidget * widget, QString tip) {
@@ -38,6 +40,7 @@ namespace {
 
     inline QImage widgetToImage(QWidget * w) {
         QImage img(w->size(), QImage::Format_ARGB32);
+        img.fill(Qt::transparent);
         w->render(&img, QPoint(), QRegion(), QWidget::RenderFlags(QWidget::DrawChildren));
         return img;
     }
@@ -84,11 +87,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     initHistogramControls();
     initCurve();
-
-    ui->dataTable->addAction(ui->actionAddData);
-    ui->dataTable->addAction(ui->actionAddFromFile);
-    ui->dataTable->addAction(ui->actionRemoveSelected);
-    ui->dataTable->setContextMenuPolicy(Qt::ActionsContextMenu);
+    initContextMenus();
 
     connect(reportWindow, SIGNAL(si_closed()), SLOT(sl_reportClosed()));
 
@@ -101,6 +100,19 @@ MainWindow::MainWindow(QWidget *parent) :
             QProcess::startDetached(QApplication::applicationFilePath(), arguments.mid(i, 1));
         }
     }
+}
+
+void MainWindow::initContextMenus() {
+    ui->dataTable->addAction(ui->actionAddData);
+    ui->dataTable->addAction(ui->actionAddFromFile);
+    ui->dataTable->addAction(ui->actionRemoveSelected);
+    ui->dataTable->setContextMenuPolicy(Qt::ActionsContextMenu);
+
+    ui->curveArea->addAction(ui->actionSavePlotAsImage);
+    ui->curveArea->setContextMenuPolicy(Qt::ActionsContextMenu);
+
+    ui->histogramArea->addAction(ui->actionSaveHistogramAsImage);
+    ui->histogramArea->setContextMenuPolicy(Qt::ActionsContextMenu);
 }
 
 void MainWindow::initHistogramControls() {
@@ -325,6 +337,33 @@ void MainWindow::save(QString filePath) {
     stat->setHeader(newHeader);
     stat->setFilePath(filePath);
     stat->setModified(false);
+}
+
+void MainWindow::sl_saveCurveAsImage() {
+    saveImage(widgetToImage(ui->curveArea));
+}
+
+void MainWindow::sl_saveHistogramAsImage() {
+    saveImage(widgetToImage(ui->histogramArea));
+}
+
+void MainWindow::saveImage(QImage image) {
+    QString supposedFileName = tr("image.png");
+    if(stat != NULL) {
+        QFileInfo fi(stat->filePath());
+        supposedFileName = fi.dir().filePath(supposedFileName);
+    }
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save image to file"), supposedFileName,
+                                                    tr("Portable Network Graphics (*.png);;JPEG (*.jpg *.jpeg);;Windows Bitmap (*.bmp)"));
+    if(fileName.isEmpty()) {
+        return;
+    }
+    QString shortFileName = Reader::toShortFileName(fileName);
+    if( true == image.save(fileName) ) {
+        ui->statusBar->showMessage(tr("Successfully saved image to '%1'").arg(shortFileName));
+    } else {
+        QMessageBox::warning(this, tr("Save image error"), tr("Failed to save image to '%1'.\nTry choosing another file location and/or format").arg(fileName));
+    }
 }
 
 void MainWindow::sl_statisticUpdated() {

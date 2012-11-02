@@ -218,40 +218,63 @@ p, li { white-space: pre-wrap; }
         <translation>Открыть файл и добавить данные к текущей статистике</translation>
     </message>
     <message>
+        <location filename="mainwindow.ui" line="396"/>
+        <source>Save plot as image...</source>
+        <translation>Сохранить график как изображение...</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="399"/>
+        <location filename="mainwindow.ui" line="402"/>
+        <source>Save the plot of data curve into image file</source>
+        <oldsource>Saves the plot of data curve into image file</oldsource>
+        <translation>Сохранить график кривой данных в файл изображения</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="412"/>
+        <source>Save histogram as image...</source>
+        <translation>Сохранить гистограмму как изображение...</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="415"/>
+        <location filename="mainwindow.ui" line="418"/>
+        <source>Save the histogram into image file</source>
+        <translation>Сохранить гистограмму в файл изображения</translation>
+    </message>
+    <message>
         <location filename="mainwindow.ui" line="192"/>
         <location filename="mainwindow.ui" line="195"/>
-        <location filename="src/mainwindow.cpp" line="146"/>
+        <location filename="src/mainwindow.cpp" line="181"/>
         <source>Open data file</source>
         <translation>Открыть файл данных</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="92"/>
+        <location filename="src/mainwindow.cpp" line="127"/>
         <source>Histogram:</source>
         <translation>Гисторамма:</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="94"/>
+        <location filename="src/mainwindow.cpp" line="129"/>
         <source>Histogram display options</source>
         <translation>Настройки отображения гистораммы</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="99"/>
-        <location filename="src/mainwindow.cpp" line="103"/>
+        <location filename="src/mainwindow.cpp" line="134"/>
+        <location filename="src/mainwindow.cpp" line="138"/>
         <source>Number of histogram intervals</source>
         <translation>Количество интервалов гистограммы</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="101"/>
+        <location filename="src/mainwindow.cpp" line="136"/>
         <source>(columns)</source>
         <translation>(столбцов)</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="106"/>
+        <location filename="src/mainwindow.cpp" line="141"/>
         <source>Fraction</source>
         <translation>Доли</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="107"/>
+        <location filename="src/mainwindow.cpp" line="142"/>
         <source>Show fraction instead of values in histogram</source>
         <translation>Показывать доли вместо значений на гистограмме</translation>
     </message>
@@ -264,54 +287,86 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">%1 - StatistiQ -программа обработки данных</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="68"/>
+        <location filename="src/mainwindow.cpp" line="84"/>
         <source>untitled.csv</source>
         <translation>безымянный.csv</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="68"/>
+        <location filename="src/mainwindow.cpp" line="84"/>
         <source>%1[*] - StatistiQ - a data processing utility</source>
         <translation>%1[*] - StatistiQ - программа обработки данных</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="69"/>
+        <location filename="src/mainwindow.cpp" line="85"/>
         <source>Plain text file (*.csv *.txt *.dat);;All files (*.*)</source>
         <translation>Текстовый файл (*.csv *.txt *.dat);;Все файлы(*.*)</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="167"/>
+        <location filename="src/mainwindow.cpp" line="207"/>
         <source>Open file to add to statistic</source>
         <translation>Открыть файл и добавить к статистике</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="240"/>
+        <location filename="src/mainwindow.cpp" line="280"/>
         <source>Save before closing?</source>
         <translation>Сохранить перед закрытием?</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="241"/>
+        <location filename="src/mainwindow.cpp" line="281"/>
         <source>Your current statistic has unsaved changes.
 Would you like to save them?</source>
         <translation>В текущей статистике есть  несохранённые изменения
 Вы хотите сохранить их?</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="271"/>
+        <location filename="src/mainwindow.cpp" line="311"/>
         <source>Save statistic to data file</source>
         <translation>Сохранить статистику в файл данных</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="284"/>
+        <location filename="src/mainwindow.cpp" line="324"/>
         <source>Save statistic error</source>
         <translation>Ошибка сохранения статистики</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="290"/>
+        <location filename="src/mainwindow.cpp" line="330"/>
         <source>Successfully saved statistic to &apos;%1&apos;</source>
         <translation>Статистика успешно сохранена в файл &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="338"/>
+        <location filename="src/mainwindow.cpp" line="351"/>
+        <source>image.png</source>
+        <translation>изображение.png</translation>
+    </message>
+    <message>
+        <location filename="src/mainwindow.cpp" line="356"/>
+        <source>Save image to file</source>
+        <translation>Сохранить изображение в файл</translation>
+    </message>
+    <message>
+        <location filename="src/mainwindow.cpp" line="357"/>
+        <source>Portable Network Graphics (*.png);;JPEG (*.jpg *.jpeg);;Windows Bitmap (*.bmp)</source>
+        <translation>Portable Network Graphics (*.png);;JPEG (*.jpg *.jpeg);;Windows Bitmap (*.bmp)</translation>
+    </message>
+    <message>
+        <location filename="src/mainwindow.cpp" line="363"/>
+        <source>Successfully saved image to &apos;%1&apos;</source>
+        <translation>Изображение успешно сохранено в файл &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <location filename="src/mainwindow.cpp" line="365"/>
+        <source>Save image error</source>
+        <translation>Ошибка сохранения изображения</translation>
+    </message>
+    <message>
+        <location filename="src/mainwindow.cpp" line="365"/>
+        <source>Failed to save image to &apos;%1&apos;.
+Try choosing another file location and/or format</source>
+        <translation>Не удалось сохранить изображение в &quot;%1&quot;.
+Попробуйте выбрать другое расположения файла и/или другой формат</translation>
+    </message>
+    <message>
+        <location filename="src/mainwindow.cpp" line="405"/>
         <source>&lt;center&gt;&lt;h2&gt;%header&lt;/h2&gt;&lt;p&gt;&lt;big&gt;x = %avg &amp;plusmn; %stddev&lt;/big&gt;&lt;/p&gt;&lt;/center&gt;&lt;p&gt;&lt;b&gt;Number:&lt;/b&gt; %number&lt;/p&gt;&lt;p&gt;&lt;b&gt;Min/Max:&lt;/b&gt; %min ... %max&lt;/p&gt;&lt;p&gt;&lt;b&gt;Average:&lt;/b&gt; %avg&lt;/p&gt;&lt;p&gt;&lt;b&gt;Dispersion:&lt;/b&gt; %disp&lt;/p&gt;&lt;p&gt;&lt;b&gt;Std. deviation:&lt;/b&gt; %stddev&lt;/p&gt;&lt;p&gt;&lt;b&gt;3&lt;sup&gt;rd&lt;/sup&gt; Moment:&lt;/b&gt; %moment3&lt;/p&gt;&lt;p&gt;&lt;b&gt;4&lt;sup&gt;th&lt;/sup&gt; Moment:&lt;/b&gt; %moment4&lt;/p&gt;</source>
         <translation>&lt;center&gt;&lt;h2&gt;%header&lt;/h2&gt;&lt;p&gt;&lt;big&gt;x = %avg &amp;plusmn; %stddev&lt;/big&gt;&lt;/p&gt;&lt;/center&gt;&lt;b&gt;Количество:&lt;/b&gt; %number&lt;/p&gt;&lt;p&gt;&lt;b&gt;Мин/Макс:&lt;/b&gt; %min ... %max&lt;/p&gt;&lt;p&gt;&lt;b&gt;Среднее:&lt;/b&gt; %avg&lt;/p&gt;&lt;p&gt;&lt;b&gt;Дисперсия:&lt;/b&gt; %disp&lt;/p&gt;&lt;p&gt;&lt;b&gt;СКО:&lt;/b&gt; %stddev&lt;/p&gt;&lt;p&gt;&lt;b&gt;3&lt;sup&gt;ий&lt;/sup&gt; Момент:&lt;/b&gt; %moment3&lt;/p&gt;&lt;p&gt;&lt;b&gt;4&lt;sup&gt;ый&lt;/sup&gt; Момент:&lt;/b&gt; %moment4&lt;/p&gt;</translation>
     </message>
@@ -320,12 +375,12 @@ Would you like to save them?</source>
         <translation type="obsolete">&lt;h2&gt;%header&lt;/h2&gt;&lt;p/&gt;&lt;p&gt;&lt;b&gt;Количество:&lt;/b&gt; %number&lt;/p&gt;&lt;p&gt;&lt;b&gt;Мин/Макс:&lt;/b&gt; %min ... %max&lt;/p&gt;&lt;p&gt;&lt;b&gt;Среднее:&lt;/b&gt; %avg&lt;/p&gt;&lt;p&gt;&lt;b&gt;Дисперсия:&lt;/b&gt; %disp&lt;/p&gt;&lt;p&gt;&lt;b&gt;СКО:&lt;/b&gt; %stddev&lt;/p&gt;&lt;p&gt;&lt;b&gt;3&lt;sup&gt;ий&lt;/sup&gt; Момент:&lt;/b&gt; %moment3&lt;/p&gt;&lt;p&gt;&lt;b&gt;4&lt;sup&gt;ый&lt;/sup&gt; Момент:&lt;/b&gt; %moment4&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="384"/>
+        <location filename="src/mainwindow.cpp" line="451"/>
         <source>About StatistiQ</source>
         <translation>О программе StatistiQ</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="385"/>
+        <location filename="src/mainwindow.cpp" line="452"/>
         <source>StatistiQ is an app for getting various 
 statistical information from experiment data
 
@@ -337,7 +392,7 @@ statistical information from experiment data
 (c) 2012, Physics and Information Systems Chair,
 Faculty of Physics and Technology, Kuban State University
 </oldsource>
-        <translation type="unfinished">StatistiQ - это приложение для получения разнообразной
+        <translation>StatistiQ - это приложение для получения разнообразной
 статистической информации из экспериментальных данных
 
 (c) 2012, Кафедра физики и информационных систем,
@@ -392,37 +447,37 @@ Faculty of Physics and Technology, Kuban State University
         <translation>Ввести значения как текст (по одному в каждой строке)</translation>
     </message>
     <message>
-        <location filename="src/newstatdialog.cpp" line="16"/>
+        <location filename="src/newstatdialog.cpp" line="28"/>
         <source>&apos;%1&apos; at line %2</source>
         <translation>&quot;%1&quot; в строке %2</translation>
     </message>
     <message>
-        <location filename="src/newstatdialog.cpp" line="37"/>
+        <location filename="src/newstatdialog.cpp" line="49"/>
         <source>Add data</source>
         <translation>Добавить данные</translation>
     </message>
     <message>
-        <location filename="src/newstatdialog.cpp" line="39"/>
+        <location filename="src/newstatdialog.cpp" line="51"/>
         <source>How to create new data to add to statistic?</source>
         <translation>Как создать новые данные, чтобы добавить к текущей статистике?</translation>
     </message>
     <message>
-        <location filename="src/newstatdialog.cpp" line="62"/>
+        <location filename="src/newstatdialog.cpp" line="74"/>
         <source>Invalid data</source>
         <translation>Неверные данные</translation>
     </message>
     <message>
-        <location filename="src/newstatdialog.cpp" line="63"/>
+        <location filename="src/newstatdialog.cpp" line="75"/>
         <source>You have entered an invalid number &apos;%1&apos; as initial value</source>
         <translation>Вы ввели неверное число &quot;%1&quot; как начальное значение</translation>
     </message>
     <message>
-        <location filename="src/newstatdialog.cpp" line="76"/>
+        <location filename="src/newstatdialog.cpp" line="88"/>
         <source>The following entered values are not correct numbers:</source>
         <translation>Введённые значения не являются корректными числами:</translation>
     </message>
     <message>
-        <location filename="src/newstatdialog.cpp" line="78"/>
+        <location filename="src/newstatdialog.cpp" line="90"/>
         <source>Would you like to skip these values?
 
 Click Yes to create a new Statistic with remaining values
@@ -433,17 +488,17 @@ Click No to get back to editing and fix errors</source>
 Нажмите Нет, чтобы вернуться к редактированию и исправить ошибки</translation>
     </message>
     <message>
-        <location filename="src/newstatdialog.cpp" line="79"/>
+        <location filename="src/newstatdialog.cpp" line="91"/>
         <source>Skip incorrect values?</source>
         <translation>Пропустить неверные значения?</translation>
     </message>
     <message>
-        <location filename="src/newstatdialog.cpp" line="88"/>
+        <location filename="src/newstatdialog.cpp" line="100"/>
         <source>No valid data</source>
         <translation>Нет корректных данных</translation>
     </message>
     <message>
-        <location filename="src/newstatdialog.cpp" line="88"/>
+        <location filename="src/newstatdialog.cpp" line="100"/>
         <source>You have not entered any valid data</source>
         <translation>Вы не ввели никаких корректных данных</translation>
     </message>
@@ -451,32 +506,32 @@ Click No to get back to editing and fix errors</source>
 <context>
     <name>Reader</name>
     <message>
-        <location filename="src/reader.cpp" line="38"/>
+        <location filename="src/reader.cpp" line="50"/>
         <source>Cannot open file &apos;%1&apos;, error code %2</source>
         <translation>Невозможно открыть файл &apos;%1&apos;, код ошибки %2</translation>
     </message>
     <message>
-        <location filename="src/reader.cpp" line="50"/>
+        <location filename="src/reader.cpp" line="62"/>
         <source>Line %1: failed to convert &apos;%2&apos; to number</source>
         <translation>Строка %1: не получилось превратить &apos;%2&apos; в число</translation>
     </message>
     <message>
-        <location filename="src/reader.cpp" line="55"/>
+        <location filename="src/reader.cpp" line="67"/>
         <source>File contains no valid numerical data</source>
         <translation>Файл не содержит корректных численных данных</translation>
     </message>
     <message>
-        <location filename="src/reader.cpp" line="63"/>
+        <location filename="src/reader.cpp" line="75"/>
         <source>Loaded %1 values from %2, %3 skipped</source>
         <translation>Загружено %1 значений из %2, пропущенно %3</translation>
     </message>
     <message>
-        <location filename="src/reader.cpp" line="81"/>
+        <location filename="src/reader.cpp" line="93"/>
         <source>%1 at %2</source>
         <translation>%1, %2</translation>
     </message>
     <message>
-        <location filename="src/reader.cpp" line="76"/>
+        <location filename="src/reader.cpp" line="88"/>
         <source>No file loaded</source>
         <translation>Файл не загружен</translation>
     </message>
@@ -544,7 +599,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="reportwindow.ui" line="135"/>
-        <location filename="src/reportwindow.cpp" line="53"/>
+        <location filename="src/reportwindow.cpp" line="65"/>
         <source>Print report</source>
         <translation>Распечатать отчёт</translation>
     </message>
@@ -584,27 +639,27 @@ p, li { white-space: pre-wrap; }
         <translation>Ctrl+-</translation>
     </message>
     <message>
-        <location filename="src/reportwindow.cpp" line="19"/>
+        <location filename="src/reportwindow.cpp" line="31"/>
         <source>StatistiQ report for %1</source>
         <translation>Отчёт StatistiQ для %1</translation>
     </message>
     <message>
-        <location filename="src/reportwindow.cpp" line="30"/>
+        <location filename="src/reportwindow.cpp" line="42"/>
         <source>Save report as HTML</source>
         <translation>Сохранить отчёт как HTML</translation>
     </message>
     <message>
-        <location filename="src/reportwindow.cpp" line="31"/>
+        <location filename="src/reportwindow.cpp" line="43"/>
         <source>HTML file (*.html *.htm)</source>
         <translation>HTML файл (*.html *.htm)</translation>
     </message>
     <message>
-        <location filename="src/reportwindow.cpp" line="39"/>
+        <location filename="src/reportwindow.cpp" line="51"/>
         <source>Save report error</source>
         <translation>Ошибка сохранения отчёта</translation>
     </message>
     <message>
-        <location filename="src/reportwindow.cpp" line="40"/>
+        <location filename="src/reportwindow.cpp" line="52"/>
         <source>Cannot save to file
 &apos;%1&apos;
 Error code %2</source>
@@ -616,13 +671,13 @@ Error code %2</source>
 <context>
     <name>Statistic</name>
     <message>
-        <location filename="src/statistic.cpp" line="58"/>
-        <location filename="src/statistic.cpp" line="216"/>
+        <location filename="src/statistic.cpp" line="70"/>
+        <location filename="src/statistic.cpp" line="228"/>
         <source>Value</source>
         <translation>Значение</translation>
     </message>
     <message>
-        <location filename="src/statistic.cpp" line="214"/>
+        <location filename="src/statistic.cpp" line="226"/>
         <source>No.</source>
         <translation>№</translation>
     </message>
@@ -630,7 +685,7 @@ Error code %2</source>
 <context>
     <name>TooltipPlotPicker</name>
     <message>
-        <location filename="src/tooltipplotpicker.h" line="18"/>
+        <location filename="src/tooltipplotpicker.h" line="30"/>
         <source>%1; %2</source>
         <translation>%1; %2</translation>
     </message>
@@ -638,7 +693,7 @@ Error code %2</source>
 <context>
     <name>Writer</name>
     <message>
-        <location filename="src/reader.cpp" line="95"/>
+        <location filename="src/reader.cpp" line="107"/>
         <source>Cannot write to file &apos;%1&apos;, error code %2</source>
         <translation>Не могу записать в файл &apos;%1&apos;, код ошибки %2</translation>
     </message>

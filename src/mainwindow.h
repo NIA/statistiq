@@ -52,6 +52,8 @@ public slots:
     void sl_addData();
     void sl_addDataFromFile();
     void sl_removeSelected();
+    void sl_saveCurveAsImage();
+    void sl_saveHistogramAsImage();
 
 protected:
     virtual void closeEvent(QCloseEvent *e);
@@ -67,6 +69,7 @@ private:
     QwtPlotCurve * curve;
     QwtPlotCurve * averageLine;
 
+    void initContextMenus();
     void initHistogramControls();
     void initGrid(QwtPlot * plot);
     void initCurve();
@@ -76,6 +79,7 @@ private:
     QString formatReport();
     void save(QString filePath);
     void open(QString filePath);
+    void saveImage(QImage image);
 
     // Some const strings used in different places of MainWindow
     const QString untitledFileName;

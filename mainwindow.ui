@@ -387,6 +387,37 @@ p, li { white-space: pre-wrap; }
     <string>Open file and add data to current statistic</string>
    </property>
   </action>
+  <action name="actionSavePlotAsImage">
+   <property name="icon">
+    <iconset resource="statistiq.qrc">
+     <normaloff>:/icons/images/image.ico</normaloff>:/icons/images/image.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Save plot as image...</string>
+   </property>
+   <property name="toolTip">
+    <string>Save the plot of data curve into image file</string>
+   </property>
+   <property name="statusTip">
+    <string>Save the plot of data curve into image file</string>
+   </property>
+  </action>
+  <action name="actionSaveHistogramAsImage">
+   <property name="icon">
+    <iconset>
+     <selectedoff>:/icons/images/image.ico</selectedoff>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>Save histogram as image...</string>
+   </property>
+   <property name="toolTip">
+    <string>Save the histogram into image file</string>
+   </property>
+   <property name="statusTip">
+    <string>Save the histogram into image file</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -561,6 +592,38 @@ p, li { white-space: pre-wrap; }
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionSaveHistogramAsImage</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>sl_saveHistogramAsImage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>328</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>314</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSavePlotAsImage</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>sl_saveCurveAsImage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>314</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>sl_quit()</slot>
@@ -573,5 +636,7 @@ p, li { white-space: pre-wrap; }
   <slot>sl_addData()</slot>
   <slot>sl_removeSelected()</slot>
   <slot>sl_addDataFromFile()</slot>
+  <slot>sl_saveCurveAsImage()</slot>
+  <slot>sl_saveHistogramAsImage()</slot>
  </slots>
 </ui>
