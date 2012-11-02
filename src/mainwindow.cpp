@@ -481,7 +481,8 @@ void MainWindow::sl_quit() {
 
 void MainWindow::sl_about() {
     QMessageBox::about(this, tr("About StatistiQ"),
-            tr("StatistiQ is an app for getting various \n"
+            tr("StatistiQ version 1.0\n\n"
+               "StatistiQ is an app for getting various \n"
                "statistical information from experiment data\n\n"
                "(c) 2012, Physics and Information Systems Chair,\n"
                "Faculty of Physics and Technology, Kuban State University"));

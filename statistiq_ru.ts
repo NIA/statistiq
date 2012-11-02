@@ -460,7 +460,9 @@ Try choosing another file location and/or format</source>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="484"/>
-        <source>StatistiQ is an app for getting various 
+        <source>StatistiQ version 1.0
+
+StatistiQ is an app for getting various 
 statistical information from experiment data
 
 (c) 2012, Physics and Information Systems Chair,
@@ -469,9 +471,10 @@ Faculty of Physics and Technology, Kuban State University</source>
 statistical information from experiment data
 
 (c) 2012, Physics and Information Systems Chair,
-Faculty of Physics and Technology, Kuban State University
-</oldsource>
-        <translation>StatistiQ - это приложение для получения разнообразной
+Faculty of Physics and Technology, Kuban State University</oldsource>
+        <translation>StatistiQ версия 1.0
+
+StatistiQ - это приложение для получения разнообразной
 статистической информации из экспериментальных данных
 
 (c) 2012, Кафедра физики и информационных систем,
@@ -597,6 +600,11 @@ Click No to get back to editing and fix errors</source>
         <location filename="src/reader.cpp" line="58"/>
         <source>Successfully opened file &apos;%1&apos;</source>
         <translation>Успешно открыт файл &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <location filename="src/reader.cpp" line="67"/>
+        <source>Line %1: failed to convert &apos;%2&apos; to number, skipped</source>
+        <translation>Строка %1: не получилось превратить &apos;%2&apos; в число, пропущенно</translation>
     </message>
     <message>
         <location filename="src/reader.cpp" line="72"/>
