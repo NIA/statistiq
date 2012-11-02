@@ -11,6 +11,9 @@
  */
 
 #include "statistic.h"
+#include "logger.h"
+#include "timer.h"
+#include <QDateTime>
 
 #include <cmath>
 
@@ -66,9 +69,12 @@ double Statistic::stdDeviation() const {
 }
 
 void Statistic::initModel() {
+    Timer timer;
     model.appendColumn(dataToItems(data));
     model.setHorizontalHeaderItem(0, new QStandardItem(tr("Value")));
     connect(&model, SIGNAL(itemChanged(QStandardItem*)), SLOT(sl_itemChanged(QStandardItem*)));
+    Logger::trace(tr("%1 table rows created in %2 msecs").arg(data.size()).arg(timer.msecs()));
+
     setAllDataPoints();
 }
 
@@ -89,10 +95,14 @@ void Statistic::setDataPoint(int i) {
 }
 
 void Statistic::setAllDataPoints() {
+    Timer timer;
+
     dataPoints_.resize(data.size());
     for(int i = 0; i < data.size(); ++i) {
         setDataPoint(i);
     }
+
+    Logger::trace(tr("%1 data points for curve set up in %2 msecs").arg(dataPoints_.size()).arg(timer.msecs()));
 }
 
 void Statistic::remove(QModelIndexList rows) {
@@ -119,6 +129,8 @@ void Statistic::remove(QModelIndexList rows) {
 }
 
 void Statistic::recalculate() {
+    Timer timer;
+
     min_ = max_ = average_ = dispersion_ = 0;
     thirdMoment_ = fourthMoment_ = 0;
     number_ = data.count();
@@ -147,6 +159,8 @@ void Statistic::recalculate() {
         }
     }
     resampleHistogram();
+
+    Logger::trace(tr("Statistic values recalculated in %1 msec").arg(timer.msecs()));
 
     emit si_statisticChanged();
 }

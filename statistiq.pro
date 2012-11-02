@@ -8,7 +8,9 @@ SOURCES += src/main.cpp\
     src/reader.cpp \
     src/statistic.cpp \
     src/reportwindow.cpp \
-    src/newstatdialog.cpp
+    src/newstatdialog.cpp \
+    src/logger.cpp \
+    src/logwindow.cpp
 
 HEADERS += src/mainwindow.h \
     src/reader.h \
@@ -16,7 +18,10 @@ HEADERS += src/mainwindow.h \
     src/histogram.h \
     src/reportwindow.h \
     src/tooltipplotpicker.h \
-    src/newstatdialog.h
+    src/newstatdialog.h \
+    src/logger.h \
+    src/logwindow.h \
+    src/timer.h
 
 FORMS    += mainwindow.ui \
     reportwindow.ui \

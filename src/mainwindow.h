@@ -21,6 +21,7 @@
 #include "statistic.h"
 #include "histogram.h"
 #include "reportwindow.h"
+#include "logwindow.h"
 
 namespace Ui {
 class MainWindow;
@@ -46,6 +47,8 @@ public slots:
     void sl_showDataCurveTriggered(bool show);
     void sl_showReport(bool show);
     void sl_reportClosed();
+    void sl_showLog(bool show);
+    void sl_logClosed();
     void sl_save();
     void sl_saveAs();
     void sl_dataModified();
@@ -63,6 +66,7 @@ private:
     QSpinBox spinHistogramIntervals;
     QCheckBox checkHistogramFraction;
     ReportWindow * reportWindow;
+    LogWindow * logWindow;
 
     Statistic * stat;
     Histogram * histogram;

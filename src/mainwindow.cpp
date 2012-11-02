@@ -78,18 +78,21 @@ namespace {
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow), reportWindow(new ReportWindow(NULL)),
+    ui(new Ui::MainWindow), reportWindow(new ReportWindow(NULL)), logWindow(new LogWindow(NULL)),
     stat(NULL), histogram(NULL),
 
     untitledFileName(tr("untitled.csv")), titleWithFile(tr("%1[*] - StatistiQ - a data processing utility")),
     fileFilter(tr("Plain text file (*.csv *.txt *.dat);;All files (*.*)"))
 {
+    Logger::info(tr("Application started"));
+
     ui->setupUi(this);
     initHistogramControls();
     initCurve();
     initContextMenus();
 
     connect(reportWindow, SIGNAL(si_closed()), SLOT(sl_reportClosed()));
+    connect(logWindow, SIGNAL(si_closed()), SLOT(sl_logClosed()));
 
     QStringList arguments = QApplication::arguments();
     arguments.removeAt(0); // ignore own path
@@ -224,6 +227,9 @@ void MainWindow::sl_new() {
 
             setWindowTitle(titleWithFile.arg(untitledFileName));
             reportWindow->setupForFile(untitledFileName, untitledFileName);
+            QString message = tr("Successfully created new statistic of %1 items").arg(dialog->data().size());
+            statusBar()->showMessage(message);
+            Logger::info(message);
         }
     }
 }
@@ -236,6 +242,9 @@ void MainWindow::sl_addData() {
     NewStatDialog * dialog = new NewStatDialog(this, NewStatDialog::AppendToExisting);
     if(dialog->exec() == QDialog::Accepted) {
         stat->append(dialog->data());
+        QString message = tr("Successfully appended %1 items to current statistic").arg(dialog->data().size());
+        statusBar()->showMessage(message);
+        Logger::info(message);
     }
 }
 
@@ -286,10 +295,12 @@ bool MainWindow::closeStatistic() {
                 QMessageBox::StandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel),
                 QMessageBox::Save);
         if(answer == QMessageBox::Cancel) {
+            Logger::info(tr("Closing unsaved statistic canceled"));
             return false;
-        }
-        if(answer == QMessageBox::Save) {
+        } else if(answer == QMessageBox::Save) {
             sl_save();
+        } else {
+            Logger::warning(tr("Statistic '%1' closed without saving").arg(stat->header()));
         }
     }
     setWindowModified(false);
@@ -366,7 +377,9 @@ void MainWindow::saveImage(QImage image) {
     QString shortFileName = Reader::toShortFileName(fileName);
     if( true == image.save(fileName) ) {
         ui->statusBar->showMessage(tr("Successfully saved image to '%1'").arg(shortFileName));
+        Logger::info(tr("Successfully saved image to '%1'").arg(fileName));
     } else {
+        Logger::error(tr("Failed to save image to '%1'").arg(fileName));
         QMessageBox::warning(this, tr("Save image error"), tr("Failed to save image to '%1'.\nTry choosing another file location and/or format").arg(fileName));
     }
 }
@@ -385,12 +398,14 @@ void MainWindow::sl_statisticUpdated() {
 void MainWindow::sl_dataModified() {
     setWindowModified(true);
     ui->actionSave->setEnabled(true);
+    Logger::trace(tr("Data modified"));
 }
 
 void MainWindow::sl_histogramUpdated() {
     histogram->setData(new QwtIntervalSeriesData(stat->histogramSamples()));
     ui->histogramArea->replot();
 
+    Logger::trace(tr("Histogram updated"));
     reportWindow->setContent(formatReport());
 }
 
@@ -444,8 +459,20 @@ void MainWindow::sl_showReport(bool show) {
     }
 }
 
+void MainWindow::sl_showLog(bool show) {
+    if(show) {
+        logWindow->show();
+    } else {
+        logWindow->hide();
+    }
+}
+
 void MainWindow::sl_reportClosed() {
     ui->actionShowReport->setChecked(false);
+}
+
+void MainWindow::sl_logClosed() {
+    ui->actionShowLog->setChecked(false);
 }
 
 void MainWindow::sl_quit() {
@@ -464,6 +491,7 @@ void MainWindow::sl_about() {
 void MainWindow::closeEvent(QCloseEvent *e) {
     if( closeStatistic() ) {
         reportWindow->close();
+        logWindow->close();
         e->accept();
     } else {
         e->ignore();

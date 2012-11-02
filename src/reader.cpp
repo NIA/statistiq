@@ -11,6 +11,8 @@
  */
 
 #include "reader.h"
+#include "logger.h"
+#include "timer.h"
 
 #include <QFileInfo>
 
@@ -48,25 +50,32 @@ void Reader::openFile(QString fileName) {
     if( ! file->open(QIODevice::ReadOnly | QIODevice::Text) ) {
         QFile::FileError errcode = file->error();
         error = tr("Cannot open file '%1', error code %2").arg(fileName).arg(errcode);
+        Logger::error(error);
     } else {
         QFileInfo fi(fileName);
         this->fileName = fi.fileName();
         this->lastModified = fi.lastModified();
+        Logger::trace(tr("Successfully opened file '%1'").arg(fileName));
     }
 }
 
 void Reader::readFile() {
+    Timer timer;
     QTextStream in(file);
     Parser parser(in);
     for(int i = 0; i < parser.skippedLines.count(); ++i) {
-        warnings << tr("Line %1: failed to convert '%2' to number")
+        warnings << tr("Line %1: failed to convert '%2' to number, skipped")
                     .arg(parser.skippedLines[i])
                     .arg(parser.skippedStrings[i]);
+        Logger::warning(warnings.last());
     }
+    Logger::trace(tr("Read and parsed %1 values from file in %2 msecs").arg(parser.parsedData.count()).arg(timer.msecs()));
     if(parser.parsedData.count() == 0) {
         error = tr("File contains no valid numerical data");
+        Logger::error(error);
     } else {
         parsedData = parser.parsedData;
+        Logger::info(formatReport());
     }
 }
 
@@ -105,6 +114,9 @@ Writer::Writer(QObject *parent, QString fileName)
     if( ! file->open(QIODevice::WriteOnly | QIODevice::Text )) {
         QFile::FileError errcode = file->error();
         error = tr("Cannot write to file '%1', error code %2").arg(fileName).arg(errcode);
+        Logger::error(error);
+    } else {
+        Logger::trace(tr("Successfully opened file '%1' for writing").arg(fileName));
     }
 }
 
@@ -116,9 +128,11 @@ void Writer::write(QList<double> data) {
         // TODO: reuse valueToItem
         out << QString::number(value, 'g', 10) << endl;
     }
+    Logger::info(tr("Successfully wrote %1 values to '%2'").arg(data.size()).arg(file->fileName()));
 }
 
 void Writer::close() {
+    Logger::trace(tr("File '%1' closed").arg(file->fileName()));
     file->close();
     file = NULL;
 }

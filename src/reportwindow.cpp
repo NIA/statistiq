@@ -12,6 +12,7 @@
 
 #include "reportwindow.h"
 #include "ui_reportwindow.h"
+#include "logger.h"
 #include <QFileInfo>
 #include <QFileDialog>
 #include <QMessageBox>
@@ -36,6 +37,7 @@ void ReportWindow::setupForFile(QString fullName, QString shortName) {
 
 void ReportWindow::setContent(QString html) {
     ui->textBrowser->setHtml(html);
+    Logger::info(tr("Report content updated"));
 }
 
 void ReportWindow::sl_saveAs() {
@@ -48,6 +50,7 @@ void ReportWindow::sl_saveAs() {
     QFile file(fileName, this);
     if( ! file.open(QIODevice::WriteOnly | QIODevice::Text) ) {
         QFile::FileError errcode = file.error();
+        Logger::error(tr("Failed to save report to file '%1'. Error code %2.").arg(fileName).arg(errcode));
         QMessageBox::warning(this, tr("Save report error"),
                              tr("Cannot save to file\n'%1'\nError code %2").arg(fileName).arg(errcode));
     } else {
@@ -55,6 +58,7 @@ void ReportWindow::sl_saveAs() {
         out.setCodec("UTF-8");
         out << ui->textBrowser->document()->toHtml("utf-8");
         file.close();
+        Logger::info(tr("Successfully saved report to file '%1'").arg(fileName));
     }
 }
 
@@ -70,6 +74,7 @@ void ReportWindow::sl_print() {
         return;
     }
     ui->textBrowser->print(&printer);
+    Logger::info(tr("Successfully printed report to printer '%1'").arg(printer.printerName()));
 }
 
 void ReportWindow::closeEvent(QCloseEvent *) {
