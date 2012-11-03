@@ -11,27 +11,32 @@
 <context>
     <name>LogWindow</name>
     <message>
-        <location filename="src/logwindow.cpp" line="23"/>
+        <location filename="src/logwindow.cpp" line="22"/>
+        <source>Clear log</source>
+        <translation>Очистить журнал</translation>
+    </message>
+    <message>
+        <location filename="src/logwindow.cpp" line="27"/>
         <source>StatistiQ log</source>
         <translation>Журнал работы программы StatistiQ</translation>
     </message>
     <message>
-        <location filename="src/logwindow.cpp" line="47"/>
+        <location filename="src/logwindow.cpp" line="58"/>
         <source>TRACE</source>
         <translation>ПОДРОБНО</translation>
     </message>
     <message>
-        <location filename="src/logwindow.cpp" line="49"/>
+        <location filename="src/logwindow.cpp" line="60"/>
         <source>INFO</source>
         <translation>ИНФО</translation>
     </message>
     <message>
-        <location filename="src/logwindow.cpp" line="51"/>
+        <location filename="src/logwindow.cpp" line="62"/>
         <source>WARNING</source>
         <translation>ПРЕДУПРЕЖДЕНИЕ</translation>
     </message>
     <message>
-        <location filename="src/logwindow.cpp" line="53"/>
+        <location filename="src/logwindow.cpp" line="64"/>
         <source>ERROR</source>
         <translation>ОШИБКА</translation>
     </message>
@@ -345,107 +350,113 @@ p, li { white-space: pre-wrap; }
         <translation>Приложение запущено</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="211"/>
+        <location filename="src/mainwindow.cpp" line="202"/>
+        <location filename="src/mainwindow.cpp" line="221"/>
+        <source>Failed to open file</source>
+        <translation>Не удалось открыть файл</translation>
+    </message>
+    <message>
+        <location filename="src/mainwindow.cpp" line="213"/>
         <source>Open file to add to statistic</source>
         <translation>Открыть файл и добавить к статистике</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="230"/>
+        <location filename="src/mainwindow.cpp" line="234"/>
         <source>Successfully created new statistic of %1 items</source>
         <translation>Успешно создана новая статистика из %1 элементов</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="245"/>
+        <location filename="src/mainwindow.cpp" line="249"/>
         <source>Successfully appended %1 items to current statistic</source>
         <translation>Успешно добавлено %1 значений к текущей статистике</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="293"/>
+        <location filename="src/mainwindow.cpp" line="297"/>
         <source>Save before closing?</source>
         <translation>Сохранить перед закрытием?</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="294"/>
+        <location filename="src/mainwindow.cpp" line="298"/>
         <source>Your current statistic has unsaved changes.
 Would you like to save them?</source>
         <translation>В текущей статистике есть  несохранённые изменения
 Вы хотите сохранить их?</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="298"/>
+        <location filename="src/mainwindow.cpp" line="302"/>
         <source>Closing unsaved statistic canceled</source>
         <translation>Закрытие несохранённой статистики отменено</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="303"/>
+        <location filename="src/mainwindow.cpp" line="307"/>
         <source>Statistic &apos;%1&apos; closed without saving</source>
         <translation>Статистика &quot;%1&quot; закрыта без сохранения</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="327"/>
+        <location filename="src/mainwindow.cpp" line="331"/>
         <source>Save statistic to data file</source>
         <translation>Сохранить статистику в файл данных</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="340"/>
+        <location filename="src/mainwindow.cpp" line="344"/>
         <source>Save statistic error</source>
         <translation>Ошибка сохранения статистики</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="346"/>
+        <location filename="src/mainwindow.cpp" line="350"/>
         <source>Successfully saved statistic to &apos;%1&apos;</source>
         <translation>Статистика успешно сохранена в файл &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="367"/>
+        <location filename="src/mainwindow.cpp" line="371"/>
         <source>image.png</source>
         <translation>изображение.png</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="372"/>
+        <location filename="src/mainwindow.cpp" line="376"/>
         <source>Save image to file</source>
         <translation>Сохранить изображение в файл</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="373"/>
+        <location filename="src/mainwindow.cpp" line="377"/>
         <source>Portable Network Graphics (*.png);;JPEG (*.jpg *.jpeg);;Windows Bitmap (*.bmp)</source>
         <translation>Portable Network Graphics (*.png);;JPEG (*.jpg *.jpeg);;Windows Bitmap (*.bmp)</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="379"/>
-        <location filename="src/mainwindow.cpp" line="380"/>
+        <location filename="src/mainwindow.cpp" line="383"/>
+        <location filename="src/mainwindow.cpp" line="384"/>
         <source>Successfully saved image to &apos;%1&apos;</source>
         <translation>Изображение успешно сохранено в файл &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="382"/>
+        <location filename="src/mainwindow.cpp" line="386"/>
         <source>Failed to save image to &apos;%1&apos;</source>
         <translation>Не удалось сохранить изображение в файл &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="383"/>
+        <location filename="src/mainwindow.cpp" line="387"/>
         <source>Save image error</source>
         <translation>Ошибка сохранения изображения</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="383"/>
+        <location filename="src/mainwindow.cpp" line="387"/>
         <source>Failed to save image to &apos;%1&apos;.
 Try choosing another file location and/or format</source>
         <translation>Не удалось сохранить изображение в &quot;%1&quot;.
 Попробуйте выбрать другое расположения файла и/или другой формат</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="401"/>
+        <location filename="src/mainwindow.cpp" line="405"/>
         <source>Data modified</source>
         <translation>Данные изменены</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="408"/>
+        <location filename="src/mainwindow.cpp" line="412"/>
         <source>Histogram updated</source>
         <translation>Гистограмма обновлена</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="425"/>
+        <location filename="src/mainwindow.cpp" line="429"/>
         <source>&lt;center&gt;&lt;h2&gt;%header&lt;/h2&gt;&lt;p&gt;&lt;big&gt;x = %avg &amp;plusmn; %stddev&lt;/big&gt;&lt;/p&gt;&lt;/center&gt;&lt;p&gt;&lt;b&gt;Number:&lt;/b&gt; %number&lt;/p&gt;&lt;p&gt;&lt;b&gt;Min/Max:&lt;/b&gt; %min ... %max&lt;/p&gt;&lt;p&gt;&lt;b&gt;Average:&lt;/b&gt; %avg&lt;/p&gt;&lt;p&gt;&lt;b&gt;Dispersion:&lt;/b&gt; %disp&lt;/p&gt;&lt;p&gt;&lt;b&gt;Std. deviation:&lt;/b&gt; %stddev&lt;/p&gt;&lt;p&gt;&lt;b&gt;3&lt;sup&gt;rd&lt;/sup&gt; Moment:&lt;/b&gt; %moment3&lt;/p&gt;&lt;p&gt;&lt;b&gt;4&lt;sup&gt;th&lt;/sup&gt; Moment:&lt;/b&gt; %moment4&lt;/p&gt;</source>
         <translation>&lt;center&gt;&lt;h2&gt;%header&lt;/h2&gt;&lt;p&gt;&lt;big&gt;x = %avg &amp;plusmn; %stddev&lt;/big&gt;&lt;/p&gt;&lt;/center&gt;&lt;b&gt;Количество:&lt;/b&gt; %number&lt;/p&gt;&lt;p&gt;&lt;b&gt;Мин/Макс:&lt;/b&gt; %min ... %max&lt;/p&gt;&lt;p&gt;&lt;b&gt;Среднее:&lt;/b&gt; %avg&lt;/p&gt;&lt;p&gt;&lt;b&gt;Дисперсия:&lt;/b&gt; %disp&lt;/p&gt;&lt;p&gt;&lt;b&gt;СКО:&lt;/b&gt; %stddev&lt;/p&gt;&lt;p&gt;&lt;b&gt;3&lt;sup&gt;ий&lt;/sup&gt; Момент:&lt;/b&gt; %moment3&lt;/p&gt;&lt;p&gt;&lt;b&gt;4&lt;sup&gt;ый&lt;/sup&gt; Момент:&lt;/b&gt; %moment4&lt;/p&gt;</translation>
     </message>
@@ -454,12 +465,12 @@ Try choosing another file location and/or format</source>
         <translation type="obsolete">&lt;h2&gt;%header&lt;/h2&gt;&lt;p/&gt;&lt;p&gt;&lt;b&gt;Количество:&lt;/b&gt; %number&lt;/p&gt;&lt;p&gt;&lt;b&gt;Мин/Макс:&lt;/b&gt; %min ... %max&lt;/p&gt;&lt;p&gt;&lt;b&gt;Среднее:&lt;/b&gt; %avg&lt;/p&gt;&lt;p&gt;&lt;b&gt;Дисперсия:&lt;/b&gt; %disp&lt;/p&gt;&lt;p&gt;&lt;b&gt;СКО:&lt;/b&gt; %stddev&lt;/p&gt;&lt;p&gt;&lt;b&gt;3&lt;sup&gt;ий&lt;/sup&gt; Момент:&lt;/b&gt; %moment3&lt;/p&gt;&lt;p&gt;&lt;b&gt;4&lt;sup&gt;ый&lt;/sup&gt; Момент:&lt;/b&gt; %moment4&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="483"/>
+        <location filename="src/mainwindow.cpp" line="487"/>
         <source>About StatistiQ</source>
         <translation>О программе StatistiQ</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="484"/>
+        <location filename="src/mainwindow.cpp" line="488"/>
         <source>StatistiQ version 1.0
 
 StatistiQ is an app for getting various 

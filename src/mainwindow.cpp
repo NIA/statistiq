@@ -198,6 +198,8 @@ void MainWindow::open(QString fileName) {
             setWindowTitle(titleWithFile.arg(reader.shortFileName()));
             reportWindow->setupForFile(fileName, reader.shortFileName());
         }
+    } else {
+        QMessageBox::warning(this, tr("Failed to open file"), reader.errorMessage());
     }
     statusBar()->showMessage(reader.formatReport());
 }
@@ -215,6 +217,8 @@ void MainWindow::sl_addDataFromFile() {
     Reader reader(this, fileName);
     if(reader.isValid()) {
         stat->append(reader.data());
+    } else {
+        QMessageBox::warning(this, tr("Failed to open file"), reader.errorMessage());
     }
     statusBar()->showMessage(reader.formatReport());
 }
