@@ -231,9 +231,9 @@ void MainWindow::sl_new() {
     NewStatDialog * dialog = new NewStatDialog(this, NewStatDialog::ReplaceWithNew);
     if(dialog->exec() == QDialog::Accepted) {
         if( setStatistic(new Statistic(this, dialog->data(), untitledFileName)) ) {
-            stat->setModified(true);
-
             setWindowTitle(titleWithFile.arg(untitledFileName));
+
+            stat->setModified(true);
             reportWindow->setupForFile(untitledFileName, untitledFileName);
             QString message = tr("Successfully created new statistic of %1 items").arg(dialog->data().size());
             statusBar()->showMessage(message);
@@ -352,9 +352,9 @@ void MainWindow::save(QString filePath) {
     // Update window display & controls
     QString shortFileName = Reader::toShortFileName(filePath);
     statusBar()->showMessage(tr("Successfully saved statistic to '%1'").arg(shortFileName));
-    setWindowModified(false);
     ui->actionSave->setEnabled(false);
     setWindowTitle(titleWithFile.arg(shortFileName));
+    setWindowModified(false);
 
     // Update statistic properties
     QString newHeader = Reader::formatFileInfo(shortFileName, QDateTime::currentDateTime());
