@@ -79,7 +79,7 @@ namespace {
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow), reportWindow(new ReportWindow(NULL)), logWindow(new LogWindow(NULL)),
-    stat(NULL), histogram(NULL),
+    stat(NULL), histogram(NULL), closingAllowed(false),
 
     untitledFileName(tr("untitled.csv")), titleWithFile(tr("%1[*] - StatistiQ - a data processing utility")),
     fileFilter(tr("Plain text file (*.csv *.txt *.dat);;All files (*.*)"))
@@ -194,6 +194,10 @@ void MainWindow::sl_open() {
 }
 
 void MainWindow::open(QString fileName) {
+    if(false == askForClosing()) {
+        return;
+    }
+
     Reader reader(this, fileName);
     if(reader.isValid()) {
         if( setStatistic(new Statistic(this, reader.data(), reader.formatFileInfo())) ) {
@@ -206,6 +210,7 @@ void MainWindow::open(QString fileName) {
         QMessageBox::warning(this, tr("Failed to open file"), reader.errorMessage());
     }
     statusBar()->showMessage(reader.formatReport());
+    resetClosingFlag();
 }
 
 void MainWindow::sl_addDataFromFile() {
@@ -274,6 +279,7 @@ bool MainWindow::setStatistic(Statistic *newStat) {
 
     ui->dataTable->setModel(stat->itemModel());
     ui->actionShowReport->setEnabled(true);
+    ui->actionSave->setEnabled(false);
     ui->actionSaveAs->setEnabled(true);
     ui->actionAddData->setEnabled(true);
     ui->actionAddFromFile->setEnabled(true);
@@ -292,11 +298,8 @@ bool MainWindow::setStatistic(Statistic *newStat) {
     return true;
 }
 
-/* Returns true if statistic is closed, false if closing was canceled by user */
-bool MainWindow::closeStatistic() {
-    if(stat == NULL) { return true; }
-
-    if(stat->isModified()) {
+bool MainWindow::askForClosing() {
+    if(stat != NULL && stat->isModified()) {
         QMessageBox::StandardButton answer =
                 QMessageBox::question(this, tr("Save before closing?"),
                 tr("Your current statistic has unsaved changes.\nWould you like to save them?"),
@@ -304,15 +307,35 @@ bool MainWindow::closeStatistic() {
                 QMessageBox::Save);
         if(answer == QMessageBox::Cancel) {
             Logger::info(tr("Closing unsaved statistic canceled"));
-            return false;
+            closingAllowed = false;
         } else if(answer == QMessageBox::Save) {
             sl_save();
+            closingAllowed = true;
         } else {
             Logger::warning(tr("Statistic '%1' closed without saving").arg(stat->header()));
+            closingAllowed = true;
+        }
+    } else {
+        closingAllowed = true;
+    }
+    return closingAllowed;
+}
+
+/* Returns true if statistic is closed, false if closing was canceled by user */
+bool MainWindow::closeStatistic() {
+    if(stat == NULL) { return true; }
+
+    if(stat->isModified()) {
+        if( ! closingAllowed ) {
+            // It means that we didn't ask yet, so ask
+            if( false == askForClosing() ) {
+                return false;
+            }
         }
     }
     setWindowModified(false);
     delete stat;
+    resetClosingFlag(); // Return to initial state
     return true;
 }
 

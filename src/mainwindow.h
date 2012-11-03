@@ -73,6 +73,10 @@ private:
     QwtPlotCurve * curve;
     QwtPlotCurve * averageLine;
 
+    bool closingAllowed;
+    bool askForClosing();
+    void resetClosingFlag() { closingAllowed = false; }
+
     void initContextMenus();
     void initHistogramControls();
     void initGrid(QwtPlot * plot);
