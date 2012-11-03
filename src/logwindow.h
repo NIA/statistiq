@@ -30,12 +30,14 @@ public slots:
     void sl_messageAdded(Logger::Level level, QString message);
 
 protected:
-    void closeEvent(QCloseEvent *);
+    virtual void contextMenuEvent(QContextMenuEvent *e);
+    virtual void closeEvent(QCloseEvent *);
 
 private:
     QString levelName(Logger::Level level);
     QString levelColor(Logger::Level level);
 
+    QAction * actionClearLog;
 };
 
 #endif // LOGWINDOW_H

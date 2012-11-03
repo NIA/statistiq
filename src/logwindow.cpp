@@ -13,10 +13,14 @@
 #include "logwindow.h"
 #include <QDateTime>
 #include <QIcon>
+#include <QAction>
+#include <QMenu>
 
 LogWindow::LogWindow(QWidget *parent) :
     super(parent)
 {
+    actionClearLog = new QAction(QIcon(":/icons/images/remove.ico"), tr("Clear log"), this);
+    connect(actionClearLog, SIGNAL(triggered()), SLOT(clear()));
     connect(Logger::instance(), SIGNAL(si_messageAdded(Logger::Level,QString)), SLOT(sl_messageAdded(Logger::Level,QString)));
 
     setMinimumSize(600, 350);
@@ -25,17 +29,24 @@ LogWindow::LogWindow(QWidget *parent) :
 
     setUndoRedoEnabled(false);
     setReadOnly(true);
-    setLineWrapMode(QPlainTextEdit::WidgetWidth);
+    setLineWrapMode(super::WidgetWidth);
     setTextInteractionFlags(Qt::NoTextInteraction|Qt::TextSelectableByMouse|Qt::TextSelectableByKeyboard);
     setCenterOnScroll(true);
 }
 
+void LogWindow::contextMenuEvent(QContextMenuEvent *e) {
+    QMenu * menu = createStandardContextMenu();
+    menu->addAction(actionClearLog);
+    menu->exec(e->globalPos());
+    delete menu;
+}
+
 void LogWindow::sl_messageAdded(Logger::Level level, QString message) {
     QString formattedMessage = "";
-    formattedMessage += QString("<font color='%1'>").arg(levelColor(level));
+    formattedMessage += QString("<font color='%1'><b>").arg(levelColor(level));
     formattedMessage += QString("[%1] ").arg(QDateTime::currentDateTime().toString(Qt::DefaultLocaleShortDate));
-    formattedMessage += (levelName(level) + ": ");
-    formattedMessage += message;
+    formattedMessage += (levelName(level) + ":</b> ");
+    formattedMessage += Qt::escape(message);
     formattedMessage += "</font>";
 
     appendHtml(formattedMessage);
