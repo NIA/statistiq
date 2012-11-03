@@ -181,7 +181,11 @@ void MainWindow::initCurve() {
 }
 
 void MainWindow::sl_open() {
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Open data file"), ".", fileFilter);
+    QString supposedPath = ".";
+    if(stat != NULL) {
+        supposedPath =  QFileInfo(stat->filePath()).path();
+    }
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Open data file"), supposedPath, fileFilter);
     if(fileName.isEmpty()) {
         return;
     } else {
