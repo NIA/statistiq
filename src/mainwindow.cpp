@@ -2,7 +2,7 @@
  * (C) Copyright 2012 Kuban State University (http://kubsu.ru/),
  *     Faculty of Physics and Technology, Physics and Information Systems Chair
  *
- * All rights reserved. This file is part of StatistiQ, a program
+ * All rights reserved. This file is part of ProcessData, a program
  * for getting various statistical information from measurement data.
  *
  * Developed by Ivan Novikov (http://github.com/NIA)
@@ -81,7 +81,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow), reportWindow(new ReportWindow(NULL)), logWindow(new LogWindow(NULL)),
     stat(NULL), histogram(NULL), closingAllowed(false),
 
-    untitledFileName(tr("untitled.csv")), titleWithFile(tr("%1[*] - StatistiQ - a data processing utility")),
+    untitledFileName(tr("untitled.csv")), titleWithFile(tr("%1[*] - ProcessData - a data processing utility")),
     fileFilter(tr("Plain text file (*.csv *.txt *.dat);;All files (*.*)"))
 {
     Logger::info(tr("Application started"));
@@ -511,9 +511,9 @@ void MainWindow::sl_quit() {
 }
 
 void MainWindow::sl_about() {
-    QMessageBox::about(this, tr("About StatistiQ"),
-            tr("StatistiQ version 1.0\n\n"
-               "StatistiQ is an app for getting various \n"
+    QMessageBox::about(this, tr("About ProcessData"),
+            tr("ProcessData version 1.0\n\n"
+               "ProcessData is an app for getting various \n"
                "statistical information from experiment data\n\n"
                "(c) 2012, Physics and Information Systems Chair,\n"
                "Faculty of Physics and Technology, Kuban State University"));

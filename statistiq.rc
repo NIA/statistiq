@@ -8,16 +8,16 @@ BEGIN
   BEGIN
     BLOCK "040904b0"
     BEGIN
-      VALUE "Comments", "StatistiQ 1.0 statistical application\0"
+      VALUE "Comments", "ProcessData 1.0 statistical application\0"
       VALUE "CompanyName", "Kuban State University\0"
-      VALUE "FileDescription", "StatistiQ\0"
+      VALUE "FileDescription", "ProcessData\0"
       VALUE "FileVersion", "1, 0, 0, 0\0"
-      VALUE "InternalName", "StatistiQ\0"
+      VALUE "InternalName", "ProcessData\0"
       VALUE "LegalCopyright", "Copyright (c) 2012 Kuban State University, Faculty of Physics and Technology, Physics and Information Systems Chair\0"
       VALUE "LegalTrademarks", "\0"
-      VALUE "OriginalFilename", "statistiq.exe\0"
+      VALUE "OriginalFilename", "processdata.exe\0"
       VALUE "PrivateBuild", "\0"
-      VALUE "ProductName", "StatistiQ - an app for getting various statistical information\0"
+      VALUE "ProductName", "ProcessData - an app for getting various statistical information\0"
       VALUE "ProductVersion", "1, 0, 0, 0\0"
       VALUE "SpecialBuild", "\0"
     END

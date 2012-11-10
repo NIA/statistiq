@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>StatistiQ - a data processing utility</string>
+   <string>ProcessData - a data processing utility</string>
   </property>
   <property name="windowIcon">
    <iconset resource="statistiq.qrc">

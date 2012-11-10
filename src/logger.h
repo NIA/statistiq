@@ -2,7 +2,7 @@
  * (C) Copyright 2012 Kuban State University (http://kubsu.ru/),
  *     Faculty of Physics and Technology, Physics and Information Systems Chair
  *
- * All rights reserved. This file is part of StatistiQ, a program
+ * All rights reserved. This file is part of ProcessData, a program
  * for getting various statistical information from measurement data.
  *
  * Developed by Ivan Novikov (http://github.com/NIA)

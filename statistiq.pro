@@ -1,6 +1,6 @@
 QT       += core gui
 
-TARGET = statistiq
+TARGET = processdata
 TEMPLATE = app
 
 SOURCES += src/main.cpp\
@@ -27,7 +27,7 @@ FORMS    += mainwindow.ui \
     reportwindow.ui \
     newstatdialog.ui
 
-TRANSLATIONS += statistiq_ru.ts
+TRANSLATIONS += processdata_ru.ts
 
 OTHER_FILES += \
     statistiq.rc

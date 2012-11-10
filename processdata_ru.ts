@@ -17,8 +17,9 @@
     </message>
     <message>
         <location filename="src/logwindow.cpp" line="27"/>
-        <source>StatistiQ log</source>
-        <translation>Журнал работы программы StatistiQ</translation>
+        <source>ProcessData log</source>
+        <oldsource>StatistiQ log</oldsource>
+        <translation>Журнал работы программы ProcessData</translation>
     </message>
     <message>
         <location filename="src/logwindow.cpp" line="58"/>
@@ -45,8 +46,9 @@
     <name>MainWindow</name>
     <message>
         <location filename="mainwindow.ui" line="14"/>
-        <source>StatistiQ - a data processing utility</source>
-        <translation>StatistiQ -программа обработки данных</translation>
+        <source>ProcessData - a data processing utility</source>
+        <oldsource>StatistiQ - a data processing utility</oldsource>
+        <translation>ProcessData -программа обработки данных</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="58"/>
@@ -286,7 +288,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="mainwindow.ui" line="193"/>
         <location filename="mainwindow.ui" line="196"/>
-        <location filename="src/mainwindow.cpp" line="184"/>
+        <location filename="src/mainwindow.cpp" line="188"/>
         <source>Open data file</source>
         <translation>Открыть файл данных</translation>
     </message>
@@ -335,9 +337,13 @@ p, li { white-space: pre-wrap; }
         <translation>безымянный.csv</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="84"/>
         <source>%1[*] - StatistiQ - a data processing utility</source>
-        <translation>%1[*] - StatistiQ - программа обработки данных</translation>
+        <translation type="obsolete">%1[*] - StatistiQ - программа обработки данных</translation>
+    </message>
+    <message>
+        <location filename="src/mainwindow.cpp" line="84"/>
+        <source>%1[*] - ProcessData - a data processing utility</source>
+        <translation>%1[*] - ProcessData - программа обработки данных</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="85"/>
@@ -350,127 +356,147 @@ p, li { white-space: pre-wrap; }
         <translation>Приложение запущено</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="202"/>
-        <location filename="src/mainwindow.cpp" line="221"/>
+        <location filename="src/mainwindow.cpp" line="210"/>
+        <location filename="src/mainwindow.cpp" line="230"/>
         <source>Failed to open file</source>
         <translation>Не удалось открыть файл</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="213"/>
+        <location filename="src/mainwindow.cpp" line="222"/>
         <source>Open file to add to statistic</source>
         <translation>Открыть файл и добавить к статистике</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="234"/>
+        <location filename="src/mainwindow.cpp" line="243"/>
         <source>Successfully created new statistic of %1 items</source>
         <translation>Успешно создана новая статистика из %1 элементов</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="249"/>
+        <location filename="src/mainwindow.cpp" line="258"/>
         <source>Successfully appended %1 items to current statistic</source>
         <translation>Успешно добавлено %1 значений к текущей статистике</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="297"/>
+        <location filename="src/mainwindow.cpp" line="304"/>
         <source>Save before closing?</source>
         <translation>Сохранить перед закрытием?</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="298"/>
+        <location filename="src/mainwindow.cpp" line="305"/>
         <source>Your current statistic has unsaved changes.
 Would you like to save them?</source>
         <translation>В текущей статистике есть  несохранённые изменения
 Вы хотите сохранить их?</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="302"/>
+        <location filename="src/mainwindow.cpp" line="309"/>
         <source>Closing unsaved statistic canceled</source>
         <translation>Закрытие несохранённой статистики отменено</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="307"/>
+        <location filename="src/mainwindow.cpp" line="315"/>
         <source>Statistic &apos;%1&apos; closed without saving</source>
         <translation>Статистика &quot;%1&quot; закрыта без сохранения</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="331"/>
+        <location filename="src/mainwindow.cpp" line="358"/>
         <source>Save statistic to data file</source>
         <translation>Сохранить статистику в файл данных</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="344"/>
+        <location filename="src/mainwindow.cpp" line="371"/>
         <source>Save statistic error</source>
         <translation>Ошибка сохранения статистики</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="350"/>
+        <location filename="src/mainwindow.cpp" line="377"/>
         <source>Successfully saved statistic to &apos;%1&apos;</source>
         <translation>Статистика успешно сохранена в файл &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="371"/>
+        <location filename="src/mainwindow.cpp" line="398"/>
         <source>image.png</source>
         <translation>изображение.png</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="376"/>
+        <location filename="src/mainwindow.cpp" line="403"/>
         <source>Save image to file</source>
         <translation>Сохранить изображение в файл</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="377"/>
+        <location filename="src/mainwindow.cpp" line="404"/>
         <source>Portable Network Graphics (*.png);;JPEG (*.jpg *.jpeg);;Windows Bitmap (*.bmp)</source>
         <translation>Portable Network Graphics (*.png);;JPEG (*.jpg *.jpeg);;Windows Bitmap (*.bmp)</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="383"/>
-        <location filename="src/mainwindow.cpp" line="384"/>
+        <location filename="src/mainwindow.cpp" line="410"/>
+        <location filename="src/mainwindow.cpp" line="411"/>
         <source>Successfully saved image to &apos;%1&apos;</source>
         <translation>Изображение успешно сохранено в файл &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="386"/>
+        <location filename="src/mainwindow.cpp" line="413"/>
         <source>Failed to save image to &apos;%1&apos;</source>
         <translation>Не удалось сохранить изображение в файл &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="387"/>
+        <location filename="src/mainwindow.cpp" line="414"/>
         <source>Save image error</source>
         <translation>Ошибка сохранения изображения</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="387"/>
+        <location filename="src/mainwindow.cpp" line="414"/>
         <source>Failed to save image to &apos;%1&apos;.
 Try choosing another file location and/or format</source>
         <translation>Не удалось сохранить изображение в &quot;%1&quot;.
 Попробуйте выбрать другое расположения файла и/или другой формат</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="405"/>
+        <location filename="src/mainwindow.cpp" line="432"/>
         <source>Data modified</source>
         <translation>Данные изменены</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="412"/>
+        <location filename="src/mainwindow.cpp" line="439"/>
         <source>Histogram updated</source>
         <translation>Гистограмма обновлена</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="429"/>
+        <location filename="src/mainwindow.cpp" line="456"/>
         <source>&lt;center&gt;&lt;h2&gt;%header&lt;/h2&gt;&lt;p&gt;&lt;big&gt;x = %avg &amp;plusmn; %stddev&lt;/big&gt;&lt;/p&gt;&lt;/center&gt;&lt;p&gt;&lt;b&gt;Number:&lt;/b&gt; %number&lt;/p&gt;&lt;p&gt;&lt;b&gt;Min/Max:&lt;/b&gt; %min ... %max&lt;/p&gt;&lt;p&gt;&lt;b&gt;Average:&lt;/b&gt; %avg&lt;/p&gt;&lt;p&gt;&lt;b&gt;Dispersion:&lt;/b&gt; %disp&lt;/p&gt;&lt;p&gt;&lt;b&gt;Std. deviation:&lt;/b&gt; %stddev&lt;/p&gt;&lt;p&gt;&lt;b&gt;3&lt;sup&gt;rd&lt;/sup&gt; Moment:&lt;/b&gt; %moment3&lt;/p&gt;&lt;p&gt;&lt;b&gt;4&lt;sup&gt;th&lt;/sup&gt; Moment:&lt;/b&gt; %moment4&lt;/p&gt;</source>
         <translation>&lt;center&gt;&lt;h2&gt;%header&lt;/h2&gt;&lt;p&gt;&lt;big&gt;x = %avg &amp;plusmn; %stddev&lt;/big&gt;&lt;/p&gt;&lt;/center&gt;&lt;b&gt;Количество:&lt;/b&gt; %number&lt;/p&gt;&lt;p&gt;&lt;b&gt;Мин/Макс:&lt;/b&gt; %min ... %max&lt;/p&gt;&lt;p&gt;&lt;b&gt;Среднее:&lt;/b&gt; %avg&lt;/p&gt;&lt;p&gt;&lt;b&gt;Дисперсия:&lt;/b&gt; %disp&lt;/p&gt;&lt;p&gt;&lt;b&gt;СКО:&lt;/b&gt; %stddev&lt;/p&gt;&lt;p&gt;&lt;b&gt;3&lt;sup&gt;ий&lt;/sup&gt; Момент:&lt;/b&gt; %moment3&lt;/p&gt;&lt;p&gt;&lt;b&gt;4&lt;sup&gt;ый&lt;/sup&gt; Момент:&lt;/b&gt; %moment4&lt;/p&gt;</translation>
+    </message>
+    <message>
+        <location filename="src/mainwindow.cpp" line="514"/>
+        <source>About ProcessData</source>
+        <translation>О программе ProcessData</translation>
+    </message>
+    <message>
+        <location filename="src/mainwindow.cpp" line="515"/>
+        <source>ProcessData version 1.0
+
+ProcessData is an app for getting various 
+statistical information from experiment data
+
+(c) 2012, Physics and Information Systems Chair,
+Faculty of Physics and Technology, Kuban State University</source>
+        <translation>ProcessData версия 1.0
+
+ProcessData - это приложение для получения разнообразной
+статистической информации из экспериментальных данных
+
+(c) 2012, Кафедра физики и информационных систем,
+Физико-Технический Факультет, Кубанский Государственный Университет</translation>
     </message>
     <message>
         <source>&lt;h2&gt;%header&lt;/h2&gt;&lt;p/&gt;&lt;p&gt;&lt;b&gt;Number:&lt;/b&gt; %number&lt;/p&gt;&lt;p&gt;&lt;b&gt;Min/Max:&lt;/b&gt; %min ... %max&lt;/p&gt;&lt;p&gt;&lt;b&gt;Average:&lt;/b&gt; %avg&lt;/p&gt;&lt;p&gt;&lt;b&gt;Dispersion:&lt;/b&gt; %disp&lt;/p&gt;&lt;p&gt;&lt;b&gt;Std. deviation:&lt;/b&gt; %stddev&lt;/p&gt;&lt;p&gt;&lt;b&gt;3&lt;sup&gt;rd&lt;/sup&gt; Moment:&lt;/b&gt; %moment3&lt;/p&gt;&lt;p&gt;&lt;b&gt;4&lt;sup&gt;th&lt;/sup&gt; Moment:&lt;/b&gt; %moment4&lt;/p&gt;</source>
         <translation type="obsolete">&lt;h2&gt;%header&lt;/h2&gt;&lt;p/&gt;&lt;p&gt;&lt;b&gt;Количество:&lt;/b&gt; %number&lt;/p&gt;&lt;p&gt;&lt;b&gt;Мин/Макс:&lt;/b&gt; %min ... %max&lt;/p&gt;&lt;p&gt;&lt;b&gt;Среднее:&lt;/b&gt; %avg&lt;/p&gt;&lt;p&gt;&lt;b&gt;Дисперсия:&lt;/b&gt; %disp&lt;/p&gt;&lt;p&gt;&lt;b&gt;СКО:&lt;/b&gt; %stddev&lt;/p&gt;&lt;p&gt;&lt;b&gt;3&lt;sup&gt;ий&lt;/sup&gt; Момент:&lt;/b&gt; %moment3&lt;/p&gt;&lt;p&gt;&lt;b&gt;4&lt;sup&gt;ый&lt;/sup&gt; Момент:&lt;/b&gt; %moment4&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="487"/>
         <source>About StatistiQ</source>
-        <translation>О программе StatistiQ</translation>
+        <translation type="obsolete">О программе StatistiQ</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="488"/>
         <source>StatistiQ version 1.0
 
 StatistiQ is an app for getting various 
@@ -483,7 +509,7 @@ statistical information from experiment data
 
 (c) 2012, Physics and Information Systems Chair,
 Faculty of Physics and Technology, Kuban State University</oldsource>
-        <translation>StatistiQ версия 1.0
+        <translation type="obsolete">StatistiQ версия 1.0
 
 StatistiQ - это приложение для получения разнообразной
 статистической информации из экспериментальных данных
@@ -647,8 +673,9 @@ Click No to get back to editing and fix errors</source>
     <name>ReportWindow</name>
     <message>
         <location filename="reportwindow.ui" line="14"/>
-        <source>Statistiq report</source>
-        <translation>Отчёт StatistiQ</translation>
+        <source>ProcessData report</source>
+        <oldsource>Statistiq report</oldsource>
+        <translation>Отчёт ProcessData</translation>
     </message>
     <message>
         <location filename="reportwindow.ui" line="30"/>
@@ -747,8 +774,9 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="src/reportwindow.cpp" line="32"/>
-        <source>StatistiQ report for %1</source>
-        <translation>Отчёт StatistiQ для %1</translation>
+        <source>ProcessData report for %1</source>
+        <oldsource>StatistiQ report for %1</oldsource>
+        <translation>Отчёт ProcessData для %1</translation>
     </message>
     <message>
         <location filename="src/reportwindow.cpp" line="40"/>

@@ -2,7 +2,7 @@
  * (C) Copyright 2012 Kuban State University (http://kubsu.ru/),
  *     Faculty of Physics and Technology, Physics and Information Systems Chair
  *
- * All rights reserved. This file is part of StatistiQ, a program
+ * All rights reserved. This file is part of ProcessData, a program
  * for getting various statistical information from measurement data.
  *
  * Developed by Ivan Novikov (http://github.com/NIA)
@@ -29,7 +29,7 @@ ReportWindow::ReportWindow(QWidget *parent) :
 }
 
 void ReportWindow::setupForFile(QString fullName, QString shortName) {
-    setWindowTitle(tr("StatistiQ report for %1").arg(shortName));
+    setWindowTitle(tr("ProcessData report for %1").arg(shortName));
 
     QFileInfo fi(fullName);
     defaultSaveFilename = fi.dir().filePath(fi.baseName() + "_report.html");

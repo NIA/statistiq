@@ -2,7 +2,7 @@
  * (C) Copyright 2012 Kuban State University (http://kubsu.ru/),
  *     Faculty of Physics and Technology, Physics and Information Systems Chair
  *
- * All rights reserved. This file is part of StatistiQ, a program
+ * All rights reserved. This file is part of ProcessData, a program
  * for getting various statistical information from measurement data.
  *
  * Developed by Ivan Novikov (http://github.com/NIA)
@@ -24,7 +24,7 @@ LogWindow::LogWindow(QWidget *parent) :
     connect(Logger::instance(), SIGNAL(si_messageAdded(Logger::Level,QString)), SLOT(sl_messageAdded(Logger::Level,QString)));
 
     setMinimumSize(600, 350);
-    setWindowTitle(tr("StatistiQ log"));
+    setWindowTitle(tr("ProcessData log"));
     setWindowIcon(QIcon(":/icons/images/log.ico"));
 
     setUndoRedoEnabled(false);

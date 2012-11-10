@@ -1,7 +1,7 @@
-StatistiQ — experiment data statistics
+ProcessData — experiment data statistics
 ======================================
 
-![StatistiQ screenshot][statistiq-screen] ![StatistiQ report][statistiq-report-screen]
+![ProcessData screenshot][statistiq-screen] ![ProcessData report][statistiq-report-screen]
 
 This is a simple Qt application which allows to enter numeric data of
 an experiment or read them from file and then calculates and displays
