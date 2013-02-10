@@ -155,8 +155,13 @@ void MainWindow::initGrid(QwtPlot *plot) {
     QwtPlotGrid * grid = new QwtPlotGrid;
     grid->enableXMin(true);
     grid->enableYMin(true);
+#if QWT_VERSION >= 0x060100
+    grid->setMajorPen(QPen(GRID_COLOR));
+    grid->setMinorPen(QPen(GRID_COLOR, 1, Qt::DashLine));
+#else
     grid->setMajPen(QPen(GRID_COLOR));
     grid->setMinPen(QPen(GRID_COLOR, 1, Qt::DashLine));
+#endif
     grid->attach(plot);
 }
 

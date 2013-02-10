@@ -41,12 +41,20 @@ void LogWindow::contextMenuEvent(QContextMenuEvent *e) {
     delete menu;
 }
 
+    inline QString htmlEscaped(QString str) {
+#if QT_VERSION >= 0x050001
+        return str.toHtmlEscaped();
+#else
+        return Qt::escape(str);
+#endif
+    }
+
 void LogWindow::sl_messageAdded(Logger::Level level, QString message) {
     QString formattedMessage = "";
     formattedMessage += QString("<font color='%1'><b>").arg(levelColor(level));
     formattedMessage += QString("[%1] ").arg(QDateTime::currentDateTime().toString(Qt::DefaultLocaleShortDate));
     formattedMessage += (levelName(level) + ":</b> ");
-    formattedMessage += Qt::escape(message);
+    formattedMessage += htmlEscaped(message);
     formattedMessage += "</font>";
 
     appendHtml(formattedMessage);

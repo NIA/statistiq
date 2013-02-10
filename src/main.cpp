@@ -10,7 +10,11 @@
  *
  */
 
-#include <QtGui/QApplication>
+#if QT_VERSION >= 0x050000
+    #include <QtWidgets/QApplication>
+#else
+    #include <QApplication>
+#endif
 #include <QtCore/QTranslator>
 #include <QFileInfo>
 #include "mainwindow.h"

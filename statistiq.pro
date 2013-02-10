@@ -1,4 +1,5 @@
 QT       += core gui
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 
 TARGET = statistiq
 TEMPLATE = app
@@ -39,11 +40,16 @@ win32 {
     RC_FILE     += statistiq.rc
     OTHER_FILES += statistiq.rc
 
-    INCLUDEPATH  += C:/Qwt-6.0.1/include/
-
-    CONFIG(debug, debug|release) {
-        LIBS += C:/Qwt-6.0.1/lib/qwtd.dll
+    greaterThan(QT_MAJOR_VERSION, 4) {
+        INCLUDEPATH  += C:/Qwt-6.1.0-rc3/include/
+        LIBS +=       -LC:/Qwt-6.1.0-rc3/lib
     } else {
-        LIBS += C:/Qwt-6.0.1/lib/qwt.dll
+        INCLUDEPATH  += C:/Qwt-6.0.1/include/
+        LIBS +=       -LC:/Qwt-6.0.1/lib
+    }
+    CONFIG(debug, debug|release) {
+        LIBS += -lqwtd
+    } else {
+        LIBS += -lqwt
     }
 }
