@@ -43,12 +43,8 @@ public slots:
     void sl_new();
     void sl_statisticUpdated();
     void sl_histogramUpdated();
-    void sl_showHistogramTriggered(bool show);
-    void sl_showDataCurveTriggered(bool show);
     void sl_showReport(bool show);
-    void sl_reportClosed();
     void sl_showLog(bool show);
-    void sl_logClosed();
     void sl_save();
     void sl_saveAs();
     void sl_dataModified();

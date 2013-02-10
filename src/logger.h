@@ -42,7 +42,7 @@ public:
     }
 
 signals:
-    void si_messageAdded(Logger::Level level, QString message);
+    void si_messageAdded(Level level, QString message);
     
 private:
     explicit Logger();

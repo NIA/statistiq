@@ -20,8 +20,8 @@ LogWindow::LogWindow(QWidget *parent) :
     super(parent)
 {
     actionClearLog = new QAction(QIcon(":/icons/images/remove.ico"), tr("Clear log"), this);
-    connect(actionClearLog, SIGNAL(triggered()), SLOT(clear()));
-    connect(Logger::instance(), SIGNAL(si_messageAdded(Logger::Level,QString)), SLOT(sl_messageAdded(Logger::Level,QString)));
+    connect(actionClearLog, &QAction::triggered, this, &LogWindow::clear);
+    connect(Logger::instance(), &Logger::si_messageAdded, this, &LogWindow::sl_messageAdded);
 
     setMinimumSize(600, 350);
     setWindowTitle(tr("StatistiQ log"));

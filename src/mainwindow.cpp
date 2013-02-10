@@ -91,8 +91,8 @@ MainWindow::MainWindow(QWidget *parent) :
     initCurve();
     initContextMenus();
 
-    connect(reportWindow, SIGNAL(si_closed()), SLOT(sl_reportClosed()));
-    connect(logWindow, SIGNAL(si_closed()), SLOT(sl_logClosed()));
+    connect(reportWindow, &ReportWindow::si_closed, [=](){ ui->actionShowReport->setChecked(false); });
+    connect(logWindow, &LogWindow::si_closed, [=](){ ui->actionShowLog->setChecked(false); });
 
     QStringList arguments = QApplication::arguments();
     arguments.removeAt(0); // ignore own path
@@ -125,7 +125,7 @@ void MainWindow::initHistogramControls() {
     new TooltipPlotPicker(ui->histogramArea);
 
     histogram = new Histogram(ui->histogramArea);
-    connect(ui->actionShowHistogram, SIGNAL(triggered(bool)), SLOT(sl_showHistogramTriggered(bool)));
+    connect(ui->actionShowHistogram, &QAction::triggered, [=](bool show){ ui->histogramArea->setVisible(show); });
 
     QLabel * labelHistogram = new QLabel(tr("Histogram:"));
     setToolbarMargins(labelHistogram);
@@ -170,7 +170,7 @@ void MainWindow::initCurve() {
     rotateAxisLabel(ui->curveArea->axisScaleDraw(QwtPlot::yLeft));
     ui->curveArea->setVisible(ui->actionShowDataCurve->isChecked());
     new TooltipPlotPicker(ui->curveArea);
-    connect(ui->actionShowDataCurve, SIGNAL(triggered(bool)), SLOT(sl_showDataCurveTriggered(bool)));
+    connect(ui->actionShowDataCurve, &QAction::triggered, [=](bool show){ ui->curveArea->setVisible(show); });
 
     curve = new QwtPlotCurve;
     curve->setBrush(CURVE_FILL);
@@ -445,14 +445,6 @@ void MainWindow::sl_histogramUpdated() {
     reportWindow->setContent(formatReport());
 }
 
-void MainWindow::sl_showHistogramTriggered(bool show) {
-    ui->histogramArea->setVisible(show);
-}
-
-void MainWindow::sl_showDataCurveTriggered(bool show) {
-    ui->curveArea->setVisible(show);
-}
-
 QString MainWindow::formatStats() {
     if(stat == NULL) {
         return "";
@@ -501,14 +493,6 @@ void MainWindow::sl_showLog(bool show) {
     } else {
         logWindow->hide();
     }
-}
-
-void MainWindow::sl_reportClosed() {
-    ui->actionShowReport->setChecked(false);
-}
-
-void MainWindow::sl_logClosed() {
-    ui->actionShowLog->setChecked(false);
 }
 
 void MainWindow::sl_quit() {
