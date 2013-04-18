@@ -46,4 +46,7 @@ win32 {
     } else {
         LIBS += C:/Qwt-6.0.1/lib/qwt.dll
     }
+} else {
+    INCLUDEPATH += /usr/include/qwt/
+    LIBS += -lqwt
 }
