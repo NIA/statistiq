@@ -15,13 +15,33 @@
 #include "timer.h"
 
 #include <QFileInfo>
+#include <QStringList>
+
+namespace {
+    const QString VALUES_KEY = "[values]";
+    const QString DELIMITER  = "\t";
+}
 
 Reader::Parser::Parser(QTextStream &in)
 {
-    QString line;
     int lineNumber = 1;
-    while( ! (line = in.readLine().trimmed()).isNull() ) {
+    QString line = getLine(in);
+
+    // If we have some ini-like format...
+    if (line.startsWith("[")) {
+        // ...skip everything until we meet [Values]
+        do {
+            line = getLine(in).toLower();
+            ++lineNumber;
+        } while (!line.isNull() && !line.contains(VALUES_KEY));
+    }
+
+    while( ! line.isNull() ) {
         if(line.isEmpty()) { continue; }
+
+        // TODO: ask user about which column he wants.
+        // Currently we just take the first column
+        line = line.split(DELIMITER).first();
 
         bool ok;
         double value = line.toDouble(&ok);
@@ -31,8 +51,13 @@ Reader::Parser::Parser(QTextStream &in)
             skippedLines << lineNumber;
             skippedStrings << line;
         }
+        line = getLine(in);
         ++lineNumber;
     }
+}
+
+QString Reader::Parser::getLine(QTextStream &in) {
+    return in.readLine().trimmed();
 }
 
 Reader::Reader(QObject *parent, QString fileName) :

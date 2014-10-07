@@ -31,6 +31,8 @@ public:
         QList<double> parsedData;
         QList<int> skippedLines;
         QList<QString> skippedStrings;
+    private:
+        QString getLine(QTextStream & in);
     };
 
     // Tries to open the file, retrieve data from it and
